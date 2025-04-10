@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="arrow-down" viewBox="0 0 24 24">
+    <path d="M12 16L6 10h12z" />
+  </symbol>
+  <symbol id="check" viewBox="0 0 24 24">
+    <path d="M20 6L9 17l-5-5" />
+  </symbol>
+  <symbol fill="currentColor" viewBox="0 0 24 24" id="pawn" stroke="currentColor">
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+      <path
+        d="M19.189,18.757a1,1,0,0,0-.97-.757h-.933c-1.644-1.726-2.235-4.918-2.449-7H9.163c-.214,2.082-.8,5.274-2.449,7H5.781a1,1,0,0,0-.97.757L4,22H20Z"></path>
+      <path
+        d="M8,9h8a1,1,0,0,0,0-2h-.635a3.523,3.523,0,0,0,.278-1.357,3.643,3.643,0,0,0-7.286,0A3.523,3.523,0,0,0,8.635,7H8A1,1,0,0,0,8,9Z"></path>
+    </g>
+  </symbol>
+</svg>

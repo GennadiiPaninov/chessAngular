@@ -1,0 +1,23 @@
+@layer components {
+  .btn {
+    @apply border-none p-def text-md text-primary rounded-deck flex items-center gap-button mob:text-mdM;
+
+  }
+  .btn .icon {
+    @apply w-icon h-icon;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-background hover:bg-stroke active:bg-strokeXl;
+  }
+  .btn-secondary {
+    @apply bg-secondary hover:bg-tertiary active:bg-tertiaryXl;
+  }
+  .btn-default {
+    @apply bg-background  hover:bg-secondary active:bg-tertiaryXl;
+  }
+  .btn-reverse{
+    @apply flex-row-reverse
+  }
+
+}

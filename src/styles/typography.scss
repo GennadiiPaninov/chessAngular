@@ -1,0 +1,19 @@
+@layer components {
+  .typography-xxxl {
+    @apply text-xxxl text-primary font-medium tracking-[normal] leading-[130%] mob:text-xxxlM;
+  }
+  .typography-xxl {
+    @apply text-xxl text-primary font-medium tracking-[normal] leading-[130%] mob:text-xxlM;
+  }
+  .typography-xl {
+    @apply text-xl text-primary font-normal tracking-[normal] leading-[130%] mob:text-xlM;
+
+  }
+  .typography-lg {
+    @apply text-lg text-primary font-normal tracking-[normal] leading-[130%] mob:text-lgM;
+  }
+  .typography-md {
+    @apply text-md text-primary font-normal tracking-[normal] leading-[130%] mob:text-mdM;
+  }
+}
+

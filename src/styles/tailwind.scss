@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+@mixin breakpoint($bp) {
+  @media (max-width: $bp) {
+    @content;
+  }
+}
+
+$sm-bp: 500px;
+
+
+html {
+  scrollbar-gutter: stable;
+  scroll-behavior: smooth;
+  height: 100%;
+
+  font-size: min(calc(100vw / 1920 * 10), 10px);
+  @include breakpoint($sm-bp) {
+    font-size: calc(100vw / 375 * 10);
+  }
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+@import "typography.scss";
+@import "button.scss";
+
+
+//*{
+//  outline:4px solid green;
+//}
+
