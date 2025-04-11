@@ -16,6 +16,7 @@ export class ButtonComponent {
   @Input() svgName: svgName | "" = ""
   @Input() variant: variant | "" = "";
   @Input() reverse: boolean = false
+  @Input() width: 'full' | '' = ''
   handleClick(){
     this.clicked.emit()
   }

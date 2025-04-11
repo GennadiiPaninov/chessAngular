@@ -7,11 +7,8 @@ module.exports = {
     'btn-primary',
     'btn-secondary',
     'btn-default',
-    'typography-xxxl',
-    'typography-xxl',
-    'typography-xl',
-    'typography-lg',
-    'typography-md',
+    'btn-success',
+    'btn-icon'
   ],
   theme: {
     extend: {
@@ -23,7 +20,9 @@ module.exports = {
         tertiaryXl:"#a1e0e0",
         stroke:"#2d334a",
         strokeXl:"#1d2538",
-        success:"#2cb67d",
+        success:"#28a745",
+        successA:"#1e7e34",
+        successH:"#218838",
         error:"#e53170",
       },
       fontSize: {
@@ -41,6 +40,9 @@ module.exports = {
       padding: {
         def: '2rem 3rem',
         mdef: '1.5rem 2rem'
+      },
+      margin:{
+        center: '0 auto'
       },
       screens:{
         mob: {max: "500px"}

@@ -1,6 +1,6 @@
 @layer components {
   .btn {
-    @apply border-none p-def text-md text-primary rounded-deck flex items-center gap-button mob:text-mdM;
+    @apply border-none p-def text-md font-bold text-primary tracking-[0.1rem] rounded-deck flex items-center justify-center duration-500 gap-button mob:text-mdM;
 
   }
   .btn .icon {
@@ -16,8 +16,14 @@
   .btn-default {
     @apply bg-background  hover:bg-secondary active:bg-tertiaryXl;
   }
+  .btn-success{
+    @apply bg-success active:bg-successA hover:bg-successH text-background;
+  }
   .btn-reverse{
     @apply flex-row-reverse
+  }
+  .btn-icon {
+    @apply p-0
   }
 
 }

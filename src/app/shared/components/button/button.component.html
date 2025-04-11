@@ -1,6 +1,6 @@
-<button (click)="handleClick()" [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '']">
-  <ng-container *ngIf="svgName; else noSvg">
+<button (click)="handleClick()" [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']">
     <svg
+      *ngIf="svgName"
       class="icon"
       xmlns="http://www.w3.org/2000/svg"
       focusable="false"
@@ -9,8 +9,4 @@
       <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
     </svg>
     {{label}}
-  </ng-container>
-  <ng-template #noSvg>
-    {{label}}
-  </ng-template>
 </button>
