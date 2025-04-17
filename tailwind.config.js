@@ -24,6 +24,7 @@ module.exports = {
         successA:"#1e7e34",
         successH:"#218838",
         error:"#e53170",
+        red: "#ec132c"
       },
       fontSize: {
         xxxl: ['7.5rem', { lineHeight: '130%' }],

@@ -1,32 +1,38 @@
-<form [formGroup]="registerForm" (ngSubmit)="submit()" class="flex flex-col gap-[2rem] w-[53.9rem] p-[3rem] m-center border rounded-md shadow mt-[10rem] mob:w-full mob:mt-[0] mob:gap-[0.5rem]">
-  <app-input
-    formControlName="email"
-    label="Email"
-    placeholder="Введите ваш email"
-    type="email"
-    [svgName]="'email'"
-  ></app-input>
-  <app-input
-    formControlName="password"
-    label="Пароль"
-    placeholder="Введите пароль"
-    type="password"
-    [password]="true"
+<form [formGroup]="registerForm" (ngSubmit)="submit()"
+      class="flex flex-col gap-[2rem] w-[53.9rem] p-[3rem] m-center border rounded-md shadow mt-[10rem] mob:w-full mob:mt-[0] mob:gap-[0.5rem]">
+  <app-field label="Email">
+    <app-input
+      formControlName="email"
+      label="Email"
+      placeholder="Введите ваш email"
+      type="email"
+      [svgName]="'email'"
+    ></app-input>
+  </app-field>
+  <app-field label="Введите пароль">
+    <app-input
+      formControlName="password"
+      label="Пароль"
+      placeholder="Введите пароль"
+      type="password"
+      [password]="true"
+    ></app-input>
+  </app-field>
 
-  ></app-input>
-  <app-input
-    formControlName="passwordConfirm"
-    label="Подтвердите пароль"
-    placeholder="Повторите пароль"
-    type="password"
-    [password]="true"
+  <app-field  label="Подтвердите пароль" >
+    <app-input
+      formControlName="passwordConfirm"
+      placeholder="Повторите пароль"
+      type="password"
+      [password]="true"
+      autocomplete="new-password"
+    ></app-input>
+  </app-field>
 
-  ></app-input>
   <app-button
     [variant]="'success'"
     [width]="'full'"
     [label]="'Sign Up'"
-
   >
   </app-button>
 

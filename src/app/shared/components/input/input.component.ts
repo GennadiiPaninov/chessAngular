@@ -1,19 +1,17 @@
 import {
   Component,
   Input,
-  forwardRef,
-  OnInit,
-  inject
+  forwardRef, inject,
 } from '@angular/core';
 import {
-  ControlValueAccessor,
+  ControlContainer,
+  ControlValueAccessor, FormControl,
   NG_VALUE_ACCESSOR,
-  FormControl,
-  NgControl, ReactiveFormsModule
 } from '@angular/forms';
 import {CommonModule, NgClass, NgIf} from '@angular/common';
 import {svgName} from "../../../core/models/button.model";
 import {ButtonComponent} from "../button/button.component";
+import {InputErrorsService} from "../../../core/inputErrorsService/input-errors.service";
 
 @Component({
   selector: 'app-input',
@@ -34,32 +32,37 @@ export class InputComponent implements ControlValueAccessor {
   @Input() type: string = 'text';
   @Input() placeholder = '';
   @Input() id: string = crypto.randomUUID();
-  @Input() error: string = ''
   @Input() svgName: svgName | '' = ''
   @Input() password: boolean = false
+  @Input() formControlName?: string;
+  @Input() autocomplete: string = 'off';
 
   value: string = '';
   disabled = false;
   isPasswordVisible: boolean = false
+  private controlContainer = inject(ControlContainer);
+  private inputErrorsService = inject(InputErrorsService)
 
-  onChange = (value: string) => {};
-  onTouched = () => {};
-  showPassword():void{
+  onChange = (value: string) => {
+  };
+  onTouched = () => {
+  };
+
+  showPassword(): void {
     this.isPasswordVisible = !this.isPasswordVisible
     this.isPasswordVisible ? this.type = 'text' : this.type = 'password'
   }
+
   writeValue(value: string): void {
     console.log(value)
     this.value = value;
   }
 
   registerOnChange(fn: any): void {
-    console.log(fn)
     this.onChange = fn;
   }
 
   registerOnTouched(fn: any): void {
-    console.log(fn)
     this.onTouched = fn;
   }
 
@@ -75,4 +78,14 @@ export class InputComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
+
+  get control(): FormControl | null {
+    if (!this.formControlName) return null;
+    const ctrl = this.controlContainer?.control?.get(this.formControlName);
+    return ctrl instanceof FormControl ? ctrl : null;
+  }
+  get errorMessage(): string |null {
+    const control = this.control
+    return this.inputErrorsService.getError(control)
+  }
 }
