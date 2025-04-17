@@ -18,10 +18,11 @@
     [placeholder]="placeholder"
     [value]="value"
     (input)="onInput($event)"
-    (blur)="onTouched()"
+    (blur)="onBlur()"
+    (focus)="onFocus()"
     [disabled]="disabled"
     class="typography-xl input"
     [attr.autocomplete]="autocomplete"
   />
-  <span *ngIf="errorMessage " class="text-red typography-lg absolute bottom-[-3rem]">{{errorMessage}}</span>
+  <span *ngIf="errorMessage &&  showError" class="text-red typography-lg absolute bottom-[-3rem]">{{errorMessage}}</span>
 </div>

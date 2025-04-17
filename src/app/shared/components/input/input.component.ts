@@ -28,24 +28,26 @@ import {InputErrorsService} from "../../../core/inputErrorsService/input-errors.
   ]
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() label = '';
-  @Input() type: string = 'text';
-  @Input() placeholder = '';
-  @Input() id: string = crypto.randomUUID();
+  @Input() label = ''
+  @Input() type: string = 'text'
+  @Input() placeholder = ''
+  @Input() id: string = crypto.randomUUID()
   @Input() svgName: svgName | '' = ''
   @Input() password: boolean = false
   @Input() formControlName?: string;
-  @Input() autocomplete: string = 'off';
+  @Input() autocomplete: string = 'off'
 
-  value: string = '';
+  value: string = ''
   disabled = false;
   isPasswordVisible: boolean = false
+  showError: boolean = false
   private controlContainer = inject(ControlContainer);
   private inputErrorsService = inject(InputErrorsService)
 
   onChange = (value: string) => {
   };
   onTouched = () => {
+
   };
 
   showPassword(): void {
@@ -54,35 +56,39 @@ export class InputComponent implements ControlValueAccessor {
   }
 
   writeValue(value: string): void {
-    console.log(value)
-    this.value = value;
+    this.value = value
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
+    this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.onTouched = fn
   }
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
   }
-
+  onBlur(): void {
+    this.showError = true
+    this.onTouched()
+  }
+  onFocus(): void {
+    this.showError = false
+  }
   onInput(event: Event) {
     const target = event.target as HTMLInputElement;
-    console.log(target.value)
-    this.value = target.value;
-    this.onChange(this.value);
-    this.onTouched();
+    this.value = target.value
+    this.onChange(this.value)
+    this.onTouched()
   }
 
 
   get control(): FormControl | null {
-    if (!this.formControlName) return null;
-    const ctrl = this.controlContainer?.control?.get(this.formControlName);
-    return ctrl instanceof FormControl ? ctrl : null;
+    if (!this.formControlName) return null
+    const ctrl = this.controlContainer?.control?.get(this.formControlName)
+    return ctrl instanceof FormControl ? ctrl : null
   }
   get errorMessage(): string |null {
     const control = this.control
