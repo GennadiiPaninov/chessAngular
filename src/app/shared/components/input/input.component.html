@@ -1,6 +1,6 @@
 <div class="input-container relative mb-[1.5rem]">
   <app-button *ngIf="password" variant="icon" [svgName]="isPasswordVisible ? 'open-eye' : 'close-eye'"
-              (clicked)="showPassword()">
+              (clicked)="showPassword()" tabindex="-1">
   </app-button>
   <svg
     *ngIf="svgName"

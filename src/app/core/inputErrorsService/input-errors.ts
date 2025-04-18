@@ -4,5 +4,8 @@ export const ERROR_MESSAGES: Record<string, (e:any)=> string> = {
   minlength: (e)=>`Минимум ${e.requiredLength} символов`,
   maxlength: (e) => `Максимум ${e.requiredLength} символов`,
   pattern: () => 'Неверный формат',
-  passwordsMismatch: () => 'Пароли не совпадают'
+  passwordsMismatch: () => 'Пароли не совпадают',
+  capitalLetter: ()=> 'Должна присутствовать заглавная буква',
+  smallLetter: ()=> 'Должна присутствовать строчная буква',
+  number: ()=> 'Должна присутствовать одна цифра'
 }

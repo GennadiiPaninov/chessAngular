@@ -15,8 +15,12 @@ export class ButtonComponent {
   @Input() label: string = ""
   @Input() svgName: svgName | "" = ""
   @Input() variant: variant | "" = "";
+  // свг и текст меняются местами
   @Input() reverse: boolean = false
   @Input() width: 'full' | '' = ''
+  // без таба
+  @Input()tabindex: string = ""
+  @Input() disabled: boolean = false
   handleClick(){
     this.clicked.emit()
   }

@@ -1,4 +1,4 @@
-<button (click)="handleClick()" [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']">
+<button (click)="handleClick()" [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']" [disabled]="disabled" [tabIndex]="tabindex">
     <svg
       *ngIf="svgName"
       class="icon"

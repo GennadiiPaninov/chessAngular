@@ -1,16 +1,9 @@
 
 
 <main class="main">
-<app-sign-in></app-sign-in>
-<!--  <app-button [label]="'Оправить'" [variant]="'primary'" [svgName]="'pawn'" [reverse]="true" ></app-button>-->
-<!--  <app-button [label]="'Оправить'" [variant]="'primary'" ></app-button>-->
-<!--  <app-button [label]="'Оправить'" [variant]="'secondary'" [svgName]="'pawn'" [reverse]="true" ></app-button>-->
-<!--  <app-button [label]="'Оправить'" [variant]="'default'" [svgName]="'pawn'" [reverse]="true" ></app-button>-->
-  <app-register-form></app-register-form>
+  <app-route-loader />
 
+  <router-outlet></router-outlet>
 </main>
 
 
-
-
-<router-outlet />

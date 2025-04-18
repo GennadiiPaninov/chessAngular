@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm" (ngSubmit)="submit()"
+<form [formGroup]="loginForm" (ngSubmit)="submit()"
       class="primary-form">
   <app-field label="Email">
     <app-input
@@ -18,22 +18,11 @@
       [password]="true"
     ></app-input>
   </app-field>
-
-  <app-field  label="Подтвердите пароль">
-    <app-input
-      formControlName="passwordConfirm"
-      placeholder="Повторите пароль"
-      type="password"
-      [password]="true"
-      autocomplete="new-password"
-    ></app-input>
-  </app-field>
-
   <app-button
     variant="success"
     width="full"
     label="Sign Up"
-    [disabled]="registerForm.invalid"
+    [disabled]="loginForm.invalid"
   >
   </app-button>
 </form>

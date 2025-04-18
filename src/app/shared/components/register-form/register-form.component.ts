@@ -6,6 +6,7 @@ import {InputComponent} from "../input/input.component";
 import {ButtonComponent} from "../button/button.component";
 import {FieldComponent} from "../field/field.component";
 import {matchPasswordsValidator} from "../../../core/helpers/matchPasswordsValidator";
+import {passwordValidator} from "../../../core/helpers/passwordValidator";
 
 @Component({
   selector: 'app-register-form',
@@ -20,7 +21,7 @@ export class RegisterFormComponent {
   constructor(private fb: FormBuilder) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
       passwordConfirm: ['', [Validators.required, Validators.minLength(8)]]
     },{
       validators: matchPasswordsValidator('password', 'passwordConfirm')

@@ -11,26 +11,19 @@ export class InputErrorsService {
   /**
    * Получает сообщение об ошибке для указанного контрола формы.
    * @param control Контрол формы, для которого нужно получить сообщение об ошибке.
-   * @returns Сообщение об ошибке или null, если ошибок нет или контрол не тронут.
+   * @returns Сообщение об ошибке или Неверное значение, если ошибока не зарегистрированна в объекте обшибок.
    */
   public getError(control:AbstractControl | null): string | null {
 
     if(!control || !control.touched || !control.errors) return null
 
     const errors: ValidationErrors = control.errors
-    const formGroup = control.parent
 
     for(let key in errors){
       const messageFn = ERROR_MESSAGES[key]
       if(messageFn) return messageFn(errors[key])
     }
 
-    if (formGroup?.errors?.['passwordsMismatch'] && control === formGroup.get('passwordConfirm')) {
-      console.log("Ошибка,пароли не совпадают")
-      return 'Пароли не совпадают';
-    }
-
     return "Неверное значение"
-
   }
 }

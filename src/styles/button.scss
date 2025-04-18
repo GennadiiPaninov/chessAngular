@@ -17,7 +17,7 @@
     @apply bg-background  hover:bg-secondary active:bg-tertiaryXl;
   }
   .btn-success{
-    @apply bg-success active:bg-successA hover:bg-successH text-background;
+    @apply bg-success active:bg-successA hover:bg-successH text-background disabled:bg-dimGray;
   }
   .btn-reverse{
     @apply flex-row-reverse
