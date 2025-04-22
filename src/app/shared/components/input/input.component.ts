@@ -11,7 +11,7 @@ import {
 import {CommonModule, NgClass, NgIf} from '@angular/common';
 import {svgName} from "../../../core/models/button.model";
 import {ButtonComponent} from "../button/button.component";
-import {InputErrorsService} from "../../../core/inputErrorsService/input-errors.service";
+import {InputErrorsService} from "../../../core/services/inputErrorsService/input-errors.service";
 
 @Component({
   selector: 'app-input',
