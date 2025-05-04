@@ -1,0 +1,16 @@
+node_modules/
+dist/
+.tmp/
+.idea/
+.vscode/
+coverage/
+angular.json
+tsconfig.json
+tsconfig.app.json
+tsconfig.spec.json
+tsconfig.base.json
+karma.conf.js
+README.md
+*.spec.ts
+*.md
+.env
