@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  forwardRef, inject,
+  forwardRef, inject, ChangeDetectionStrategy,
 } from '@angular/core';
 import {
   ControlContainer,
@@ -25,7 +25,9 @@ import {InputErrorsService} from "../../../core/services/inputErrorsService/inpu
       useExisting: forwardRef(() => InputComponent),
       multi: true
     }
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class InputComponent implements ControlValueAccessor {
   @Input() label = ''

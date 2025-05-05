@@ -1,4 +1,4 @@
-import { Component,  EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 
 import {NgClass, NgIf} from "@angular/common";
 import {svgName, variant} from "../../../core/models/button.model";
@@ -8,6 +8,7 @@ import {svgName, variant} from "../../../core/models/button.model";
   standalone: true,
   imports: [NgIf, NgClass],
   templateUrl: './button.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ButtonComponent {
