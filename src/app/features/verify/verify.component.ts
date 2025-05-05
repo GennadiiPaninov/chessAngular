@@ -23,7 +23,7 @@ export class VerifyComponent implements OnInit {
   ngOnInit() {
     const token = this.route.snapshot.paramMap.get('token')
     if(token){
-      this.auth.confirmEmail(token).pipe(delay(500)).subscribe({
+      this.auth.confirmEmail(token).pipe(delay(1000)).subscribe({
         next: res=> {
           console.log(res.message)
           this.isLoading = false
