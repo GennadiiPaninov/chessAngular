@@ -35,6 +35,10 @@ export class AuthService {
     );
   }
 
+  checkAuth(): Observable<any> {
+    return this.http.get(`${this.API}/me`, { withCredentials: true });
+  }
+
   confirmEmail(token: string): Observable<{ message: string }> {
     return this.http.post<{ message: string }>(`${this.API}/confirm-email`, { token });
   }
@@ -46,7 +50,7 @@ export class AuthService {
       { withCredentials: true }
     ).pipe(
       tap(res => {
-        localStorage.setItem('access_token', res.access_token);
+        localStorage.setItem('access_token', res.access_token)
       })
     );
   }
