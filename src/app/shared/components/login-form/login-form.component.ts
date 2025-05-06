@@ -5,6 +5,7 @@ import {InputComponent} from "../input/input.component";
 import {ButtonComponent} from "../button/button.component";
 import {NgIf} from "@angular/common";
 import {FieldComponent} from "../field/field.component";
+import {AuthService} from "../../../core/services/auth/auth.service";
 
 @Component({
   selector: 'app-login-form',
@@ -16,7 +17,7 @@ import {FieldComponent} from "../field/field.component";
 export class LoginFormComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
@@ -27,7 +28,15 @@ export class LoginFormComponent {
 
   submit() {
     if (this.loginForm.valid) {
+      const {email, password} = this.loginForm.value
+      this.auth.login(email,password).subscribe({
+        next: res=>{
 
+        },
+        error: err=>{
+          console.log(err.error.message)
+        }
+      })
       console.log('✅ Register Data:', this.loginForm.value);
     } else {
       this.loginForm.markAllAsTouched();
