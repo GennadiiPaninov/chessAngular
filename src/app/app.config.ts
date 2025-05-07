@@ -1,6 +1,5 @@
 import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
 import {provideRouter} from '@angular/router';
-import { environment } from '../environments/environment';
 import {routes} from './app.routes';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {AuthInterceptor} from "./core/services/auth/auth.interceptor";
@@ -8,6 +7,7 @@ import {provideStore} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
 import {globalReducer} from "./store/global/global.reducer";
 import {provideStoreDevtools} from "@ngrx/store-devtools";
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +20,7 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
-    ...(isDevMode() ? [provideStoreDevtools({ maxAge: 25 })] : [])
+    ...(isDevMode() ? [provideStoreDevtools({ maxAge: 25 })] : []),
+    provideAnimations()
   ],
 };

@@ -1,7 +1,7 @@
 <main class="main">
   <app-route-loader/>
   <app-loader *ngIf="isLoading$ | async"/>
-  <app-notifications *ngIf="(notifications$ | async)?.length"></app-notifications>
+  <app-notifications *ngIf="(notifications$ | async)?.length" [@appAnimation]></app-notifications>
   <router-outlet></router-outlet>
 </main>
 

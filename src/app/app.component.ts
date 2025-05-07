@@ -10,18 +10,29 @@ import {GlobalState} from "./store/global/global.reducer";
 import {selectLoading, selectNotifications} from "./store/global/global.selector";
 import {createNotification, toggleLoader} from "./store/global/global.actions";
 import {NotificationsComponent} from "./shared/components/notifications/notifications.component";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule, RouteLoaderComponent, RouteLoaderComponent, ButtonComponent, HttpClientModule, LoaderComponent, NgIf, NotificationsComponent,],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  animations: [
+    trigger('appAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(100%)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-in', style({ opacity: 0, transform: 'translateY(0)' }))
+      ])
+    ])
+  ],
 })
 export class AppComponent {
   isLoading$ = this.store.select(selectLoading)
   notifications$ = this.store.select(selectNotifications)
   constructor(private store: Store<{ global: GlobalState }>) {
   }
-
 }

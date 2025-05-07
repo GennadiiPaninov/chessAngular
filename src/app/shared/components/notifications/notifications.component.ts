@@ -5,6 +5,7 @@ import {selectNotifications} from "../../../store/global/global.selector";
 import {CommonModule, NgClass, NgFor} from "@angular/common";
 import {Subscription, timer} from "rxjs";
 import {removeNotification} from "../../../store/global/global.actions";
+import {animate, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-notifications',
@@ -12,7 +13,18 @@ import {removeNotification} from "../../../store/global/global.actions";
   imports: [CommonModule, NgClass, NgFor],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('notificationAnimation', [
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(100%)' }),
+        animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+      ]),
+      transition(':leave', [
+        animate('500ms ease-in', style({ opacity: 0, transform: 'translateY(0)' }))
+      ])
+    ])
+  ],
 })
 
 export class NotificationsComponent implements OnInit{

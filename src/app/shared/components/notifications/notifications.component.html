@@ -1,4 +1,7 @@
-<div class="notification" *ngFor="let notification of (notifications$ | async); trackBy: trackById" [ngClass]="notification.notificationType">
+<div class="notification"
+    *ngFor="let notification of (notifications$ | async); trackBy: trackById" [ngClass]="notification.notificationType"
+     [@notificationAnimation]
+>
   <svg
     class="icon"
     xmlns="http://www.w3.org/2000/svg"
