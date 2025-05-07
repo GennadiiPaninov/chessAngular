@@ -1,4 +1,7 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Store} from "@ngrx/store";
+import {RegisterState} from "../../../store/register/register.reducer";
+import {selectLoading} from "../../../store/register/register.selector";
 
 @Component({
   selector: 'app-loader',

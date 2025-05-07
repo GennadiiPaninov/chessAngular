@@ -8,7 +8,10 @@ module.exports = {
     'btn-secondary',
     'btn-default',
     'btn-success',
-    'btn-icon'
+    'btn-icon',
+    'notifications-error',
+    'notifications-success',
+    'notifications-info'
   ],
   theme: {
     extend: {

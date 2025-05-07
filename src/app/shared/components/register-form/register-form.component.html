@@ -1,5 +1,6 @@
-<form [formGroup]="registerForm" (ngSubmit)="submit()"
-      class="primary-form">
+<!--<app-loader *ngIf="isLoading$"></app-loader>-->
+
+<form [formGroup]="registerForm" (ngSubmit)="submit()" class="primary-form">
   <app-field label="Email">
     <app-input
       formControlName="email"
@@ -37,5 +38,5 @@
   >
   </app-button>
 
-  <p *ngIf="isSend" class="typography-lg text-">Сообщение о подтверждении почты отправлено, возможно оно находится во вкладке спам</p>
+  <p *ngIf="isSend" class="typography-lg text-">Мы отправили сообщение для подтверждения вашей почты. Если его нет в основном ящике, посмотрите в папке «Спам».</p>
 </form>
