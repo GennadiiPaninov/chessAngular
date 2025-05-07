@@ -7,7 +7,7 @@ import {AuthInterceptor} from "./core/services/auth/auth.interceptor";
 import {provideStore} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
 import {globalReducer} from "./store/global/global.reducer";
-import {provideStoreDevtools, StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {provideStoreDevtools} from "@ngrx/store-devtools";
 
 export const appConfig: ApplicationConfig = {
   providers: [
