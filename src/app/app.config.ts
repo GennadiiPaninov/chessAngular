@@ -1,4 +1,4 @@
-import {ApplicationConfig, importProvidersFrom} from '@angular/core';
+import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
 import {provideRouter} from '@angular/router';
 import { environment } from '../environments/environment';
 import {routes} from './app.routes';
@@ -20,9 +20,6 @@ export const appConfig: ApplicationConfig = {
       useClass: AuthInterceptor,
       multi: true
     },
-    provideStoreDevtools({
-      maxAge: 25,
-      logOnly: environment.production,
-    }),
+    ...(isDevMode() ? [provideStoreDevtools({ maxAge: 25 })] : [])
   ],
 };

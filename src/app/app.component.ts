@@ -24,4 +24,9 @@ export class AppComponent {
   constructor(private store: Store<{ global: GlobalState }>) {
   }
 
+
+
+  show() {
+    this.store.dispatch(createNotification({title: "Успешно", notificationType: "notification-success"}))
+  }
 }
