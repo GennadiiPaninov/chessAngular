@@ -3,7 +3,6 @@
   <app-loader *ngIf="isLoading$ | async"/>
   <app-notifications *ngIf="(notifications$ | async)?.length"></app-notifications>
   <router-outlet></router-outlet>
-  <button class="btn btn-primary" (click)="show()"> set</button>
 </main>
 
 
