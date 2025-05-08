@@ -5,27 +5,30 @@ import {RegisterEffects} from "./store/register/register.effects";
 import {VerifyEffects} from "./store/verify/verify.effects";
 import {provideState} from "@ngrx/store";
 import {verifyReducer} from "./store/verify/verify.reducer";
+import {LoginEffects} from "./store/login/login.effects";
 
 export const routes: Routes = [
   {
     path: '',
     title: "chess notes",
     loadComponent: () => import('./features/main-page/main-page.component').then(m => m.MainPageComponent),
-    canActivate:[authGuard]
+    canActivate: [authGuard]
 
   },
   {
     path: 'sign-in',
     title: "chess notes",
-    loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent)
+    loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
+    providers: [
+      provideEffects(RegisterEffects)
+    ]
   },
   {
     path: 'sign-up',
     loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
     title: "chess notes registration",
     providers: [
-      provideState('verify', verifyReducer),
-      provideEffects(RegisterEffects)
+      provideEffects(LoginEffects)
     ]
   },
   {
@@ -33,6 +36,7 @@ export const routes: Routes = [
     title: "verify",
     loadComponent: () => import('./features/verify/verify.component').then(m => m.VerifyComponent),
     providers: [
+      provideState('verify', verifyReducer),
       provideEffects(VerifyEffects)
     ]
   },
