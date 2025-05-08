@@ -20,7 +20,7 @@ export const routes: Routes = [
     title: "chess notes",
     loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
     providers: [
-      provideEffects(RegisterEffects)
+      provideEffects(LoginEffects)
     ]
   },
   {
@@ -28,9 +28,10 @@ export const routes: Routes = [
     loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
     title: "chess notes registration",
     providers: [
-      provideEffects(LoginEffects)
+      provideEffects(RegisterEffects)
     ]
   },
+
   {
     path: 'verify/:token',
     title: "verify",
