@@ -8,10 +8,8 @@ import {ButtonComponent} from "../button/button.component";
 import {FieldComponent} from "../field/field.component";
 import {matchPasswordsValidator} from "../../../core/helpers/matchPasswordsValidator";
 import {passwordValidator} from "../../../core/helpers/passwordValidator";
-import {AuthService} from "../../../core/services/auth/auth.service";
 import {LoaderComponent} from "../loader/loader.component";
-import {RegisterState} from "../../../store/register/register.reducer";
-import {selectLoading} from "../../../store/register/register.selector";
+import {register} from "../../../store/register/register.actions";
 
 @Component({
   selector: 'app-register-form',
@@ -22,10 +20,7 @@ import {selectLoading} from "../../../store/register/register.selector";
 })
 export class RegisterFormComponent {
   registerForm!: FormGroup;
-  isSend: boolean = false
-  loading:boolean = false
-  // isLoading$ = this.store.select(selectLoading)
-  constructor(private fb: FormBuilder, private auth: AuthService, private store: Store<{register:RegisterState}>) {
+  constructor(private fb: FormBuilder, private store: Store) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
@@ -39,20 +34,8 @@ export class RegisterFormComponent {
 
   submit() {
     if (this.registerForm.valid) {
-      this.loading = true
       const {email, password} = this.registerForm.value
-
-      // this.auth.register(email, password).subscribe({
-      //   next: (res) => {
-      //     this.isSend = true
-      //     console.log(res.message)
-      //     this.loading = false
-      //   },
-      //   error: err => {
-      //     this.loading = false
-      //     console.log(err.error?.message)
-      //   }
-      // })
+      this.store.dispatch(register({email, password}))
     } else {
       this.registerForm.markAllAsTouched();
     }

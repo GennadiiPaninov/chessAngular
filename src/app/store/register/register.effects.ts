@@ -1,21 +1,37 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
+import {register} from "./register.actions";
+import {catchError, concat, map, mergeMap, of} from "rxjs";
 import {AuthService} from "../../core/services/auth/auth.service";
-import {register, registerError, registerSuccess} from "./register.actions";
-import {catchError, map, mergeMap, of} from "rxjs";
+import {createNotification, toggleLoader} from "../global/global.actions";
 
 @Injectable()
 export class RegisterEffects {
-  constructor(private actions$: Actions, private auth:AuthService) {}
-
-  register$ = createEffect(()=>
+  constructor(private actions$: Actions,  private auth: AuthService ) {
+  }
+  register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(register),
-      mergeMap(({email,password})=>
-        
-        this.auth.register(email,password).pipe(
-          map(response=> registerSuccess()),
-          catchError(err=> of(registerError({ error: err.error.message })))
+      mergeMap(({ email, password }) =>
+        concat(
+          of(toggleLoader({ isLoading: true })),
+          this.auth.register(email, password).pipe(
+            map(() =>
+              createNotification({
+                notificationType: 'notification-success',
+                title: 'Сообщение о верификации направлено на почту, возможно оно попало в спам'
+              })
+            ),
+            catchError(err =>
+              of(
+                createNotification({
+                  notificationType: 'notification-error',
+                  title: err.error.message
+                })
+              )
+            )
+          ),
+          of(toggleLoader({ isLoading: false }))
         )
       )
     )

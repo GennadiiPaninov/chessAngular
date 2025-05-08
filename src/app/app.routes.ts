@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 import {authGuard} from "./core/helpers/authGuard/authGuard";
 import {provideState} from "@ngrx/store";
-import {registerReducer} from "./store/register/register.reducer";
 import {provideEffects} from "@ngrx/effects";
 import {RegisterEffects} from "./store/register/register.effects";
 
@@ -23,7 +22,6 @@ export const routes: Routes = [
     loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
     title: "chess notes registration",
     providers: [
-      provideState('register', registerReducer),
       provideEffects(RegisterEffects)
     ]
   },

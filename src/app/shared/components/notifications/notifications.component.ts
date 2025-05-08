@@ -38,7 +38,7 @@ export class NotificationsComponent implements OnInit{
     this.notifications$.subscribe(notifications$=>{
       notifications$.forEach((notification: notification)=>{
         if(!this.timeouts.has(notification.id)){
-          const subscribe = timer(2000).subscribe(()=>{
+          const subscribe = timer(4500).subscribe(()=>{
             this.store.dispatch(removeNotification({id: notification.id}))
             this.timeouts.delete(notification.id);
           })
