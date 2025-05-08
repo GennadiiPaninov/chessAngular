@@ -22,8 +22,6 @@ export class VerifyComponent implements OnInit {
   ) {
   }
 
-  isVerify: boolean = false
-
   ngOnInit() {
     const token = this.route.snapshot.paramMap.get('token')
     if (token) {
