@@ -1,8 +1,10 @@
 import {Routes} from '@angular/router';
 import {authGuard} from "./core/helpers/authGuard/authGuard";
-import {provideState} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
 import {RegisterEffects} from "./store/register/register.effects";
+import {VerifyEffects} from "./store/verify/verify.effects";
+import {provideState} from "@ngrx/store";
+import {verifyReducer} from "./store/verify/verify.reducer";
 
 export const routes: Routes = [
   {
@@ -22,13 +24,17 @@ export const routes: Routes = [
     loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
     title: "chess notes registration",
     providers: [
+      provideState('verify', verifyReducer),
       provideEffects(RegisterEffects)
     ]
   },
   {
     path: 'verify/:token',
     title: "verify",
-    loadComponent: () => import('./features/verify/verify.component').then(m => m.VerifyComponent)
+    loadComponent: () => import('./features/verify/verify.component').then(m => m.VerifyComponent),
+    providers: [
+      provideEffects(VerifyEffects)
+    ]
   },
   {path: '**', redirectTo: 'sign-in'}
 ];
