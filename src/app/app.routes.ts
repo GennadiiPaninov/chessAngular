@@ -41,5 +41,5 @@ export const routes: Routes = [
       provideEffects(VerifyEffects)
     ]
   },
-  {path: '**', redirectTo: 'sign-in'}
+  {path: '**', redirectTo: ''}
 ];
