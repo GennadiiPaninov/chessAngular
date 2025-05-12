@@ -35,8 +35,8 @@ export class AuthService {
     );
   }
 
-  checkAuth(): Observable<any> {
-    return this.http.get(`${this.API}/me`, { withCredentials: true });
+  checkAuth(): Observable<MeResponse> {
+    return this.http.get<MeResponse>(`${this.API}/me`, { withCredentials: true });
   }
 
   confirmEmail(token: string): Observable<{ message: string }> {

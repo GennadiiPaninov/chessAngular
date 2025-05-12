@@ -1,8 +1,6 @@
-export interface Loader {
-  isLoading: boolean
-}
 
-export interface Notification {
-  title: string
-  type: 'success' | "error" | "alarm"
+interface MeResponse {
+  id: string;
+  email: string;
+  isEmailConfirmed: boolean;
 }
