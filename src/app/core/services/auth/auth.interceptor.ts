@@ -9,11 +9,11 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private authService: AuthService,
     private router: Router
+
   ) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = localStorage.getItem('access_token')
-
     let authReq = req
     if (accessToken) {
       authReq = req.clone({

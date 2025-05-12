@@ -6,6 +6,7 @@ import {VerifyEffects} from "./store/verify/verify.effects";
 import {provideState} from "@ngrx/store";
 import {verifyReducer} from "./store/verify/verify.reducer";
 import {LoginEffects} from "./store/login/login.effects";
+import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
 
 export const routes: Routes = [
   {
@@ -13,7 +14,6 @@ export const routes: Routes = [
     title: "chess notes",
     loadComponent: () => import('./features/main-page/main-page.component').then(m => m.MainPageComponent),
     canActivate: [authGuard]
-
   },
   {
     path: 'sign-in',
@@ -21,7 +21,8 @@ export const routes: Routes = [
     loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
     providers: [
       provideEffects(LoginEffects)
-    ]
+    ],
+    canActivate: [redirectAuthGuard]
   },
   {
     path: 'sign-up',
@@ -29,7 +30,8 @@ export const routes: Routes = [
     title: "chess notes registration",
     providers: [
       provideEffects(RegisterEffects)
-    ]
+    ],
+    canActivate: [redirectAuthGuard]
   },
 
   {
