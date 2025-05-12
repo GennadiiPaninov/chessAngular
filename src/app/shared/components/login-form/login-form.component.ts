@@ -6,6 +6,9 @@ import {ButtonComponent} from "../button/button.component";
 import {NgIf} from "@angular/common";
 import {FieldComponent} from "../field/field.component";
 import {AuthService} from "../../../core/services/auth/auth.service";
+import {Store} from "@ngrx/store";
+import {loginAction} from "../../../store/login/login.action";
+import {resetFormHelper} from "../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +20,7 @@ import {AuthService} from "../../../core/services/auth/auth.service";
 export class LoginFormComponent {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private store: Store, private resetFormHelper: resetFormHelper) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
@@ -29,15 +32,10 @@ export class LoginFormComponent {
   submit() {
     if (this.loginForm.valid) {
       const {email, password} = this.loginForm.value
-      this.auth.login(email,password).subscribe({
-        next: res=>{
+      this.store.dispatch(loginAction({email, password}))
+      this.resetFormHelper.reset(this.loginForm)
 
-        },
-        error: err=>{
-          console.log(err.error.message)
-        }
-      })
-      console.log('✅ Register Data:', this.loginForm.value);
+
     } else {
       this.loginForm.markAllAsTouched();
     }
