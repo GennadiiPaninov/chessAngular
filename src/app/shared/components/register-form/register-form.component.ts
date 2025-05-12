@@ -9,9 +9,7 @@ import {FieldComponent} from "../field/field.component";
 import {matchPasswordsValidator} from "../../../core/helpers/matchPasswordsValidator";
 import {passwordValidator} from "../../../core/helpers/passwordValidator";
 import {LoaderComponent} from "../loader/loader.component";
-import {register, registerSuccessAction} from "../../../store/register/register.actions";
-import {Subject, takeUntil} from "rxjs";
-import {Actions, ofType} from "@ngrx/effects";
+import {register} from "../../../store/register/register.actions";
 import {resetFormHelper} from "../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
