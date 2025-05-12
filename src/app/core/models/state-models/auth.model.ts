@@ -1,6 +1,7 @@
 
-interface MeResponse {
-  id: string;
-  email: string;
-  isEmailConfirmed: boolean;
+export type meResponse = {
+  id: string
+  email: string
+  isEmailConfirmed: boolean
+
 }

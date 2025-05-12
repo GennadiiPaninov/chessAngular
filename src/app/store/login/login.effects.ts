@@ -1,13 +1,14 @@
 import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {AuthService} from "../../core/services/auth/auth.service";
-import {catchError, concat, map, mergeMap, of} from "rxjs";
-import {loginAction} from "./login.action";
-import {createNotification, formSubmitSuccess, toggleLoader} from "../global/global.actions";
+import {catchError, concat,  mergeMap, of, tap} from "rxjs";
+import {loginAction, loginFormSubmitSuccess} from "./login.action";
+import {createNotification, toggleLoader} from "../global/global.actions";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class LoginEffects {
-  constructor(private actions$: Actions, private auth: AuthService) {
+  constructor(private actions$: Actions, private auth: AuthService, private router: Router ) {
   }
 
   login$ = createEffect(() =>
@@ -22,7 +23,7 @@ export class LoginEffects {
               title: "Вход выполнен успешно",
               notificationType: "notification-success"
             }),
-              formSubmitSuccess()
+              loginFormSubmitSuccess()
             ]),
             catchError(err => of(createNotification({
               title: "Вход не выполнен, убадитесь что данные введены корректно",
@@ -33,5 +34,15 @@ export class LoginEffects {
         )
       )
     )
+  )
+
+  redirectAfterLogin$ = createEffect(()=>
+    this.actions$.pipe(
+      ofType(loginFormSubmitSuccess),
+      tap(()=>{
+        this.router.navigate(['/'])
+      })
+    ),
+    { dispatch: false }
   )
 }

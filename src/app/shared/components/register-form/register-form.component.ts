@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from '@angular/common';
 import {Store} from '@ngrx/store';
@@ -37,7 +37,7 @@ export class RegisterFormComponent {
     if (this.registerForm.valid) {
       const {email, password} = this.registerForm.value
       this.store.dispatch(register({email, password}))
-      this.resetFormHelper.reset(this.registerForm)
+      this.resetFormHelper.reset({ fb:this.registerForm })
     } else {
       this.registerForm.markAllAsTouched();
     }

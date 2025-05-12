@@ -33,7 +33,7 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       const {email, password} = this.loginForm.value
       this.store.dispatch(loginAction({email, password}))
-      this.resetFormHelper.reset(this.loginForm)
+      this.resetFormHelper.reset({fb: this.loginForm, isAuth:true})
 
 
     } else {

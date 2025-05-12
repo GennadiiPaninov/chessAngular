@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import {meResponse} from "../../models/state-models/auth.model";
 
 @Injectable({ providedIn: 'root' })
 
@@ -35,8 +36,8 @@ export class AuthService {
     );
   }
 
-  checkAuth(): Observable<MeResponse> {
-    return this.http.get<MeResponse>(`${this.API}/me`, { withCredentials: true });
+  checkAuth(): Observable<meResponse> {
+    return this.http.get<meResponse>(`${this.API}/me`, { withCredentials: true });
   }
 
   confirmEmail(token: string): Observable<{ message: string }> {
