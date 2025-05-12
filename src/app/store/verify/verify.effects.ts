@@ -17,12 +17,13 @@ export class VerifyEffects {
         concat(
           of(toggleLoader({isLoading: true})),
           this.auth.confirmEmail(token).pipe(
-            map(() =>
+            mergeMap(() =>[
               createNotification({
                 title: 'Верификация прошла успешно',
                 notificationType: 'notification-success'
               }),
               isVerifyAction({isVerify: true})
+              ]
             ),
             catchError(err =>
               of(

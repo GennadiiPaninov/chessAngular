@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  forwardRef, inject, ChangeDetectionStrategy,
+  forwardRef, inject, ChangeDetectionStrategy, ChangeDetectorRef,
 } from '@angular/core';
 import {
   ControlContainer,
@@ -43,8 +43,9 @@ export class InputComponent implements ControlValueAccessor {
   disabled = false;
   isPasswordVisible: boolean = false
   showError: boolean = false
-  private controlContainer = inject(ControlContainer);
+  private controlContainer = inject(ControlContainer)
   private inputErrorsService = inject(InputErrorsService)
+  private cdr = inject(ChangeDetectorRef)
 
   onChange = (value: string) => {
   };
@@ -59,6 +60,7 @@ export class InputComponent implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value
+    this.cdr.markForCheck()
   }
 
   registerOnChange(fn: any): void {
@@ -80,7 +82,7 @@ export class InputComponent implements ControlValueAccessor {
     this.showError = false
   }
   onInput(event: Event) {
-    const target = event.target as HTMLInputElement;
+    const target = event.target as HTMLInputElement
     this.value = target.value
     this.onChange(this.value)
     this.onTouched()
