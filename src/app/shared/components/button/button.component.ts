@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 
-import {NgClass, NgIf, NgSwitch} from "@angular/common";
+import {NgClass, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
 import {svgName, tagType, variant} from "../../../core/models/button.model";
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [NgIf, NgClass, NgSwitch],
+  imports: [NgIf, NgClass, NgSwitch, NgSwitchCase],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 

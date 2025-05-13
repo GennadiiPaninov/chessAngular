@@ -49,7 +49,6 @@ export class NotificationsComponent implements OnInit{
   }
 
   trackById(index: number, item: notification) {
-    console.log(index, item)
     return item.id
   }
 }
