@@ -1,13 +1,15 @@
 <header class="header-container">
   <ul class="menu">
-    <app-button
-      *ngFor="let item of menu; trackBy: trackById"
-      tag="li"
-      [svgName]="item.svgName"
-      variant="default"
-    >
-      <a [href]="item.link"> {{item.title}}</a>
-    </app-button>
+    <li  *ngFor="let item of menu; trackBy: trackById">
+      <app-button
+        tag="a"
+        [svgName]="item.svgName"
+        variant="default"
+        [link]="item.link"
+        [label]="item.title"
+      >
+      </app-button>
+    </li>
   </ul>
 </header>
 

@@ -18,8 +18,23 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        title: 'profile',
+        loadComponent: () => import('./features/profile-page/profile-page.component').then(m => m.ProfilePageComponent)
+      },
+      {
+        path: 'achievements',
         title: 'chess notes',
-        loadComponent: () => import('./features/main-page/main-page.component').then(m => m.MainPageComponent)
+        loadComponent: () => import('./features/achievements-page/achievements-page.component').then(m => m.AchievementsPageComponent)
+      },
+      {
+        path: 'activity',
+        title: 'chess notes',
+        loadComponent: () => import('./features/activity-page/activity-page.component').then(m => m.ActivityPageComponent)
+      },
+      {
+        path: 'debuts',
+        title: 'chess notes',
+        loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent)
       },
     ]
   },

@@ -9,6 +9,3 @@
 .header-container ul{
   @apply flex flex-row gap-[4rem];
 }
-.header-container ul li{
-  @apply cursor-pointer border border-stroke px-[2rem] py-[1rem] rounded-[1rem];
-}
