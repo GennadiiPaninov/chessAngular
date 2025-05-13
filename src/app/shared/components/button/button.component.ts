@@ -1,12 +1,12 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 
-import {NgClass, NgIf} from "@angular/common";
-import {svgName, variant} from "../../../core/models/button.model";
+import {NgClass, NgIf, NgSwitch} from "@angular/common";
+import {svgName, tagType, variant} from "../../../core/models/button.model";
 
 @Component({
   selector: 'app-button',
   standalone: true,
-  imports: [NgIf, NgClass],
+  imports: [NgIf, NgClass, NgSwitch],
   templateUrl: './button.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 
@@ -22,6 +22,8 @@ export class ButtonComponent {
   // без таба
   @Input()tabindex: string = ""
   @Input() disabled: boolean = false
+  @Input() link: string = '/'
+  @Input() tag: tagType = 'button'
   handleClick(){
     this.clicked.emit()
   }

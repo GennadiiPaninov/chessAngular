@@ -1,12 +1,59 @@
-<button (click)="handleClick()" [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']" [disabled]="disabled" [tabIndex]="tabindex">
+<ng-container [ngSwitch]="tag">
+
+  <!--  btn -->
+  <button (click)="handleClick()"
+          [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
+          [disabled]="disabled"
+          [tabIndex]="tabindex"
+          *ngSwitchDefault
+  >
     <svg
       *ngIf="svgName"
       class="icon"
-      xmlns="http://www.w3.org/2000/svg"
       focusable="false"
       aria-hidden="true"
     >
       <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
     </svg>
     {{label}}
-</button>
+  </button>
+  <!--  a -->
+
+  <a
+    *ngSwitchCase="'a'"
+    (click)="handleClick()"
+    [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
+    [tabIndex]="tabindex"
+    role="button"
+    [href]="link"
+  >
+    <svg
+      *ngIf="svgName"
+      class="icon"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
+    </svg>
+    {{ label }}
+  </a>
+  <!--  li -->
+
+  <li
+    *ngSwitchCase="'li'"
+    (click)="handleClick()"
+    [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
+    [tabIndex]="tabindex"
+    role="button"
+  >
+    <svg
+      *ngIf="svgName"
+      class="icon"
+      focusable="false"
+      aria-hidden="true"
+    >
+      <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
+    </svg>
+    {{ label }}
+  </li>
+</ng-container>

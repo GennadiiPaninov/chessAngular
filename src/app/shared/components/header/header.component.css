@@ -1,0 +1,14 @@
+:host {
+  @apply w-full h-[2rem] border border-blue-950;
+}
+
+.header-container {
+  @apply w-[135rem] my-0 mx-auto;
+}
+
+.header-container ul{
+  @apply flex flex-row gap-[4rem];
+}
+.header-container ul li{
+  @apply cursor-pointer border border-stroke px-[2rem] py-[1rem] rounded-[1rem];
+}
