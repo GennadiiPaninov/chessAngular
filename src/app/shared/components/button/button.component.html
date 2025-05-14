@@ -5,7 +5,7 @@
           [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
           [disabled]="disabled"
           [tabIndex]="tabindex"
-          *ngSwitchDefault
+          *ngSwitchCase="'button'"
   >
     <svg
       *ngIf="svgName"
