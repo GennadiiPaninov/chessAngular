@@ -1,0 +1,18 @@
+<div class="debuts-container">
+  <div *ngFor="let debut of debuts; trackBy: trackById" class="debut-item" (click)="openModal(debut)">
+    <div class="title">
+      <h2 class="typography-xl">{{debut.title}}</h2>
+      <svg
+
+        class="icon"
+        focusable="false"
+        aria-hidden="true"
+      >
+        <use href="../../assets/icons.svg#cursor"></use>
+      </svg>
+    </div>
+    <p class="typography-md">Сторона: {{debut.side}}</p>
+  </div>
+
+</div>
+<app-modal *ngIf="selectedDebut" [data]="selectedDebut" (close)="closeModal()"></app-modal>

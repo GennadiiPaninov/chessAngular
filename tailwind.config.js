@@ -59,7 +59,9 @@ module.exports = {
         mob: "1.8rem"
       },
       width: {
-        icon: "2rem"
+        icon: "2rem",
+        container: "135rem",
+        containerM: "33.5rem"
       },
       height:{
         icon:"2rem"
