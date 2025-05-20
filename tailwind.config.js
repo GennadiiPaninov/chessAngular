@@ -11,7 +11,11 @@ module.exports = {
     'btn-icon',
     'notifications-error',
     'notifications-success',
-    'notifications-info'
+    'notifications-info',
+    'modal-content',
+    'form-modal-content',
+    'modal-backdrop',
+    'close-btn'
   ],
   theme: {
     extend: {
@@ -28,7 +32,8 @@ module.exports = {
         successH:"#218838",
         error:"#e53170",
         red: "#ec132c",
-        dimGray: "#808080"
+        dimGray: "#808080",
+        'custom-rgba': 'rgba(0, 0, 0, 0.6)'
 
       },
       fontSize: {
@@ -45,7 +50,8 @@ module.exports = {
       },
       padding: {
         def: '2rem 3rem',
-        mdef: '1.5rem 2rem'
+        mdef: '1.5rem 2rem',
+        form: '2rem 4rem 2rem 3rem'
       },
       margin:{
         center: '0 auto'

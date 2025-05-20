@@ -13,6 +13,9 @@
     </div>
     <p class="typography-md">Сторона: {{debut.side}}</p>
   </div>
-
+  <div class="debut-item create-debut-item" (click)="openCreateDebutModal()">
+    <h2 class="typography-xl">Создать дебют...</h2>
+  </div>
 </div>
 <app-modal *ngIf="selectedDebut" [data]="selectedDebut" (close)="closeModal()"></app-modal>
+<app-create-debut-modal *ngIf="showCreateModal" (close)="closeCreateModal()"></app-create-debut-modal>
