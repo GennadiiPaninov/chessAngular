@@ -1,0 +1,14 @@
+<div class="checkbox-wrapper" [ngClass]="className">
+  <input
+    type="checkbox"
+    [id]="id"
+    [checked]="isChecked"
+    [disabled]="disabled"
+    (change)="toggleCheck($event)"
+    (keydown)="handleKeydown($event)"
+    aria-checked="isChecked"
+    [attr.aria-disabled]="disabled"
+    [attr.aria-label]="label || 'Checkbox'"
+  />
+  <label *ngIf="label" [for]="id">{{ label }}</label>
+</div>
