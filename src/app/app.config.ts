@@ -1,7 +1,7 @@
 import {ApplicationConfig, importProvidersFrom, isDevMode} from '@angular/core';
 import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, provideHttpClient} from "@angular/common/http";
 import {AuthInterceptor} from "./core/services/auth/auth.interceptor";
 import {provideStore} from "@ngrx/store";
 import {provideEffects} from "@ngrx/effects";
@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore({global: globalReducer}),
     provideEffects(),
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(),
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
