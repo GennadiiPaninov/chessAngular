@@ -9,12 +9,15 @@ import {LoginEffects} from "./store/login/login.effects";
 import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {AuthorizedLayoutComponent} from "./shared/layouts/authorized-layout/authorized-layout.component";
+import {debutsReducer} from "./store/debuts/debuts.reducer";
+import {DebutsEffects} from "./store/debuts/debuts.effects";
+
 
 export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -34,7 +37,8 @@ export const routes: Routes = [
       {
         path: 'debuts',
         title: 'chess notes',
-        loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent)
+        loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent),
+        providers: [provideState('debuts', debutsReducer), provideEffects(DebutsEffects)]
       },
       {
         path: 'moves/:id',

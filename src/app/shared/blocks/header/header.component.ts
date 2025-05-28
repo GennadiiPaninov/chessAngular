@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {ButtonComponent} from "../button/button.component";
+import {ButtonComponent} from "../../components/button/button.component";
 import {NgFor} from "@angular/common";
 import {notification} from "../../../store/global/global.reducer";
 import {menuItem} from "../../../core/models/header-models/header-models";

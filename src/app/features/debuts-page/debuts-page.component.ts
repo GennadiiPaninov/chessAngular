@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {DebutListComponent} from "../../shared/components/debuts/debut-list/debut-list.component";
+import {DebutListComponent} from "../../shared/blocks/debuts/debuts-list/debut-list.component";
 
 @Component({
   selector: 'app-debuts-page',
@@ -11,5 +11,4 @@ import {DebutListComponent} from "../../shared/components/debuts/debut-list/debu
   styleUrl: './debuts-page.component.scss'
 })
 export class DebutsPageComponent {
-
 }

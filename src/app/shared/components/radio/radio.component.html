@@ -1,0 +1,20 @@
+<div class="radio-group" [ngClass]="{ 'has-error': errorMessage }">
+
+  <div class="radio-options">
+    <div
+      class="radio-option"
+      *ngFor="let option of options"
+      [ngClass]="{ 'selected': option.value === value, 'disabled': disabled }"
+      (click)="select(option.value)"
+    >
+      <span class="radio-circle">
+        <span *ngIf="option.value === value" class="radio-dot"></span>
+      </span>
+      <span class="radio-text typography-xl">{{ option.label }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message typography-xl">
+    {{ errorMessage }}
+  </div>
+</div>

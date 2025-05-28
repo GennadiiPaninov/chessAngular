@@ -19,5 +19,12 @@
         type="text"
       ></app-input>
     </app-field>
+    <app-field label="Цвет фигуры*">
+      <app-radio
+        formControlName="side"
+        [options]="radioOptions"
+      ></app-radio>
+    </app-field>
+    <app-button variant="secondary" label="Отправить" (clicked)="submit()"></app-button>
   </form>
 </div>

@@ -1,0 +1,17 @@
+.custom-option {
+  padding: 10px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  margin: 5px 0;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  transition: all 0.3s ease;
+}
+.custom-option:hover {
+  background-color: #ddd;
+}
+.custom-selected {
+  background-color: #4caf50;
+  color: white;
+  border-color: #388e3c;
+}

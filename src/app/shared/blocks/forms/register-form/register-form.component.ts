@@ -3,14 +3,14 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NgIf} from '@angular/common';
 import {Store} from '@ngrx/store';
 
-import {InputComponent} from "../input/input.component";
-import {ButtonComponent} from "../button/button.component";
-import {FieldComponent} from "../field/field.component";
-import {matchPasswordsValidator} from "../../../core/helpers/matchPasswordsValidator";
-import {passwordValidator} from "../../../core/helpers/passwordValidator";
-import {LoaderComponent} from "../loader/loader.component";
-import {register} from "../../../store/register/register.actions";
-import {resetFormHelper} from "../../../core/helpers/resetFormHelper/resetFormHelper";
+import {InputComponent} from "../../../components/input/input.component";
+import {ButtonComponent} from "../../../components/button/button.component";
+import {FieldComponent} from "../../../components/field/field.component";
+import {matchPasswordsValidator} from "../../../../core/helpers/matchPasswordsValidator";
+import {passwordValidator} from "../../../../core/helpers/passwordValidator";
+import {LoaderComponent} from "../../../components/loader/loader.component";
+import {register} from "../../../../store/register/register.actions";
+import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
   selector: 'app-register-form',

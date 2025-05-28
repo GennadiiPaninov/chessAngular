@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {passwordValidator} from "../../../core/helpers/passwordValidator";
-import {InputComponent} from "../input/input.component";
-import {ButtonComponent} from "../button/button.component";
+import {passwordValidator} from "../../../../core/helpers/passwordValidator";
+import {InputComponent} from "../../../components/input/input.component";
+import {ButtonComponent} from "../../../components/button/button.component";
 import {NgIf} from "@angular/common";
-import {FieldComponent} from "../field/field.component";
-import {AuthService} from "../../../core/services/auth/auth.service";
+import {FieldComponent} from "../../../components/field/field.component";
+import {AuthService} from "../../../../core/services/auth/auth.service";
 import {Store} from "@ngrx/store";
-import {loginAction} from "../../../store/login/login.action";
-import {resetFormHelper} from "../../../core/helpers/resetFormHelper/resetFormHelper";
+import {loginAction} from "../../../../store/login/login.action";
+import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
   selector: 'app-login-form',

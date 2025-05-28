@@ -11,10 +11,10 @@ import {ButtonComponent} from "../../button/button.component";
   styleUrl: './modal.component.scss'
 })
 export class ModalComponent {
-  @Input() data: any;
-  @Output() close = new EventEmitter<void>();
+  @Input() data: any
+  @Output() close = new EventEmitter<void>()
 
   onClose() {
-    this.close.emit();
+    this.close.emit()
   }
 }

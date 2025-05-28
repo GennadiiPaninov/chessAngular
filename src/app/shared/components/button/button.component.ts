@@ -8,7 +8,7 @@ import {svgName, tagType, variant} from "../../../core/models/button.model";
   standalone: true,
   imports: [NgIf, NgClass, NgSwitch, NgSwitchCase],
   templateUrl: './button.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ButtonComponent {
