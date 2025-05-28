@@ -1,7 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { DebutsService } from "../../core/services/debuts/debuts.service";
-import {createDebutAction, getDebuts, initDebuts} from "./debuts.actions";
+import {addDebut, createDebutAction, getDebuts, initDebuts} from "./debuts.actions";
 import { catchError, concat, mergeMap, of, switchMap } from "rxjs";
 import { createNotification, toggleLoader } from "../global/global.actions";
 import {createDebut, debutInterface} from "../../core/models/debut-models/debut-models";
@@ -44,7 +44,7 @@ export class DebutsEffects {
                   title: 'Дебют успешно создан',
                   notificationType: 'notification-success'
                 }),
-                getDebuts({ debuts: res as debutInterface[] })
+                addDebut({ debut: res as debutInterface })
               );
             }),
             catchError(err => of(createNotification({
