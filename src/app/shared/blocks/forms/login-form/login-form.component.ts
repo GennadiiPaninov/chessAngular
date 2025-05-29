@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {passwordValidator} from "../../../../core/helpers/passwordValidator";
 import {InputComponent} from "../../../components/input/input.component";
@@ -18,9 +18,12 @@ import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFor
   styleUrl: './login-form.component.scss'
 })
 export class LoginFormComponent {
+  private fb = inject(FormBuilder)
+  private store = inject(Store)
+  private resetFormHelper = inject(resetFormHelper)
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private store: Store, private resetFormHelper: resetFormHelper) {
+  constructor() {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
@@ -34,7 +37,6 @@ export class LoginFormComponent {
       const {email, password} = this.loginForm.value
       this.store.dispatch(loginAction({email, password}))
       this.resetFormHelper.reset({fb: this.loginForm, isAuth:true})
-
 
     } else {
       this.loginForm.markAllAsTouched();

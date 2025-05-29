@@ -17,7 +17,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -54,14 +54,14 @@ export const routes: Routes = [
       {
         path: 'sign-in',
         title: 'chess notes',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
         providers: [provideEffects(LoginEffects)]
       },
       {
         path: 'sign-up',
         title: 'chess notes registration',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
         providers: [provideEffects(RegisterEffects)]
       },

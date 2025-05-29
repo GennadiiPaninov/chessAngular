@@ -9,6 +9,7 @@ import {loginAction} from "../../../../store/login/login.action";
 import {DebutsService} from "../../../../core/services/debuts/debuts.service";
 import {Store} from "@ngrx/store";
 import {createDebutAction} from "../../../../store/debuts/debuts.actions";
+import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
   selector: 'app-create-debut-modal',
@@ -26,6 +27,7 @@ export class CreateDebutModalComponent {
   @Output() close = new EventEmitter<void>()
   private fb = inject(FormBuilder)
   private store = inject(Store)
+  private resetFormHelper = inject(resetFormHelper)
 
   constructor() {
     this.createDebutForm = this.fb.group({
@@ -42,8 +44,12 @@ export class CreateDebutModalComponent {
     if (this.createDebutForm.valid) {
       const {title, desc, side} = this.createDebutForm.value
       this.store.dispatch(createDebutAction({title, desc, side}))
+      this.resetFormHelper.reset({
+        fb: this.createDebutForm,
+        onReset: ()=> this.close.emit()
+      })
     } else {
-      this.createDebutForm.markAllAsTouched();
+      this.createDebutForm.markAllAsTouched()
     }
   }
 }
