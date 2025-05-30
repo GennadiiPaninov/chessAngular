@@ -1,6 +1,8 @@
 <div class="debuts-container">
   <div *ngFor="let debut of debuts$ | async; trackBy: trackById" class="debut-item relative" (click)="openModal(debut)">
-    <app-button variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openDeleteModal(debut.id)">
+    <app-button type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openDeleteModal(debut.id)">
+    </app-button>
+    <app-button type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="openUpdateModal(debut)">
     </app-button>
     <div class="title">
       <h2 class="typography-xl">{{debut.title}}</h2>
@@ -48,4 +50,10 @@
     <app-button type="button" variant="secondary" label="Да" class="w-full" width="full" (clicked)="deleteDebut()"></app-button>
   </div>
 </app-modal>
-<!--модальное окно для удаления дебюта-->
+<!-- модальное окно для удаления дебюта -->
+
+<!-- модальное окно для обновления дебюта -->
+<app-modal *ngIf="showUpdateModal" (close)="closeUpdateModal()">
+  <app-update-debut-form (clicked)="closeUpdateModal()" [debut]="updateDebutVal">
+  </app-update-debut-form>
+</app-modal>

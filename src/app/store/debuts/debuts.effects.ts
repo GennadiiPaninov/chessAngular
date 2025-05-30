@@ -1,7 +1,15 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { DebutsService } from "../../core/services/debuts/debuts.service";
-import {addDebut, createDebutAction, deleteDebut, deleteDebutAction, getDebuts, initDebuts} from "./debuts.actions";
+import {
+  addDebut,
+  createDebutAction,
+  deleteDebut,
+  deleteDebutAction,
+  getDebuts,
+  initDebuts,
+  updateDebut, updateDebutAction
+} from "./debuts.actions";
 import {exhaustMap, switchMap, tap} from "rxjs";
 import { formSubmitSuccess } from "../global/global.actions";
 import { debutInterface } from "../../core/models/debut-models/debut-models";
@@ -55,5 +63,18 @@ export class DebutsEffects {
       )
     )
   )
-
+  updateDebut$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(updateDebut),
+      exhaustMap(({ title, desc, id }) =>
+        withFeedbackHelper(
+          this.debutsService.updateDebut({title, desc, id}),
+          () => {
+            return [updateDebutAction({ title, desc, id }), formSubmitSuccess()]
+          },
+          { success: 'Дебют успешно изменен', error: 'Ошибка при обновлении дебюта' }
+        )
+      )
+    )
+  )
 }

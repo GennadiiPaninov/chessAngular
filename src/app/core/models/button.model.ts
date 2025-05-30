@@ -10,6 +10,7 @@ export type svgName =
   | "activity"
   | "notification-success"
   | "delete"
+  | "update"
 
 export type variant = "primary" | "secondary" | "default" | 'success' | 'icon'
 

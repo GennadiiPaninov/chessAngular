@@ -7,6 +7,7 @@ import {Store} from "@ngrx/store";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {CreateDebutFormComponent} from "../../forms/create-debut-form/create-debut-form.component";
 import {deleteDebut, initDebuts} from "../../../../store/debuts/debuts.actions";
+import {UpdateDebutFormComponent} from "../../forms/update-debut-form/update-debut-form.component";
 
 @Component({
   selector: 'app-debut-list',
@@ -17,7 +18,8 @@ import {deleteDebut, initDebuts} from "../../../../store/debuts/debuts.actions";
     NgIf,
     AsyncPipe,
     ButtonComponent,
-    CreateDebutFormComponent
+    CreateDebutFormComponent,
+    UpdateDebutFormComponent
   ],
   templateUrl: './debut-list.component.html',
   styleUrl: './debut-list.component.scss'
@@ -29,7 +31,9 @@ export class DebutListComponent implements OnInit{
   debuts$ = this.store.select(selectDebuts)
   showCreateModal: boolean = false
   showDeleteModal: boolean = false
+  showUpdateModal: boolean = false
   deleteDebutId: string | null = null
+  updateDebutVal: debutInterface = {} as debutInterface
   ngOnInit() {
     setTimeout(()=>{
       this.store.dispatch(initDebuts({}))
@@ -72,4 +76,13 @@ export class DebutListComponent implements OnInit{
   deleteDebut(){
     this.store.dispatch(deleteDebut({id: this.deleteDebutId as string}))
   }
+  openUpdateModal(debut: debutInterface){
+    this.showUpdateModal = true
+    this.updateDebutVal = debut
+  }
+  closeUpdateModal(){
+    this.showUpdateModal = false
+    this.updateDebutVal = {} as debutInterface
+  }
+
 }

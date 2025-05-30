@@ -1,7 +1,7 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {createDebut} from "../../models/debut-models/debut-models";
+import {createDebut, updateDebutType} from "../../models/debut-models/debut-models";
 
 @Injectable(
   {providedIn: 'any'}
@@ -24,5 +24,12 @@ export class DebutsService{
 
   deleteDebut(id:string): Observable<{}>{
     return this.http.delete(this.API + `/${id}`, {withCredentials:true})
+  }
+  updateDebut({title, desc, id}: updateDebutType): Observable<{}>{
+    return this.http.patch(this.API + `/${id}`, {
+      title,
+      desc,
+      id
+    },{withCredentials:true})
   }
 }

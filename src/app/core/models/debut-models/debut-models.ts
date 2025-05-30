@@ -9,3 +9,5 @@ export interface debutInterface {
 }
 export type createDebut = Omit<debutInterface, "id" | "createdAt" | "ownerId">
 
+export type updateDebutType = Pick<debutInterface, "title" | "desc" | "id">
+
