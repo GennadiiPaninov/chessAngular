@@ -1,5 +1,7 @@
 <div class="debuts-container">
-  <div *ngFor="let debut of debuts$ | async; trackBy: trackById" class="debut-item" (click)="openModal(debut)">
+  <div *ngFor="let debut of debuts$ | async; trackBy: trackById" class="debut-item relative" (click)="openModal(debut)">
+    <app-button variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openDeleteModal(debut.id)">
+    </app-button>
     <div class="title">
       <h2 class="typography-xl">{{debut.title}}</h2>
       <svg
@@ -10,12 +12,40 @@
       >
         <use href="../../assets/icons.svg#cursor"></use>
       </svg>
+
     </div>
     <p class="typography-md">Сторона: {{debut.side}}</p>
   </div>
+
   <div class="debut-item create-debut-item" (click)="openCreateDebutModal()">
     <h2 class="typography-xl">Создать дебют...</h2>
   </div>
 </div>
-<app-modal *ngIf="selectedDebut" [data]="selectedDebut" (close)="closeModal()"></app-modal>
-<app-create-debut-modal *ngIf="showCreateModal" (close)="closeCreateModal()"></app-create-debut-modal>
+
+<!--модальное окно для дебюта-->
+<app-modal *ngIf="selectedDebut" (close)="closeModal()">
+  <h2 class="typography-xl">{{selectedDebut.title}}</h2>
+  <p class="typography-md">Сторона: {{selectedDebut.side}}</p>
+  <p class="typography-md">Описание: {{selectedDebut.desc}}</p>
+  <app-button tag="a" variant="success" [link]="'moves/' + selectedDebut.id" label="Перейти к дебюту" class="w-[40%] mob:w-[80%]">
+  </app-button>
+</app-modal>
+<!--модальное окно для дебюта-->
+
+<!--модальное окно для создания дебюта-->
+<app-modal *ngIf="showCreateModal" (close)="closeCreateModal()">
+  <app-create-debut-form (clicked)="closeCreateModal()">
+  </app-create-debut-form>
+</app-modal>
+<!--модальное окно для создания дебюта-->
+
+<!--модальное окно для удаления дебюта-->
+<app-modal *ngIf="showDeleteModal" (close)="closeDeleteModal()">
+  <h2 class="typography-xl">Вы уверены что хотите удалить дебют?</h2>
+  <p class="typography-lg">*в случае удаления дебюта все ходы будут удалены</p>
+  <div class="w-full flex gap-[1rem]">
+    <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="closeDeleteModal()"></app-button>
+    <app-button type="button" variant="secondary" label="Да" class="w-full" width="full" (clicked)="deleteDebut()"></app-button>
+  </div>
+</app-modal>
+<!--модальное окно для удаления дебюта-->

@@ -1,10 +1,10 @@
 import {inject, Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {AuthService} from "../../core/services/auth/auth.service";
-import {catchError, concat, exhaustMap, mergeMap, of, tap} from "rxjs";
+import {  exhaustMap, tap} from "rxjs";
 import {loginAction, loginFormSubmitSuccess} from "./login.action";
-import {createNotification, toggleLoader} from "../global/global.actions";
 import {Router} from "@angular/router";
+import {withFeedbackHelper} from "../../core/helpers/withFeedbackHelper/withFeedbackHelper";
 
 @Injectable()
 export class LoginEffects {
@@ -15,23 +15,16 @@ export class LoginEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction),
-      exhaustMap(({email, password}) =>
-        concat(
-          of(toggleLoader({isLoading: true})),
-          this.auth.login(email, password).pipe(
-            mergeMap(res => [
-              createNotification({
-              title: "Вход выполнен успешно",
-              notificationType: "notification-success"
-            }),
-              loginFormSubmitSuccess()
-            ]),
-            catchError(err => of(createNotification({
-              title: "Вход не выполнен, убадитесь что данные введены корректно",
-              notificationType: "notification-error"
-            })))
-          ),
-          of(toggleLoader({isLoading: false}))
+      exhaustMap(({ email, password }) =>
+        withFeedbackHelper(
+          this.auth.login(email, password),
+          () => [
+            loginFormSubmitSuccess(),
+          ],
+          {
+            success: 'Вход выполнен успешно',
+            error: 'Вход не выполнен, убедитесь что данные введены корректно'
+          }
         )
       )
     )

@@ -1,33 +1,33 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
+import {FieldComponent} from "../../../components/field/field.component";
+import {InputComponent} from "../../../components/input/input.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {FieldComponent} from "../../field/field.component";
-import {InputComponent} from "../../input/input.component";
 import {NgClass} from "@angular/common";
-import {ButtonComponent} from "../../button/button.component";
-import {RadioComponent} from "../../radio/radio.component";
-import {loginAction} from "../../../../store/login/login.action";
-import {DebutsService} from "../../../../core/services/debuts/debuts.service";
+import {ButtonComponent} from "../../../components/button/button.component";
+import {RadioComponent} from "../../../components/radio/radio.component";
 import {Store} from "@ngrx/store";
 import {createDebutAction} from "../../../../store/debuts/debuts.actions";
 import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
 
 @Component({
-  selector: 'app-create-debut-modal',
+  selector: 'app-create-debut-form',
   standalone: true,
   imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent],
-  templateUrl: './create-debut-modal.component.html',
-  styleUrl: './create-debut-modal.component.scss'
+  templateUrl: './create-debut-form.component.html',
+  styleUrl: './create-debut-form.component.scss'
 })
-export class CreateDebutModalComponent {
+export class CreateDebutFormComponent {
+  @Output() clicked = new EventEmitter<void>()
+  private fb = inject(FormBuilder)
+  private store = inject(Store)
+  private resetFormHelper = inject(resetFormHelper)
   radioOptions = [
     { label: 'Белые', value: 'White' },
     { label: 'Чёрные', value: 'Black' }
   ]
   createDebutForm!: FormGroup
-  @Output() close = new EventEmitter<void>()
-  private fb = inject(FormBuilder)
-  private store = inject(Store)
-  private resetFormHelper = inject(resetFormHelper)
+
+
 
   constructor() {
     this.createDebutForm = this.fb.group({
@@ -36,17 +36,13 @@ export class CreateDebutModalComponent {
       side: ['', Validators.required],
     })
   }
-
-  onClose() {
-    this.close.emit()
-  }
   submit() {
     if (this.createDebutForm.valid) {
       const {title, desc, side} = this.createDebutForm.value
       this.store.dispatch(createDebutAction({title, desc, side}))
       this.resetFormHelper.reset({
         fb: this.createDebutForm,
-        onReset: ()=> this.close.emit()
+        onReset: ()=> this.clicked.emit()
       })
     } else {
       this.createDebutForm.markAllAsTouched()

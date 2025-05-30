@@ -38,7 +38,10 @@ export const routes: Routes = [
         path: 'debuts',
         title: 'chess notes',
         loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent),
-        providers: [provideState('debuts', debutsReducer), provideEffects(DebutsEffects)]
+        providers: [
+          provideState('debuts', debutsReducer),
+          provideEffects(DebutsEffects)
+        ]
       },
       {
         path: 'moves/:id',

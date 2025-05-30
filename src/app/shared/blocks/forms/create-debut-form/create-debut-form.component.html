@@ -1,0 +1,26 @@
+<h2 class="typography-xl">Создайте свой дебют</h2>
+<form [formGroup]="createDebutForm" (ngSubmit)="submit()" class="modal-form">
+  <app-field label="Title">
+    <app-input
+      formControlName="title"
+      label="Title"
+      placeholder="Введите title"
+      type="text"
+    ></app-input>
+  </app-field>
+  <app-field label="Description">
+    <app-input
+      formControlName="desc"
+      label="desc"
+      placeholder="Введите описание"
+      type="text"
+    ></app-input>
+  </app-field>
+  <app-field label="Цвет фигуры*">
+    <app-radio
+      formControlName="side"
+      [options]="radioOptions"
+    ></app-radio>
+  </app-field>
+  <app-button type="submit" variant="secondary" label="Отправить"></app-button>
+</form>

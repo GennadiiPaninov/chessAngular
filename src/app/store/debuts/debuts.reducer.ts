@@ -1,5 +1,5 @@
 import {createReducer, on} from "@ngrx/store";
-import {addDebut, getDebuts} from "./debuts.actions";
+import {addDebut, deleteDebutAction, getDebuts} from "./debuts.actions";
 import {debutInterface} from "../../core/models/debut-models/debut-models";
 
 export interface DebutsState {
@@ -15,5 +15,8 @@ export const debutsReducer = createReducer(
   }),
   on(getDebuts, (state, props)=>{
     return {...state, debuts: [...props.debuts]}
+  }),
+  on(deleteDebutAction, (state, props)=>{
+    return {...state, debuts: [...state.debuts.filter(debut=> debut.id !== props.id)]}
   })
 )

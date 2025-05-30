@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {RouterOutlet} from '@angular/router';
 import {CommonModule, NgIf} from "@angular/common";
 import {RouteLoaderComponent} from "./shared/components/route-loader/route-loader.component";
@@ -30,9 +30,10 @@ import {animate, style, transition, trigger} from "@angular/animations";
   ],
 })
 export class AppComponent {
+
+  private store = inject(Store<{ global: GlobalState }>)
   isLoading$ = this.store.select(selectLoading)
   notifications$ = this.store.select(selectNotifications)
 
-  constructor(private store: Store<{ global: GlobalState }>) {
-  }
+
 }

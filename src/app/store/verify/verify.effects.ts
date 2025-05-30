@@ -2,8 +2,8 @@ import {Injectable} from "@angular/core";
 import {Actions, createEffect, ofType} from "@ngrx/effects";
 import {AuthService} from "../../core/services/auth/auth.service";
 import {isVerifyAction, verifyAction} from "./verify.actions";
-import {catchError, concat, map, mergeMap, of} from "rxjs";
-import {createNotification, toggleLoader} from "../global/global.actions";
+import {mergeMap} from "rxjs";
+import {withFeedbackHelper} from "../../core/helpers/withFeedbackHelper/withFeedbackHelper";
 
 @Injectable()
 export class VerifyEffects {
@@ -13,29 +13,14 @@ export class VerifyEffects {
   verify$ = createEffect(() =>
     this.actions$.pipe(
       ofType(verifyAction),
-      mergeMap(({token}) =>
-        concat(
-          of(toggleLoader({isLoading: true})),
-          this.auth.confirmEmail(token).pipe(
-            mergeMap(() =>[
-              createNotification({
-                title: 'Верификация прошла успешно',
-                notificationType: 'notification-success'
-              }),
-              isVerifyAction({isVerify: true})
-              ]
-            ),
-            catchError(err =>
-              of(
-                createNotification({
-                  title: err.error.message,
-                  notificationType: 'notification-error'
-                }),
-                isVerifyAction({isVerify: true})
-              )
-            )
-          ),
-          of(toggleLoader({isLoading: false}))
+      mergeMap(({ token }) =>
+        withFeedbackHelper(
+          this.auth.confirmEmail(token),
+          () => [isVerifyAction({ isVerify: true })],
+          {
+            success: 'Верификация прошла успешно',
+            error: 'Ошибка при верификации'
+          }
         )
       )
     )

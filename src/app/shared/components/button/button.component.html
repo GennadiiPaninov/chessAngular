@@ -1,11 +1,12 @@
 <ng-container [ngSwitch]="tag">
 
   <!--  btn -->
-  <button (click)="handleClick()"
+  <button (click)="handleClick($event)"
           [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
           [disabled]="disabled"
           [tabIndex]="tabindex"
           *ngSwitchCase="'button'"
+          [type]="type"
   >
     <svg
       *ngIf="svgName"
@@ -22,7 +23,7 @@
 
   <a
     *ngSwitchCase="'a'"
-    (click)="handleClick()"
+    (click)="handleClick($event)"
     [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
     [tabIndex]="tabindex"
     role="button"
@@ -43,7 +44,7 @@
 
   <li
     *ngSwitchCase="'li'"
-    (click)="handleClick()"
+    (click)="handleClick($event)"
     [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
     [tabIndex]="tabindex"
     role="button"

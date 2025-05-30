@@ -1,9 +1,5 @@
 <div class="modal-backdrop" (click)="onClose()"></div>
 <div class="modal-content">
   <button class="close-btn" (click)="onClose()">×</button>
-  <h2 class="typography-xl">{{data.title}}</h2>
-  <p class="typography-md">Сторона: {{data.side}}</p>
-  <p class="typography-md">Описание: {{data.desc}}</p>
-  <app-button tag="a" variant="success" [link]="'moves/' + data.id" label="Перейти к дебюту" class="w-[40%] mob:w-[80%]">
-  </app-button>
+  <ng-content></ng-content>
 </div>

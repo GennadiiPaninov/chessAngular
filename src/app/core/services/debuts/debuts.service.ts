@@ -18,8 +18,11 @@ export class DebutsService{
       side
     }, {withCredentials: true})
   }
-  findAll(): Observable<{}>{
-    return this.http.get(this.API,  {withCredentials: true})
+  findAll(my?: boolean): Observable<{}>{
+    return this.http.get(my ? this.API + '?mine=true' : this.API,  {withCredentials: true})
   }
 
+  deleteDebut(id:string): Observable<{}>{
+    return this.http.delete(this.API + `/${id}`, {withCredentials:true})
+  }
 }

@@ -8,11 +8,11 @@ import {svgName, tagType, variant} from "../../../core/models/button.model";
   standalone: true,
   imports: [NgIf, NgClass, NgSwitch, NgSwitchCase],
   templateUrl: './button.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
 export class ButtonComponent {
-  @Output() clicked = new EventEmitter<void>();
+  @Output() clicked = new EventEmitter<void>()
   @Input() label: string = ""
   @Input() svgName: svgName | "" = ""
   @Input() variant: variant | "" = "";
@@ -24,7 +24,9 @@ export class ButtonComponent {
   @Input() disabled: boolean = false
   @Input() link: string = '/'
   @Input() tag: tagType = 'button'
-  handleClick(){
+  @Input() type: string = ''
+  handleClick(event: MouseEvent) {
+    event.stopPropagation()
     this.clicked.emit()
   }
 }
