@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { DebutsService } from "../../core/services/debuts/debuts.service";
+import { DebutsHttpService } from "../../core/services/debuts/debuts-http.service";
 import {
   addDebut,
   createDebutAction,
@@ -19,7 +19,7 @@ import {withFeedbackHelper} from "../../core/helpers/withFeedbackHelper/withFeed
 @Injectable()
 export class DebutsEffects {
   private actions$ = inject(Actions)
-  private debutsService = inject(DebutsService)
+  private debutsService = inject(DebutsHttpService)
 
 
   getDebuts$ = createEffect(() =>

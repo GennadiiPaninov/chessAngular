@@ -8,6 +8,7 @@ import {ButtonComponent} from "../../../components/button/button.component";
 import {CreateDebutFormComponent} from "../../forms/create-debut-form/create-debut-form.component";
 import {deleteDebut, initDebuts} from "../../../../store/debuts/debuts.actions";
 import {UpdateDebutFormComponent} from "../../forms/update-debut-form/update-debut-form.component";
+import {DebutListSignal} from "./debut-list-signal/debut-list-signal";
 
 @Component({
   selector: 'app-debut-list',
@@ -26,8 +27,10 @@ import {UpdateDebutFormComponent} from "../../forms/update-debut-form/update-deb
 })
 
 export class DebutListComponent implements OnInit{
-  selectedDebut: debutInterface | null = null
+
   private store = inject(Store)
+  private _signal = inject(DebutListSignal)
+  selectedDebut: debutInterface | null = null
   debuts$ = this.store.select(selectDebuts)
   showCreateModal: boolean = false
   showDeleteModal: boolean = false
@@ -35,9 +38,9 @@ export class DebutListComponent implements OnInit{
   deleteDebutId: string | null = null
   updateDebutVal: debutInterface = {} as debutInterface
   ngOnInit() {
-    setTimeout(()=>{
-      this.store.dispatch(initDebuts({}))
-    }, 0)
+    // setTimeout(()=>{
+    //   this.store.dispatch(initDebuts({}))
+    // }, 0)
   }
 
   debuts: debutInterface[] = [

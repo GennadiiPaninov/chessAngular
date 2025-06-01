@@ -6,7 +6,7 @@ import {createDebut, updateDebutType} from "../../models/debut-models/debut-mode
 @Injectable(
   {providedIn: 'any'}
 )
-export class DebutsService{
+export class DebutsHttpService {
   private readonly API = 'https://chess-backend-api-r1ze.vercel.app/debuts'
   private http = inject(HttpClient)
 

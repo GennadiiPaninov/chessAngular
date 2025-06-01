@@ -1,5 +1,5 @@
 <div class="debuts-container">
-  <div *ngFor="let debut of debuts$ | async; trackBy: trackById" class="debut-item relative" (click)="openModal(debut)">
+  <div *ngFor="let debut of debuts; trackBy: trackById" class="debut-item relative" (click)="openModal(debut)">
     <app-button type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openDeleteModal(debut.id)">
     </app-button>
     <app-button type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="openUpdateModal(debut)">
