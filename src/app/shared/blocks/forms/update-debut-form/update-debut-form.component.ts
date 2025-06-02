@@ -1,14 +1,12 @@
 import {Component, EventEmitter, inject, Input, OnChanges, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {Store} from "@ngrx/store";
-import {createDebutAction, updateDebut} from "../../../../store/debuts/debuts.actions";
-import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
 import {FieldComponent} from "../../../components/field/field.component";
 import {InputComponent} from "../../../components/input/input.component";
 import {NgClass} from "@angular/common";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {RadioComponent} from "../../../components/radio/radio.component";
 import {debutInterface} from "../../../../core/models/debut-models/debut-models";
+import {DebutsStore} from "../../../../store/debuts/debutsStore";
 
 @Component({
   selector: 'app-update-debut-form',
@@ -23,9 +21,8 @@ export class UpdateDebutFormComponent implements OnChanges{
   @Input() debut: debutInterface = {} as debutInterface
 
   private fb = inject(FormBuilder)
-  private store = inject(Store)
+  private debutsStore = inject(DebutsStore)
 
-  private resetFormHelper = inject(resetFormHelper)
   updateDebutForm!: FormGroup
 
   ngOnChanges(): void {
@@ -38,10 +35,8 @@ export class UpdateDebutFormComponent implements OnChanges{
     if (this.updateDebutForm.valid) {
       const {title, desc} = this.updateDebutForm.value
       const id = this.debut.id
-      this.store.dispatch(updateDebut({title, desc, id}))
-      this.resetFormHelper.reset({
-        fb: this.updateDebutForm,
-        onReset: ()=> this.clicked.emit()
+      this.debutsStore.updateDebut({title, desc, id}).then(()=>{
+        this.updateDebutForm.reset()
       })
     } else {
       this.updateDebutForm.markAllAsTouched()

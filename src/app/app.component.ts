@@ -3,13 +3,10 @@ import {RouterOutlet} from '@angular/router';
 import {CommonModule, NgIf} from "@angular/common";
 import {RouteLoaderComponent} from "./shared/components/route-loader/route-loader.component";
 import {ButtonComponent} from "./shared/components/button/button.component";
-import {} from "@angular/common/http";
 import {LoaderComponent} from "./shared/components/loader/loader.component";
-import {Store} from "@ngrx/store";
-import {GlobalState} from "./store/global/global.reducer";
-import {selectLoading, selectNotifications} from "./store/global/global.selector";
 import {NotificationsComponent} from "./shared/components/notifications/notifications.component";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {GlobalStore} from "./store/global/globalStore";
 
 @Component({
   selector: 'app-root',
@@ -30,10 +27,7 @@ import {animate, style, transition, trigger} from "@angular/animations";
   ],
 })
 export class AppComponent {
-
-  private store = inject(Store<{ global: GlobalState }>)
-  isLoading$ = this.store.select(selectLoading)
-  notifications$ = this.store.select(selectNotifications)
-
-
+  global = inject(GlobalStore)
+  notifications = this.global.notifications
+  isLoading = this.global.isLoading
 }

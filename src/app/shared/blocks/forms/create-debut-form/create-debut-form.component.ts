@@ -5,9 +5,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/
 import {NgClass} from "@angular/common";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {RadioComponent} from "../../../components/radio/radio.component";
-import {Store} from "@ngrx/store";
-import {createDebutAction} from "../../../../store/debuts/debuts.actions";
-import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
+import {DebutsStore} from "../../../../store/debuts/debutsStore";
 
 @Component({
   selector: 'app-create-debut-form',
@@ -19,8 +17,7 @@ import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFor
 export class CreateDebutFormComponent {
   @Output() clicked = new EventEmitter<void>()
   private fb = inject(FormBuilder)
-  private store = inject(Store)
-  private resetFormHelper = inject(resetFormHelper)
+  private debutsStore = inject(DebutsStore)
   radioOptions = [
     { label: 'Белые', value: 'White' },
     { label: 'Чёрные', value: 'Black' }
@@ -39,10 +36,8 @@ export class CreateDebutFormComponent {
   submit() {
     if (this.createDebutForm.valid) {
       const {title, desc, side} = this.createDebutForm.value
-      this.store.dispatch(createDebutAction({title, desc, side}))
-      this.resetFormHelper.reset({
-        fb: this.createDebutForm,
-        onReset: ()=> this.clicked.emit()
+      this.debutsStore.createDebut({title, desc, side}).then(()=>{
+        this.createDebutForm.reset()
       })
     } else {
       this.createDebutForm.markAllAsTouched()

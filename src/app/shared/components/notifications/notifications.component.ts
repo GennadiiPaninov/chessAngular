@@ -1,11 +1,8 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {Store} from "@ngrx/store";
-import {GlobalState, notification} from "../../../store/global/global.reducer";
-import {selectNotifications} from "../../../store/global/global.selector";
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {notification} from "../../../store/global/global.reducer";
 import {CommonModule, NgClass, NgFor} from "@angular/common";
-import {Subscription, timer} from "rxjs";
-import {removeNotification} from "../../../store/global/global.actions";
 import {animate, style, transition, trigger} from "@angular/animations";
+import {GlobalStore} from "../../../store/global/globalStore";
 
 @Component({
   selector: 'app-notifications',
@@ -27,26 +24,9 @@ import {animate, style, transition, trigger} from "@angular/animations";
   ],
 })
 
-export class NotificationsComponent implements OnInit{
-  notifications$ = this.store.select(selectNotifications)
-  private timeouts = new Map<string, Subscription>()
-
-  constructor(private store: Store<{ global: GlobalState }>) {
-
-  }
-  ngOnInit() {
-    this.notifications$.subscribe(notifications$=>{
-      notifications$.forEach((notification: notification)=>{
-        if(!this.timeouts.has(notification.id)){
-          const subscribe = timer(4500).subscribe(()=>{
-            this.store.dispatch(removeNotification({id: notification.id}))
-            this.timeouts.delete(notification.id);
-          })
-          this.timeouts.set(notification.id, subscribe);
-        }
-      })
-    })
-  }
+export class NotificationsComponent {
+  global = inject(GlobalStore)
+  notifications = this.global.notifications
 
   trackById(index: number, item: notification) {
     return item.id
