@@ -5,10 +5,7 @@ import {InputComponent} from "../../../components/input/input.component";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {NgIf} from "@angular/common";
 import {FieldComponent} from "../../../components/field/field.component";
-import {AuthService} from "../../../../core/services/auth/auth.service";
-import {Store} from "@ngrx/store";
-import {loginAction} from "../../../../store/login/login.action";
-import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
+import {LoginStore} from "../../../../store/login/loginStore";
 
 @Component({
   selector: 'app-login-form',
@@ -19,8 +16,7 @@ import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFor
 })
 export class LoginFormComponent {
   private fb = inject(FormBuilder)
-  private store = inject(Store)
-  private resetFormHelper = inject(resetFormHelper)
+  private loginStore = inject(LoginStore)
   loginForm!: FormGroup;
 
   constructor() {
@@ -35,9 +31,10 @@ export class LoginFormComponent {
   submit() {
     if (this.loginForm.valid) {
       const {email, password} = this.loginForm.value
-      this.store.dispatch(loginAction({email, password}))
-      this.resetFormHelper.reset({fb: this.loginForm, isAuth:true})
 
+      this.loginStore.login(email, password).then(()=> {
+        this.loginForm.reset()
+      })
     } else {
       this.loginForm.markAllAsTouched();
     }

@@ -1,7 +1,6 @@
-import {Component, } from '@angular/core';
+import {Component, inject,} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from '@angular/common';
-import {Store} from '@ngrx/store';
 
 import {InputComponent} from "../../../components/input/input.component";
 import {ButtonComponent} from "../../../components/button/button.component";
@@ -9,8 +8,7 @@ import {FieldComponent} from "../../../components/field/field.component";
 import {matchPasswordsValidator} from "../../../../core/helpers/matchPasswordsValidator";
 import {passwordValidator} from "../../../../core/helpers/passwordValidator";
 import {LoaderComponent} from "../../../components/loader/loader.component";
-import {register} from "../../../../store/register/register.actions";
-import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFormHelper";
+import {RegisterStore} from "../../../../store/register/registerStore";
 
 @Component({
   selector: 'app-register-form',
@@ -20,9 +18,11 @@ import {resetFormHelper} from "../../../../core/helpers/resetFormHelper/resetFor
   styleUrl: './register-form.component.scss'
 })
 export class RegisterFormComponent {
-  registerForm!: FormGroup;
+  private registerStore = inject(RegisterStore)
+  private fb = inject(FormBuilder)
+  registerForm!: FormGroup
 
-  constructor(private fb: FormBuilder, private store: Store, private resetFormHelper: resetFormHelper) {
+  constructor() {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
@@ -36,8 +36,9 @@ export class RegisterFormComponent {
   submit() {
     if (this.registerForm.valid) {
       const {email, password} = this.registerForm.value
-      this.store.dispatch(register({email, password}))
-      this.resetFormHelper.reset({ fb:this.registerForm })
+      this.registerStore.register(email, password).then(()=>{
+        this.registerForm.reset()
+      })
     } else {
       this.registerForm.markAllAsTouched();
     }

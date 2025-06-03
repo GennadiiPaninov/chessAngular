@@ -2,9 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {AsyncPipe, NgIf} from "@angular/common";
 import {LoaderComponent} from "../../shared/components/loader/loader.component";
-import {Store} from "@ngrx/store";
-import {verifyAction} from "../../store/verify/verify.actions";
-import {selectIsVerify} from "../../store/verify/verify.selector";
+import {VerifyStore} from "../../store/verify/verifyStore";
 
 @Component({
   selector: 'app-verify',
@@ -15,13 +13,13 @@ import {selectIsVerify} from "../../store/verify/verify.selector";
 })
 export class VerifyComponent implements OnInit {
   private route = inject(ActivatedRoute)
-  private store =  inject(Store)
-  isVerify$ = this.store.select(selectIsVerify)
-  
+  private verifyStore =  inject(VerifyStore)
+  isVerify = this.verifyStore.isVerify
+
   ngOnInit() {
     const token = this.route.snapshot.paramMap.get('token')
     if (token) {
-      this.store.dispatch(verifyAction({token}))
+      this.verifyStore.verify(token).then()
     }
   }
 }

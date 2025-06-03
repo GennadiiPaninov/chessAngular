@@ -23,7 +23,6 @@ export class AuthService {
     return this.http.post<{ access_token: string }>(
       `${this.API}/login`,
       { email, password },
-      { withCredentials: true }
     ).pipe(
       tap(res => {
         localStorage.setItem('access_token', res.access_token);

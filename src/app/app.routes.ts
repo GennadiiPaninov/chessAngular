@@ -1,13 +1,8 @@
 import {Routes} from '@angular/router';
 import {provideEffects} from "@ngrx/effects";
-import {RegisterEffects} from "./store/register/register.effects";
-import {VerifyEffects} from "./store/verify/verify.effects";
 import {provideState} from "@ngrx/store";
-import {verifyReducer} from "./store/verify/verify.reducer";
-import {LoginEffects} from "./store/login/login.effects";
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {AuthorizedLayoutComponent} from "./shared/layouts/authorized-layout/authorized-layout.component";
-
 import {DebutListSignal} from "./shared/blocks/debuts/debuts-list/debut-list-signal/debut-list-signal";
 import {authGuard} from "./core/helpers/authGuard/authGuard";
 import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
@@ -17,7 +12,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -56,22 +51,19 @@ export const routes: Routes = [
       {
         path: 'sign-in',
         title: 'chess notes',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
-        providers: [provideEffects(LoginEffects)]
       },
       {
         path: 'sign-up',
         title: 'chess notes registration',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
-        providers: [provideEffects(RegisterEffects)]
       },
       {
         path: 'verify/:token',
         title: 'verify',
         loadComponent: () => import('./features/verify/verify.component').then(m => m.VerifyComponent),
-        providers: [provideState('verify', verifyReducer), provideEffects(VerifyEffects)]
       }
     ]
   },

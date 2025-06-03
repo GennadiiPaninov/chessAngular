@@ -24,7 +24,6 @@ export class AuthInterceptor implements HttpInterceptor {
       });
     }
 
-    console.log('ACCESS TOKEN:', accessToken);
     return next.handle(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 && !authReq.url.includes('/refresh')) {

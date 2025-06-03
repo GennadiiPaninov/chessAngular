@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
-import {notification} from "../../../store/global/global.reducer";
 import {CommonModule, NgClass, NgFor} from "@angular/common";
 import {animate, style, transition, trigger} from "@angular/animations";
 import {GlobalStore} from "../../../store/global/globalStore";
+import {notification} from "../../../core/models/store-models/global-store";
 
 @Component({
   selector: 'app-notifications',
