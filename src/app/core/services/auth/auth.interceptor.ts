@@ -11,7 +11,6 @@ export class AuthInterceptor implements HttpInterceptor {
     private router: Router
 
   ) {}
-
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const accessToken = localStorage.getItem('access_token')
     let authReq = req

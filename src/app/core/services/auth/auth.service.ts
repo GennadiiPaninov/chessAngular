@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import {meResponse} from "../../models/state-models/auth.model";
 
@@ -38,7 +38,18 @@ export class AuthService {
   }
 
   checkAuth(): Observable<meResponse> {
-    return this.http.get<meResponse>(`${this.API}/me`, { withCredentials: true})
+    const accessToken = localStorage.getItem('access_token')
+
+    const headers = accessToken
+      ? new HttpHeaders({
+        Authorization: `Bearer ${accessToken}`,
+      })
+      : undefined
+
+    return this.http.get<meResponse>(`${this.API}/me`, {
+      headers,
+      withCredentials: true,
+    })
   }
 
   confirmEmail(token: string): Observable<{ message: string }> {
