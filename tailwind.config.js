@@ -9,6 +9,7 @@ module.exports = {
     'btn-default',
     'btn-success',
     'btn-icon',
+    'btn-icon-s',
     'notifications-error',
     'notifications-success',
     'notifications-info',

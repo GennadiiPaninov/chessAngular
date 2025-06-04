@@ -9,10 +9,11 @@ import {handleHttpError} from "../../core/helpers/handle-http-errors";
 export class RegisterStore{
   private global = inject(GlobalStore)
   private auth = inject(AuthService)
-  async register (email:string, password: string){
+  async register (email:string, password: string, callback:()=> void){
     this.global.toggleLoader(true)
     try{
       await firstValueFrom(this.auth.register(email, password))
+      callback()
       this.global.createNotification('Сообщение о верификации направлено на почту, возможно оно попало в спам')
     } catch (err:unknown){
       handleHttpError(this.global, err, 'Не удалось зарегистрироваться')

@@ -14,6 +14,6 @@ export type svgName =
   | "burger"
   | "search"
 
-export type variant = "primary" | "secondary" | "default" | 'success' | 'icon'
+export type variant = "primary" | "secondary" | "default" | 'success' | 'icon' | 'icon-s'
 
 export type tagType = 'button' | 'li' | 'a'

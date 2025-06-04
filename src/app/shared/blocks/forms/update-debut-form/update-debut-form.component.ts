@@ -35,9 +35,7 @@ export class UpdateDebutFormComponent implements OnChanges{
     if (this.updateDebutForm.valid) {
       const {title, desc} = this.updateDebutForm.value
       const id = this.debut.id
-      this.debutsStore.updateDebut({title, desc, id}).then(()=>{
-        this.updateDebutForm.reset()
-      })
+      this.debutsStore.updateDebut({title, desc, id}, ()=> this.updateDebutForm.reset())
     } else {
       this.updateDebutForm.markAllAsTouched()
     }

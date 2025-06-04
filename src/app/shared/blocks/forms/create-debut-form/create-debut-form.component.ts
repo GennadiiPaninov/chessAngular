@@ -36,9 +36,7 @@ export class CreateDebutFormComponent {
   submit() {
     if (this.createDebutForm.valid) {
       const {title, desc, side} = this.createDebutForm.value
-      this.debutsStore.createDebut({title, desc, side}).then(()=>{
-        this.createDebutForm.reset()
-      })
+      this.debutsStore.createDebut({title, desc, side},()=>this.createDebutForm.reset())
     } else {
       this.createDebutForm.markAllAsTouched()
     }

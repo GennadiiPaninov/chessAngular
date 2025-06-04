@@ -6,8 +6,9 @@ export interface debutInterface {
   createdAt: Date
   side: "White" | "Black"
   ownerId: string
+  isMine: boolean
 }
-export type createDebut = Omit<debutInterface, "id" | "createdAt" | "ownerId">
+export type createDebut = Omit<debutInterface, "id" | "createdAt" | "ownerId" | "isMine">
 
 export type updateDebutType = Pick<debutInterface, "title" | "desc" | "id">
 

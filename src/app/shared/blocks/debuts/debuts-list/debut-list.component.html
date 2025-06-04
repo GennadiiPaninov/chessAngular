@@ -1,8 +1,8 @@
 <div class="debuts-container">
   <div *ngFor="let debut of debuts(); trackBy: trackById" class="debut-item relative" (click)="openModal('debutModal', debut)">
-    <app-button type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openModal('deleteModal', debut)">
+    <app-button *ngIf="debut.isMine" type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openModal('deleteModal', debut)">
     </app-button>
-    <app-button type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="openModal('updateModal', debut)">
+    <app-button *ngIf="debut.isMine" type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="openModal('updateModal', debut)">
     </app-button>
     <div class="title">
       <h2 class="typography-xl">{{debut.title}}</h2>

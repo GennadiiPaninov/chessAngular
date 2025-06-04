@@ -36,9 +36,7 @@ export class RegisterFormComponent {
   submit() {
     if (this.registerForm.valid) {
       const {email, password} = this.registerForm.value
-      this.registerStore.register(email, password).then(()=>{
-        this.registerForm.reset()
-      })
+      this.registerStore.register(email, password, ()=>this.registerForm.reset())
     } else {
       this.registerForm.markAllAsTouched();
     }
