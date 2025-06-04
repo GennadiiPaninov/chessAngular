@@ -6,11 +6,12 @@ import {NgClass} from "@angular/common";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {RadioComponent} from "../../../components/radio/radio.component";
 import {DebutsStore} from "../../../../store/debuts/debutsStore";
+import {TextAreaComponent} from "../../../components/text-area/text-area.component";
 
 @Component({
   selector: 'app-create-debut-form',
   standalone: true,
-  imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent],
+  imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent, TextAreaComponent],
   templateUrl: './create-debut-form.component.html',
   styleUrl: './create-debut-form.component.scss'
 })

@@ -1,4 +1,4 @@
-<h2 class="typography-xl">Обнови свой дебют</h2>
+<h2 class="typography-xl mob:ml-[1rem]">Обнови свой дебют</h2>
 <form [formGroup]="updateDebutForm" (ngSubmit)="submit()" class="modal-form">
   <app-field label="Title">
     <app-input
@@ -9,12 +9,11 @@
     ></app-input>
   </app-field>
   <app-field label="Description">
-    <app-input
+    <app-text-area
       formControlName="desc"
       label="desc"
       placeholder="Введите описание"
-      type="text"
-    ></app-input>
+    ></app-text-area>
   </app-field>
   <app-button type="submit" variant="secondary" label="Отправить"></app-button>
 </form>

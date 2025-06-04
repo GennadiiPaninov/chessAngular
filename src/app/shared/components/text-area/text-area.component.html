@@ -1,0 +1,18 @@
+<div class="textarea-container relative">
+  <textarea
+    [id]="formControlName"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onBlur()"
+    (focus)="onFocus()"
+    [disabled]="disabled"
+    class="typography-md textarea"
+    [attr.autocomplete]="autocomplete"
+    rows="4"
+  ></textarea>
+
+  <span *ngIf="errorMessage && showError" class="text-red typography-lg absolute bottom-[-3rem]">
+    {{ errorMessage }}
+  </span>
+</div>
