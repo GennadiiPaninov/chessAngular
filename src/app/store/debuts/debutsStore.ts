@@ -21,6 +21,7 @@ export class DebutsStore {
     updateModal: false,
     debutModal: false
   })
+  private debutsReceived = signal<boolean>(true)
   private global = inject(GlobalStore)
   private service = inject(DebutsHttpService)
 
@@ -30,12 +31,14 @@ export class DebutsStore {
   readonly showDebutModal = computed(()=> this.showModal().debutModal)
   readonly showUpdateModal = computed(()=> this.showModal().updateModal)
   readonly showDeleteModal = computed(()=> this.showModal().deleteModal)
+  readonly hasAllDebutsArrived = computed(()=> this.debutsReceived())
 
-  async loadDebuts(my?: boolean){
+  async loadDebuts(my?: boolean, title?: string){
     this.global.toggleLoader(true)
     try {
-      const result = await firstValueFrom(this.service.findAll(my))
+      const result = await firstValueFrom(this.service.findAll(my, title))
       this.debuts.set(result as debutInterface[])
+      this.debutsReceived.set(!my)
     } catch (err: unknown){
       handleHttpError(this.global, err, 'Не удалось загрузить дебюты')
     } finally {

@@ -1,7 +1,7 @@
 import {
   Component,
   Input,
-  forwardRef, inject, ChangeDetectionStrategy, ChangeDetectorRef,
+  forwardRef, inject, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter,
 } from '@angular/core';
 import {
   ControlContainer,
@@ -38,12 +38,14 @@ export class InputComponent implements ControlValueAccessor {
   @Input() password: boolean = false
   @Input() formControlName?: string;
   @Input() autocomplete: string = 'off'
+  @Input() standaloneValue: string = ''
+  @Output() standaloneValueChange = new EventEmitter<string>()
 
   value: string = ''
   disabled = false;
   isPasswordVisible: boolean = false
   showError: boolean = false
-  private controlContainer = inject(ControlContainer)
+  private controlContainer = inject(ControlContainer, { optional: true })
   private inputErrorsService = inject(InputErrorsService)
   private cdr = inject(ChangeDetectorRef)
 
@@ -60,6 +62,7 @@ export class InputComponent implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value
+    this.standaloneValue = value
     this.cdr.markForCheck()
   }
 
@@ -83,9 +86,16 @@ export class InputComponent implements ControlValueAccessor {
   }
   onInput(event: Event) {
     const target = event.target as HTMLInputElement
-    this.value = target.value
-    this.onChange(this.value)
-    this.onTouched()
+    const newValue = target.value
+    this.value = newValue
+
+    this.onChange(newValue)
+    this.onTouched();
+
+    if (!this.formControlName) {
+      this.standaloneValue = newValue
+      this.standaloneValueChange.emit(newValue)
+    }
   }
 
 

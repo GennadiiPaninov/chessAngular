@@ -1,4 +1,4 @@
-<div class="input-container relative mb-[1.5rem]">
+<div class="input-container relative">
   <app-button *ngIf="password" variant="icon" [svgName]="isPasswordVisible ? 'open-eye' : 'close-eye'"
               (clicked)="showPassword()" tabindex="-1" tag="button"
   >
@@ -21,7 +21,7 @@
     (blur)="onBlur()"
     (focus)="onFocus()"
     [disabled]="disabled"
-    class="typography-xl input"
+    class="typography-md input"
     [attr.autocomplete]="autocomplete"
   />
   <span *ngIf="errorMessage &&  showError" class="text-red typography-lg absolute bottom-[-3rem]">{{errorMessage}}</span>

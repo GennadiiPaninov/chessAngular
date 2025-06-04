@@ -33,15 +33,10 @@ export class DebutListComponent implements OnInit{
   showUpdateModal = this.debutsStore.showUpdateModal
   selectedDebut = this.debutsStore.selectedDebut
 
-
-
   ngOnInit(): void {
     this.debutsStore.loadDebuts()
-    // setTimeout(()=>{
-    //   this.store.dispatch(initDebuts({}))
-    // }, 0)
-  }
 
+  }
   // debuts: debutInterface[] = [
   //   {id: "1231", title:"Каро кан", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"White", createdAt: new Date(), ownerId: "sdsadsadsd"},
   //   {id: "12312", title:"Мадин", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"Black", createdAt: new Date(), ownerId: "sdsadsadsd"},
@@ -59,39 +54,4 @@ export class DebutListComponent implements OnInit{
   closeModal(){
     this.debutsStore.closeModal()
   }
-
-  // openCreateDebutModal(){
-  //   this.showCreateModal = true
-  // }
-  // openModal(debut: debutInterface) {
-  //   this.selectedDebut = debut
-  // }
-  //
-  // closeModal() {
-  //   this.selectedDebut = null
-  // }
-  // closeCreateModal() {
-  //   this.showCreateModal = false
-  // }
-  // openDeleteModal(id: string){
-  //   this.deleteDebutId = id
-  //   this.showDeleteModal = true
-  // }
-  // closeDeleteModal(){
-  //   this.showDeleteModal = false
-  //   this.deleteDebutId = null
-  // }
-  // deleteDebut(){
-  //   // this.store.dispatch(deleteDebut({id: this.deleteDebutId as string}))
-  // }
-  // openUpdateModal(debut: debutInterface){
-  //   this.showUpdateModal = true
-  //   this.updateDebutVal = debut
-  // }
-  // closeUpdateModal(){
-  //   this.showUpdateModal = false
-  //   this.updateDebutVal = {} as debutInterface
-  // }
-
-
 }

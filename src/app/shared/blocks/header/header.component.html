@@ -1,4 +1,4 @@
-<header class="header-container">
+<header class="header-container mob:hidden">
   <ul class="menu">
     <li  *ngFor="let item of menu; trackBy: trackById">
       <app-button
@@ -12,6 +12,23 @@
     </li>
   </ul>
 </header>
+<div class="hidden w-full flex justify-end pr-[2rem] mob:flex">
+  <app-button variant="icon" svgName="burger" class="mob:flex" (clicked)="open()"/>
+</div>
+<app-modal *ngIf="isShow()" (close)="close()">
+  <ul class="flex flex-col gap-[2rem]">
+    <li  *ngFor="let item of menu; trackBy: trackById">
+      <app-button
+        tag="a"
+        [svgName]="item.svgName"
+        variant="default"
+        [link]="item.link"
+        [label]="item.title"
+      >
+      </app-button>
+    </li>
+  </ul>
+</app-modal>
 
 
 

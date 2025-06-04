@@ -1,0 +1,13 @@
+<div class="container flex flex-row gap-[2rem] items-center justify-between mob:flex-col">
+  <div class="flex flex-row gap-[2rem]">
+  <app-button class="mob:h-[3rem]" label="Все дебюты" [variant]='hasAllDebutsArrived() ? "primary" : "secondary"' (clicked)="showDebuts(false)"></app-button>
+  <app-button label="Мои дебюты" [variant]='hasAllDebutsArrived() ? "secondary" : "primary"' (clicked)="showDebuts(true)"></app-button>
+  </div>
+  <app-input
+    placeholder="Поиск по названию"
+    svgName="search"
+    [standaloneValue]="searchDebuts()"
+    (standaloneValueChange)="searchDebuts.set($event)">
+  </app-input>
+
+</div>

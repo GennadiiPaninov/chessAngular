@@ -11,6 +11,8 @@ export type svgName =
   | "notification-success"
   | "delete"
   | "update"
+  | "burger"
+  | "search"
 
 export type variant = "primary" | "secondary" | "default" | 'success' | 'icon'
 

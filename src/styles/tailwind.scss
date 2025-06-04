@@ -28,7 +28,9 @@ html {
 html::-webkit-scrollbar {
   display: none;
 }
-
+* {
+  box-sizing: border-box;
+}
 @import "typography.scss";
 @import "button.scss";
 @import "common.scss";

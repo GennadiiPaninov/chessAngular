@@ -1,7 +1,6 @@
 import {Routes} from '@angular/router';
 import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
 import {AuthorizedLayoutComponent} from "./shared/layouts/authorized-layout/authorized-layout.component";
-import {DebutListSignal} from "./shared/blocks/debuts/debuts-list/debut-list-signal/debut-list-signal";
 import {authGuard} from "./core/helpers/authGuard/authGuard";
 import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
 
@@ -10,7 +9,7 @@ export const routes: Routes = [
   {
     path: '',
     component: AuthorizedLayoutComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -31,9 +30,6 @@ export const routes: Routes = [
         path: 'debuts',
         title: 'chess notes',
         loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent),
-        providers: [
-          DebutListSignal,
-        ]
       },
       {
         path: 'moves/:id',
@@ -49,13 +45,13 @@ export const routes: Routes = [
       {
         path: 'sign-in',
         title: 'chess notes',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-in/sign-in.component').then(m => m.SignInComponent),
       },
       {
         path: 'sign-up',
         title: 'chess notes registration',
-        canActivate: [redirectAuthGuard],
+        // canActivate: [redirectAuthGuard],
         loadComponent: () => import('./features/sign-up/sign-up.component').then(m => m.SignUpComponent),
       },
       {

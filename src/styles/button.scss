@@ -1,7 +1,6 @@
 @layer components {
   .btn {
-    @apply border-none p-def text-md font-bold text-primary tracking-[0.1rem] rounded-deck flex items-center justify-center duration-500 gap-button mob:text-mdM;
-
+    @apply whitespace-nowrap border-none p-def text-md font-bold text-primary tracking-[0.1rem] rounded-deck flex items-center justify-center duration-500 gap-button mob:text-mdM;
   }
   .btn .icon {
     @apply w-icon h-icon;
@@ -23,7 +22,7 @@
     @apply flex-row-reverse;
   }
   .btn-icon {
-    @apply p-[1rem] hover:border-[.1rem] border-primary border-solid;
+    @apply p-[1rem] border-[.1rem] border-solid hover:border-primary  hover:transition-all;
   }
 
 }

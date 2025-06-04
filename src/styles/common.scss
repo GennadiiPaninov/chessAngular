@@ -1,3 +1,5 @@
 @layer components {
-
+  .container{
+    @apply w-[135rem] mt-[5rem] ml-auto mr-auto  mob:w-[33.5rem] mob:mt-[1rem] mb-[1rem];
+  }
 }
