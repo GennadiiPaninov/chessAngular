@@ -30,7 +30,6 @@ import {InputErrorsService} from "../../../core/services/inputErrorsService/inpu
 
 })
 export class InputComponent implements ControlValueAccessor {
-  @Input() label = ''
   @Input() type: string = 'text'
   @Input() placeholder = ''
   @Input() id: string = crypto.randomUUID()
