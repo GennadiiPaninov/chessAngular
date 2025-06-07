@@ -1,4 +1,4 @@
-import {svgName} from "../button.model";
+import {svgName} from "../common-models/button.model";
 
 export interface menuItem {
   id: string,

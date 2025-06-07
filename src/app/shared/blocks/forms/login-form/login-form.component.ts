@@ -32,7 +32,7 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       const {email, password} = this.loginForm.value
 
-      this.loginStore.login(email, password, ()=>this.loginForm.reset())
+      this.loginStore.login(email, password, ()=>{})
     } else {
       this.loginForm.markAllAsTouched();
     }

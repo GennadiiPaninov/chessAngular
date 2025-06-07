@@ -14,9 +14,9 @@ export class LoginStore {
     this.global.toggleLoader(true)
     try{
       await firstValueFrom(this.auth.login(email, password))
-      callback()
       this.global.createNotification('Авторизация прошла успешно')
       this.redirect.navigateTo('/')
+      callback()
     }catch (err:unknown){
       handleHttpError(this.global, err, 'Не удалось авторизироваться')
     } finally {

@@ -26,6 +26,9 @@ export class DebutsHttpService {
     return this.http.get(this.API, {params, withCredentials: true})
   }
 
+  findOne(id: string): Observable<{}> {
+    return this.http.get(this.API + `/${id}`, {withCredentials: true})
+  }
   deleteDebut(id: string): Observable<{}> {
     return this.http.delete(this.API + `/${id}`, {withCredentials: true})
   }

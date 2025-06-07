@@ -1,0 +1,30 @@
+<h2 class="typography-xl mob:ml-[1rem]">Создайте первый ход</h2>
+<form [formGroup]="createMoveForm" (ngSubmit)="submit()" class="modal-form p-[1rem]">
+  <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
+    <app-field label="from" class="w-full">
+      <app-input
+        formControlName="from"
+        label="Title"
+        placeholder="Введите ход в формате e2"
+        type="text"
+      ></app-input>
+    </app-field>
+    <app-field label="to" class="w-full">
+      <app-input
+        formControlName="to"
+        label="Title"
+        placeholder="Введите ход в формате e4"
+        type="text"
+      ></app-input>
+    </app-field>
+  </div>
+
+  <app-field label="Description">
+    <app-text-area
+      formControlName="desc"
+      label="desc"
+      placeholder="Введите описание"
+    ></app-text-area>
+  </app-field>
+  <app-button type="submit" variant="secondary" label="Отправить"></app-button>
+</form>

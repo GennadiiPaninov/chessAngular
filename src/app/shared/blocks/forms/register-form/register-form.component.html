@@ -6,7 +6,15 @@
       placeholder="Введите ваш email"
       type="email"
       svgName="email"
-    ></app-input>
+    />
+  </app-field>
+  <app-field label="User Name">
+    <app-input
+      formControlName="userName"
+      placeholder="Введите ваше имя"
+      type="text"
+      svgName="profile"
+    />
   </app-field>
   <app-field label="Введите пароль">
     <app-input
@@ -15,7 +23,7 @@
       placeholder="Введите пароль"
       type="password"
       [password]="true"
-    ></app-input>
+    />
   </app-field>
 
   <app-field  label="Подтвердите пароль">
@@ -25,13 +33,12 @@
       type="password"
       [password]="true"
       autocomplete="new-password"
-    ></app-input>
+    />
   </app-field>
   <app-button
     variant="success"
     width="full"
     label="Sign Up"
     [disabled]="registerForm.invalid"
-  >
-  </app-button>
+  />
 </form>

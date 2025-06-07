@@ -26,11 +26,10 @@ export class CreateDebutFormComponent {
   createDebutForm!: FormGroup
 
 
-
   constructor() {
     this.createDebutForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      desc: ['', [Validators.required, Validators.minLength(5)]],
+      title: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(20)]],
+      desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       side: ['', Validators.required],
     })
   }

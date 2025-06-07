@@ -1,0 +1,21 @@
+<div *ngIf="!moves.length"
+     class="container flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
+  Элементы отсутствуют
+</div>
+<div class="container move-container">
+  <div class="move-item">
+    <h2 class="typography-xl">Создать первый ход...</h2>
+  </div>
+  <div class="move-item">
+    <h2 class="typography-xl">Создать первый ход...</h2>
+  </div>
+  <div class="move-item">
+    <h2 class="typography-xl">Создать первый ход...</h2>
+  </div>
+  <div class="move-item" (click)="debutStore.openModal('createModal')">
+    <h2 class="typography-xl">Создать первый ход...</h2>
+  </div>
+</div>
+<app-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()">
+  <app-create-first-move-form/>
+</app-modal>

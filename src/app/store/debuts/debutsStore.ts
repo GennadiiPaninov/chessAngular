@@ -3,13 +3,13 @@ import {
   createDebut,
   debutInterface,
   modal,
-  showModalType,
   updateDebutType
 } from "../../core/models/debut-models/debut-models";
 import {GlobalStore} from "../global/globalStore";
 import {DebutsHttpService} from "../../core/services/debuts/debuts-http.service";
 import {firstValueFrom} from "rxjs";
 import {handleHttpError} from "../../core/helpers/handle-http-errors";
+import {showModalType} from "../../core/models/common-models/modal-models";
 
 @Injectable({providedIn: 'any'})
 export class DebutsStore {
@@ -37,7 +37,6 @@ export class DebutsStore {
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.service.findAll(my, title))
-      console.log(result)
       this.debuts.set(result as debutInterface[])
       this.debutsReceived.set(!my)
     } catch (err: unknown){
@@ -101,8 +100,8 @@ export class DebutsStore {
       (Object.keys(updatedModals) as Array<keyof showModalType>).forEach(key => {
         updatedModals[key] = false
       })
-      return updatedModals;
-    });
+      return updatedModals
+    })
     this.selected.set({} as debutInterface)
   }
 }

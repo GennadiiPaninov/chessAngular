@@ -1,3 +1,6 @@
+<div *ngIf="!debuts().length" class="container flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
+  Элементы отсутствуют
+</div>
 <div class="debuts-container">
   <div *ngFor="let debut of debuts(); trackBy: trackById" class="debut-item relative" (click)="openModal('debutModal', debut)">
     <app-button *ngIf="debut.isMine" type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openModal('deleteModal', debut)">
@@ -30,7 +33,7 @@
   <h2 class="typography-xl">{{selectedDebut().title}}</h2>
   <p class="typography-md">Сторона: {{selectedDebut().side}}</p>
   <p class="typography-md">Описание: {{selectedDebut().desc}}</p>
-  <app-button tag="a" variant="success" [link]="'moves/' + selectedDebut().id" label="Перейти к дебюту" class="w-[40%] mob:w-[80%]">
+  <app-button tag="a" variant="success" [link]="'debut/' + selectedDebut().id" label="Перейти к дебюту" class="w-[40%] mob:w-[80%]">
   </app-button>
 
 </app-modal>

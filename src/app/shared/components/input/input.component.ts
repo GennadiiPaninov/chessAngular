@@ -9,7 +9,7 @@ import {
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import {CommonModule, NgClass, NgIf} from '@angular/common';
-import {svgName} from "../../../core/models/button.model";
+import {svgName} from "../../../core/models/common-models/button.model";
 import {ButtonComponent} from "../button/button.component";
 import {InputErrorsService} from "../../../core/services/inputErrorsService/input-errors.service";
 

@@ -3,6 +3,7 @@ import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.comp
 import {AuthorizedLayoutComponent} from "./shared/layouts/authorized-layout/authorized-layout.component";
 import {authGuard} from "./core/helpers/authGuard/authGuard";
 import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
+import {DebutPageComponent} from "./features/debut-page/debut-page.component";
 
 
 export const routes: Routes = [
@@ -35,6 +36,11 @@ export const routes: Routes = [
         path: 'moves/:id',
         title: 'chess notes',
         loadComponent: () => import('./features/moves-page/moves-page.component').then(m => m.MovesPageComponent)
+      },
+      {
+        path: 'debut/:id',
+        title: 'chess notes',
+        loadComponent: () => import('./features/debut-page/debut-page.component').then(m => m.DebutPageComponent)
       },
     ]
   },

@@ -24,8 +24,9 @@ export class RegisterFormComponent {
 
   constructor() {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), passwordValidator()]],
+      email: ['', [Validators.required, Validators.email, Validators.maxLength(30)]],
+      userName: ['', Validators.required, Validators.minLength(3), Validators.maxLength(15)],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(20), passwordValidator()]],
       passwordConfirm: ['', [Validators.required, Validators.minLength(8)]]
     }, {
       validators: matchPasswordsValidator('password', 'passwordConfirm')
@@ -35,8 +36,8 @@ export class RegisterFormComponent {
 
   submit() {
     if (this.registerForm.valid) {
-      const {email, password} = this.registerForm.value
-      this.registerStore.register(email, password, ()=>this.registerForm.reset())
+      const {email, password, userName} = this.registerForm.value
+      this.registerStore.register(email, password, userName, ()=>this.registerForm.reset())
     } else {
       this.registerForm.markAllAsTouched();
     }
