@@ -24,7 +24,7 @@ export class FirstMoveListComponent implements OnInit{
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')
     if(id){
-      // this.debutStore.load(id)
+      this.debutStore.load(id)
     }
   }
   // openModal(){

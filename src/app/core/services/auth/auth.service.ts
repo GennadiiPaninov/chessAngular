@@ -11,11 +11,16 @@ export class AuthService {
   private http = inject(HttpClient)
 
 
-  register(email: string, password: string, userName:string): Observable<{ message: string }> {
+  register(email: string, password: string, name:string): Observable<{ message: string }> {
+    console.log({
+      email,
+      password,
+      name
+    })
     return this.http.post<{ message: string }>(`${this.API}/register`, {
       email,
       password,
-      name: userName
+      name
     })
   }
 

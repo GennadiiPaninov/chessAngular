@@ -62,7 +62,9 @@ export class InputComponent implements ControlValueAccessor {
   writeValue(value: string): void {
     this.value = value
     this.standaloneValue = value
+    this.showError = false
     this.cdr.markForCheck()
+
   }
 
   registerOnChange(fn: any): void {

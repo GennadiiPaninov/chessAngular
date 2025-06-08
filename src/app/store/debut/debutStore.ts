@@ -18,15 +18,17 @@ export class DebutStore {
     updateModal: false,
     deleteModal: false
   })
-  readonly debut = computed(()=> this.debutSignal)
+  readonly debut = computed(()=> this.debutSignal())
   readonly firstMoves = computed(()=> this.debutSignal().firstMoves)
   readonly showModal = computed(this.showModalSignal)
+  readonly isWhite = computed(()=> this.debutSignal().side === 'White')
   async load(id:string){
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.service.findOne(id))
       console.log(result)
       this.debutSignal.set(result as fullDebutInterface)
+      console.log(result)
     } catch (err: unknown){
       handleHttpError(this.global, err, 'Не удалось загрузить дебют')
     } finally {

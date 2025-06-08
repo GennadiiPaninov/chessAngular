@@ -7,5 +7,6 @@ export const ERROR_MESSAGES: Record<string, (e:any)=> string> = {
   passwordsMismatch: () => 'Пароли не совпадают',
   capitalLetter: ()=> 'Должна присутствовать заглавная буква',
   smallLetter: ()=> 'Должна присутствовать строчная буква',
-  number: ()=> 'Должна присутствовать одна цифра'
+  number: ()=> 'Должна присутствовать одна цифра',
+  invalidMove: ()=> 'Невалидный ход'
 }
