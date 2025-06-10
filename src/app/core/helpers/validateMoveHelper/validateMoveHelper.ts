@@ -13,7 +13,6 @@ export function validateMoveHelper(
     const mToControl = group.get(mToKey)
     const eToControl = group.get(eToKey)
     const isWhite = side === 'White'
-    console.log(side, isWhite)
     const mFrom = group.get(mFromKey)?.value?.toLowerCase()
     const mTo = group.get(mToKey)?.value?.toLowerCase()
     const eFrom = group.get(eFromKey)?.value?.toLowerCase()
@@ -26,7 +25,6 @@ export function validateMoveHelper(
     }
     const chess = new Chess(fen || undefined)
     const errors: ValidationErrors = {}
-    console.log('попал1')
     try {
       const move1 = chess.move(isWhite ? {from: mFrom, to: mTo} : {from: eFrom, to: eTo})
       if (!move1) {

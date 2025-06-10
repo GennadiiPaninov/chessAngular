@@ -22,6 +22,7 @@ export class DebutStore {
   readonly firstMoves = computed(()=> this.debutSignal().firstMoves)
   readonly showModal = computed(this.showModalSignal)
   readonly isWhite = computed(()=> this.debutSignal().side === 'White')
+  readonly orientation = computed(()=>this.debutSignal().side.toLowerCase())
   async load(id:string){
     this.global.toggleLoader(true)
     try {

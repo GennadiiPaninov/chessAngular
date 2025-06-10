@@ -43,3 +43,12 @@ html::-webkit-scrollbar {
 //  outline:4px solid green;
 //}
 
+
+/*
+ * Board
+ */
+@import "chessground/assets/base.css";
+@import "chessground/assets/desktop.css";
+@import "chessground/assets/mobile.css";
+@import "board.scss";
+

@@ -1,21 +1,31 @@
-<div *ngIf="!moves.length"
-     class="container flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
-  Элементы отсутствуют
+<div class="w-full h-auto relative">
+  <div class="container w-[110rem] mob:w-[33.5rem] flex flex-col gap-[2rem]">
+    <div *ngIf="!moves.length"
+         class="flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
+      Элементы отсутствуют
+    </div>
+    <div class="move-container">
+      <div class="move-item">
+        <h2 class="typography-xl">Создать первый ход...</h2>
+      </div>
+      <div class="move-item">
+        <h2 class="typography-xl">Создать первый ход...</h2>
+      </div>
+      <div class="move-item">
+        <h2 class="typography-xl">Создать первый ход...</h2>
+      </div>
+      <div class="move-item" (click)="debutStore.openModal('createModal')">
+        <h2 class="typography-xl">Создать первый ход...</h2>
+      </div>
+    </div>
+  </div>
+  <div class="w-[35rem] absolute right-[2rem] top-0 flex flex-col gap-[1rem] text-center mob:static mob:m-auto">
+    <p class="typography-lg">текущая позиция</p>
+    <app-chess-board [boardTheme]="'wood'" [orientation]="debutStore.orientation()" />
+  </div>
 </div>
-<div class="container move-container">
-  <div class="move-item">
-    <h2 class="typography-xl">Создать первый ход...</h2>
-  </div>
-  <div class="move-item">
-    <h2 class="typography-xl">Создать первый ход...</h2>
-  </div>
-  <div class="move-item">
-    <h2 class="typography-xl">Создать первый ход...</h2>
-  </div>
-  <div class="move-item" (click)="debutStore.openModal('createModal')">
-    <h2 class="typography-xl">Создать первый ход...</h2>
-  </div>
-</div>
+
 <app-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()">
   <app-create-first-move-form/>
 </app-modal>
+

@@ -1,0 +1,92 @@
+
+.blue .cg-board {
+  background-image: url('../../src/assets/imagesChess/board/blue2.jpg');
+}
+.wood .cg-board {
+  background-image: url('../../src/assets/imagesChess/board/wood2.jpg');
+}
+.marble .cg-board {
+  background-image: url('../../src/assets/imagesChess/board/marble.jpg');
+}
+.chessground.light-wood-3d .cg-board-wrap {
+  position: relative;
+  background-image: url('../../src/assets/imagesChess/board/3d/Light-Wood.png');
+  background-size: cover;
+}
+.chessground.small.light-wood-3d .cg-board-wrap {
+  width: calc(1400px / 4.6666);
+  height: calc(1310px / 4.6666);
+}
+.chessground.large.light-wood-3d .cg-board-wrap {
+  width: calc(1400px / 1);
+  height: calc(1310px / 1);
+}
+.light-wood-3d .cg-board {
+  position: absolute;
+  left: 0;
+  top: 0.6168702%;
+  width: 100%;
+  height: 97.0229%;
+}
+.cburnett piece.pawn.white,
+.cburnett piece.bishop.white,
+.cburnett piece.knight.white,
+.cburnett piece.rook.white,
+.cburnett piece.queen.white,
+.cburnett piece.king.white,
+.cburnett piece.pawn.black,
+.cburnett piece.bishop.black,
+.cburnett piece.knight.black,
+.cburnett piece.rook.black,
+.cburnett piece.queen.black,
+.cburnett piece.king.black {
+  background-size: 4.5rem;
+  background-repeat: no-repeat;
+}
+.cburnett piece.pawn.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wP.svg');
+
+}
+.cburnett piece.bishop.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wB.svg');
+
+}
+.cburnett piece.knight.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wN.svg');
+
+}
+.cburnett piece.rook.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wR.svg');
+
+}
+.cburnett piece.queen.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wQ.svg');
+
+}
+.cburnett piece.king.white {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/wK.svg');
+
+}
+.cburnett piece.pawn.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bP.svg');
+
+}
+.cburnett piece.bishop.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bB.svg');
+
+}
+.cburnett piece.knight.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bN.svg');
+
+}
+.cburnett piece.rook.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bR.svg');
+
+}
+.cburnett piece.queen.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bQ.svg');
+}
+.cburnett piece.king.black {
+  background-image: url('../../src/assets/imagesChess/pieces/cburnett/bK.svg');
+}
+
