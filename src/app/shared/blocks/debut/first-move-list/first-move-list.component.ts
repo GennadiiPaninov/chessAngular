@@ -5,16 +5,18 @@ import {ActivatedRoute} from "@angular/router";
 import {ModalComponent} from "../../../components/modals/common-modal/modal.component";
 import {CreateFirstMoveFormComponent} from "../../forms/create-first-move-form/create-first-move-form.component";
 import {ChessBoardComponent} from "../../../components/chess-board/chess-board.component";
+import {BoardModalComponent} from "../../../components/modals/board-modal/board-modal.component";
 
 @Component({
   selector: 'app-first-move-list',
   standalone: true,
-    imports: [
-        NgIf,
-        ModalComponent,
-        CreateFirstMoveFormComponent,
-        ChessBoardComponent
-    ],
+  imports: [
+    NgIf,
+    ModalComponent,
+    CreateFirstMoveFormComponent,
+    ChessBoardComponent,
+    BoardModalComponent,
+  ],
   templateUrl: './first-move-list.component.html',
   styleUrl: './first-move-list.component.css'
 })
@@ -22,6 +24,8 @@ export class FirstMoveListComponent implements OnInit{
   debutStore = inject(DebutStore)
   moves = this.debutStore.debut
   showModal = this.debutStore.showModal
+  modalFen = this.debutStore.modalFen
+  modalLastFens = this.debutStore.lastTwoFens
   route = inject(ActivatedRoute)
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')

@@ -8,7 +8,7 @@ import {ButtonComponent} from "../../button/button.component";
     ButtonComponent
   ],
   templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+
 })
 export class ModalComponent {
   @Input() data: any

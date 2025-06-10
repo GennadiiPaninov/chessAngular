@@ -25,7 +25,7 @@
   </div>
 </div>
 
-<app-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()">
+<app-board-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()" [modalFen]="modalFen()" [lastTwoFens]="modalLastFens()">
   <app-create-first-move-form/>
-</app-modal>
+</app-board-modal>
 

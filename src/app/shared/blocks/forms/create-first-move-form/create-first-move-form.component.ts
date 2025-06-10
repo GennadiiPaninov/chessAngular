@@ -8,12 +8,11 @@ import {RadioComponent} from "../../../components/radio/radio.component";
 import {TextAreaComponent} from "../../../components/text-area/text-area.component";
 import {DebutStore} from "../../../../store/debut/debutStore";
 import {validateMoveHelper} from "../../../../core/helpers/validateMoveHelper/validateMoveHelper";
-import {ChessBoardComponent} from "../../../components/chess-board/chess-board.component";
 
 @Component({
   selector: 'app-create-first-move-form',
   standalone: true,
-  imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent, TextAreaComponent, ChessBoardComponent],
+  imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent, TextAreaComponent],
   templateUrl: './create-first-move-form.component.html',
   styleUrl: './create-first-move-form.component.scss'
 })
@@ -27,16 +26,17 @@ export class CreateFirstMoveFormComponent {
 
   constructor() {
     this.createMoveForm = this.fb.group({
-      mFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      mTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      eFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      eTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-      desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
-    },{
-        validators: validateMoveHelper('mFrom', 'mTo', 'eFrom', 'eTo', this.debutStore.debut().side)
+        mFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+        mTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+        eFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+        eTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+        desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
+      }, {
+        validators: validateMoveHelper('mFrom', 'mTo', 'eFrom', 'eTo', this.debutStore.isWhite(), (fen: string) => this.debutStore.setFen(fen), (fens: string[]) => this.debutStore.setLastTwoFens(fens))
       }
     )
   }
+
   submit() {
     if (this.createMoveForm.valid) {
       // const {title, desc, side} = this.createDebutForm.value
