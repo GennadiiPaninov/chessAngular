@@ -3,4 +3,5 @@ export interface showModalType {
   deleteModal: boolean
   updateModal: boolean
   debutModal?: boolean
+  moveModal?: boolean
 }

@@ -1,7 +1,6 @@
 import {inject, Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {createDebut, updateDebutType} from "../../models/debut-models/debut-models";
 import {createFMoveT, moveInterface} from "../../models/move-models/move-models";
 
 @Injectable(
@@ -31,10 +30,11 @@ export class MoveHttpService {
       withCredentials: true
     })
   }
-  updateMove(id: string, data: Partial<moveInterface>): Observable<moveInterface> {
-    return this.http.patch<moveInterface>(`${this.API}/${id}`, data, {
-      withCredentials: true
-    })
+  updateMove(id: string, desc: string): Observable<moveInterface> {
+    return this.http.patch<moveInterface>(`${this.API}/${id}`,
+      { desc },
+      { withCredentials: true }
+     )
   }
   deleteMove(id: string): Observable<{}> {
     return this.http.delete(`${this.API}/${id}`, {

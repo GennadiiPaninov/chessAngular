@@ -1,18 +1,17 @@
 <div class="w-full h-auto relative">
-  <div class="container w-[110rem] mob:w-[33.5rem] flex flex-col gap-[2rem]">
-    <div *ngIf="!moves.length"
+  <div class="container ml-[20rem] w-[125rem] mob:w-[33.5rem] flex flex-col gap-[2rem]">
+    <div *ngIf="!debutStore.firstMoves() || !debutStore.firstMoves().length"
          class="flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
       Элементы отсутствуют
     </div>
     <div class="move-container">
-      <div class="move-item">
-        <h2 class="typography-xl">Создать первый ход...</h2>
-      </div>
-      <div class="move-item">
-        <h2 class="typography-xl">Создать первый ход...</h2>
-      </div>
-      <div class="move-item">
-        <h2 class="typography-xl">Создать первый ход...</h2>
+      <div *ngFor="let move of debutStore.firstMoves(); trackBy: trackById" class="move-item flex-col gap-[2rem] typography-md relative" (click)="debutStore.openModal('moveModal', move)">
+        <app-button *ngIf="debutStore.isMine()" type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="debutStore.openModal('deleteModal', move)">
+        </app-button>
+        <app-button *ngIf="debutStore.isMine()" type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="debutStore.openModal('updateModal', move)">
+        </app-button>
+        <h2 class="font-bold">{{move.title | buildTitle:move.pieces}}</h2>
+        <p> {{move.desc | trimDesc}}</p>
       </div>
       <div class="move-item" (click)="debutStore.openModal('createModal')">
         <h2 class="typography-xl">Создать первый ход...</h2>
@@ -28,4 +27,32 @@
 <app-board-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()" [modalFen]="modalFen()" [lastTwoFens]="modalLastFens()" [orientation]="orientation()">
   <app-create-first-move-form/>
 </app-board-modal>
+
+<!--модальное окно для хода-->
+<app-modal *ngIf="debutStore.showModal().moveModal" (close)="debutStore.closeModal()">
+  <h2 class="typography-xl">{{debutStore.selectedMove().title}}</h2>
+  <p class="typography-md">Сторона: {{debutStore.selectedMove().side}}</p>
+  <p class="typography-md">Описание: {{debutStore.selectedMove().desc}}</p>
+  <app-button tag="a" variant="success" [link]="'debut/' + debutStore.selectedMove().id" label="Перейти к ходу" class="w-[40%] mob:w-[80%]">
+  </app-button>
+
+</app-modal>
+<!--модальное окно для хода-->
+
+<!--модальное окно для удаления хода-->
+<app-modal *ngIf="showModal().deleteModal" (close)="debutStore.closeModal()">
+  <h2 class="typography-xl">Вы уверены что хотите удалить ход?</h2>
+  <p class="typography-lg">*в случае удаления хода все ходы будут удалены</p>
+  <div class="w-full flex gap-[1rem]">
+    <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="debutStore.closeModal()"></app-button>
+    <app-button type="button" variant="secondary" label="Да" class="w-full" width="full" (clicked)="debutStore.deleteMove()"></app-button>
+  </div>
+</app-modal>
+<!-- модальное окно для удаления хода -->
+
+<!-- модальное окно для обновления хода-->
+<app-modal *ngIf="showModal().updateModal" (close)="debutStore.closeModal()">
+  <app-update-first-move-form [move]="debutStore.selectedMove()" (clicked)="debutStore.closeModal()">
+  </app-update-first-move-form>
+</app-modal>
 

@@ -1,0 +1,11 @@
+<h2 class="typography-xl mob:ml-[1rem]">Обнови свой ход</h2>
+<form [formGroup]="updateMoveForm" (ngSubmit)="submit()" class="modal-form">
+  <app-field label="Description">
+    <app-text-area
+      formControlName="desc"
+      label="desc"
+      placeholder="Введите описание"
+    ></app-text-area>
+  </app-field>
+  <app-button type="submit" variant="secondary" label="Отправить"></app-button>
+</form>

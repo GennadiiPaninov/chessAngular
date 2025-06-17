@@ -35,15 +35,7 @@ export class DebutListComponent implements OnInit{
 
   ngOnInit(): void {
     this.debutsStore.loadDebuts()
-
   }
-  // debuts: debutInterface[] = [
-  //   {id: "1231", title:"Каро кан", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"White", createdAt: new Date(), ownerId: "sdsadsadsd"},
-  //   {id: "12312", title:"Мадин", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"Black", createdAt: new Date(), ownerId: "sdsadsadsd"},
-  //   {id: "12313", title:"Садин кан", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"Black", createdAt: new Date(), ownerId: "sdsadsadsd"},
-  //   {id: "12314", title:"Тудин ан", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"White", createdAt: new Date(), ownerId: "sdsadsadsd"},
-  //   {id: "12315", title:"Падинкан", desc: "ОПисаниеееав ыфвыв ыфв  фывыфв ы вы в ыв ы в ыв ы вы фв",side:"White", createdAt: new Date(), ownerId: "sdsadsadsd"},
-  // ]
 
   trackById(index: number, item: debutInterface) {
     return item.id
@@ -52,6 +44,7 @@ export class DebutListComponent implements OnInit{
     this.debutsStore.openModal(modal, debut)
   }
   closeModal(){
+
     this.debutsStore.closeModal()
   }
 }

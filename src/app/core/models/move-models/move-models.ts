@@ -1,7 +1,7 @@
 export type fensT = string[]
 export type piecesT = string[]
 export interface moveInterface {
-  id: string
+  id?: string
   title: string
   desc: string
   notation: string
