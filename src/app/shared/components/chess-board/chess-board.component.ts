@@ -12,6 +12,7 @@ import {
 import { themeType } from "../../../core/models/common-models/board-model";
 import Chessground from 'chessground';
 import { Chess } from 'chess.js';
+import {fensT} from "../../../core/models/move-models/move-models";
 
 @Component({
   selector: 'app-chess-board',
@@ -20,11 +21,11 @@ import { Chess } from 'chess.js';
   styleUrl: './chess-board.component.scss',
   imports: []
 })
-export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges {
+export class ChessBoardComponent implements OnDestroy, OnChanges {
   @ViewChild('board', { static: true }) boardRef!: ElementRef<HTMLDivElement>
   @Input() fen: string = 'start'
   @Input() orientation: string = 'white'
-  @Input() lastTwoFens: string[] =[]
+  @Input() lastTwoFens: fensT =[]
   private theme = signal<themeType>('marble')
 
   @Input() set boardTheme(val: themeType) {
@@ -34,11 +35,10 @@ export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges 
   private board!: any
   private chess = new Chess()
 
-  ngAfterViewInit(): void {
-    this.initBoard()
-  }
-
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['orientation'] && changes['orientation'].currentValue) {
+      this.initBoard()
+    }
     if (changes['fen'] && !changes['fen'].firstChange) {
       this.setPosition(this.fen)
     }
@@ -61,6 +61,7 @@ export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges 
   }
 
   private initBoard(): void {
+    console.log(this.orientation)
     this.board = Chessground(this.boardRef.nativeElement, {
       orientation: this.orientation,
       fen: this.fen,
@@ -72,19 +73,25 @@ export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges 
 
       highlight : {
         lastMove : true,
+      },
+      drawable: {
+        enabled: true,
+        visible: true,
+        defaultSnapToValidMove: false,
+        shapes: []
       }
     })
     this.updateBoardTheme()
   }
 
-  private getAllSquares(): string[] {
+  private getAllSquares(): fensT {
     const files = 'abcdefgh'
     const ranks = '12345678'
     return [...files].flatMap((f) => [...ranks].map((r) => `${f}${r}`))
   }
 
-  private computeDests(): Map<string, string[]> {
-    const dests = new Map<string, string[]>()
+  private computeDests(): Map<string, fensT> {
+    const dests = new Map<string, fensT>()
 
     const fenToUse = this.fen === 'start'
       ? 'rn1qkbnr/ppp2ppp/4p3/3p4/3P4/2N1PN2/PPP2PPP/R1BQKB1R w KQkq - 0 1'
@@ -118,7 +125,7 @@ export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges 
       console.warn('Could not set new FEN:', fen, err)
     }
   }
-  public highlightLastMove(fens: string[]): void {
+  public highlightLastMove(fens: fensT): void {
     try {
       if (fens.length < 2) return
 
@@ -153,7 +160,6 @@ export class ChessBoardComponent implements AfterViewInit, OnDestroy, OnChanges 
           lastMove: [from, to],
         })
       }
-
     } catch (err) {
       console.error('Ошибка при подсветке последнего хода:', err)
     }

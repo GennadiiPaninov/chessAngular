@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ChessBoardComponent} from "../../chess-board/chess-board.component";
+import {fensT} from "../../../../core/models/move-models/move-models";
 
 @Component({
   selector: 'app-board-modal',
@@ -15,7 +16,8 @@ export class BoardModalComponent {
   @Input() data: any
   @Output() close = new EventEmitter<void>()
   @Input() modalFen:string = 'start'
-  @Input() lastTwoFens:string[] = []
+  @Input() lastTwoFens:fensT = []
+  @Input() orientation:string = ''
 
   onClose() {
     this.close.emit()

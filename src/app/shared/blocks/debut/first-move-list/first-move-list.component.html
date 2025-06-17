@@ -21,11 +21,11 @@
   </div>
   <div class="w-[35rem] absolute right-[2rem] top-0 flex flex-col gap-[1rem] text-center mob:static mob:m-auto">
     <p class="typography-lg">текущая позиция</p>
-    <app-chess-board [boardTheme]="'wood'" [orientation]="debutStore.orientation()" />
+    <app-chess-board [boardTheme]="'wood'" [orientation]="orientation()"/>
   </div>
 </div>
 
-<app-board-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()" [modalFen]="modalFen()" [lastTwoFens]="modalLastFens()">
+<app-board-modal *ngIf="showModal().createModal" (close)="debutStore.closeModal()" [modalFen]="modalFen()" [lastTwoFens]="modalLastFens()" [orientation]="orientation()">
   <app-create-first-move-form/>
 </app-board-modal>
 

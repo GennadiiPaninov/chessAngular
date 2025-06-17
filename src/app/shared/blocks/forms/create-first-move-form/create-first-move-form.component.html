@@ -44,7 +44,7 @@
       placeholder="Введите описание"
     ></app-text-area>
   </app-field>
-  <app-button type="submit" variant="secondary" label="Отправить"></app-button>
+  <app-button type="submit" variant="secondary" label="Отправить" [disabled]="createMoveForm.invalid"></app-button>
 </form>
 
 

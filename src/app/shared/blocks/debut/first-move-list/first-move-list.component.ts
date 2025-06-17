@@ -26,6 +26,7 @@ export class FirstMoveListComponent implements OnInit{
   showModal = this.debutStore.showModal
   modalFen = this.debutStore.modalFen
   modalLastFens = this.debutStore.lastTwoFens
+  orientation = this.debutStore.orientation
   route = inject(ActivatedRoute)
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id')
