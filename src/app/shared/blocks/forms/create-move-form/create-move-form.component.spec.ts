@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MovesPageComponent } from './moves-page.component';
+import { CreateMoveFormComponent } from './create-move-form.component';
 
-describe('MovesPageComponent', () => {
-  let component: MovesPageComponent;
-  let fixture: ComponentFixture<MovesPageComponent>;
+describe('CreateMoveFormComponent', () => {
+  let component: CreateMoveFormComponent;
+  let fixture: ComponentFixture<CreateMoveFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MovesPageComponent]
+      imports: [CreateMoveFormComponent]
     })
     .compileComponents();
-    
-    fixture = TestBed.createComponent(MovesPageComponent);
+
+    fixture = TestBed.createComponent(CreateMoveFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

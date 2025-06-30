@@ -19,7 +19,7 @@ export class BuildTitlePipe implements PipeTransform {
       const color = ind === 0 ? 'w' : 'b'
       const pieceCode = color + pieces[ind]
       const icon = icons[pieceCode as PieceKey] ?? '?'
-      return ind === 0 ? `${icons.wK}${el.trim()}` : `${el.trim()}${icons.bK}`
+      return ind === 0 ? `${icon}${el.trim()}` : `${el.trim()}${icon}`
     })
 
     return res.join(' : ')

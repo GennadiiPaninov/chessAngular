@@ -33,7 +33,7 @@
   <h2 class="typography-xl">{{debutStore.selectedMove().title}}</h2>
   <p class="typography-md">Сторона: {{debutStore.selectedMove().side}}</p>
   <p class="typography-md">Описание: {{debutStore.selectedMove().desc}}</p>
-  <app-button tag="a" variant="success" [link]="'debut/' + debutStore.selectedMove().id" label="Перейти к ходу" class="w-[40%] mob:w-[80%]">
+  <app-button tag="a" variant="success" [link]="'move/' + debutStore.selectedMove().id" label="Перейти к ходу" class="w-[40%] mob:w-[80%]">
   </app-button>
 
 </app-modal>

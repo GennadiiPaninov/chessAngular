@@ -32,9 +32,9 @@ export const routes: Routes = [
         loadComponent: () => import('./features/debuts-page/debuts-page.component').then(m => m.DebutsPageComponent),
       },
       {
-        path: 'moves/:id',
+        path: 'move/:id',
         title: 'chess notes',
-        loadComponent: () => import('./features/moves-page/moves-page.component').then(m => m.MovesPageComponent)
+        loadComponent: () => import('./features/move-page/move-page.component').then(m => m.MovePageComponent)
       },
       {
         path: 'debut/:id',

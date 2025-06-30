@@ -15,20 +15,10 @@ export class MoveHttpService {
       ...moveData
     }, {withCredentials: true})
   }
-  getRootMoves(debutId: string): Observable<moveInterface[]> {
-    return this.http.get<moveInterface[]>(`${this.API}/debut/${debutId}/root`, {
-      withCredentials: true
-    })
-  }
-  getChildren(moveId: string): Observable<moveInterface[]> {
-    return this.http.get<moveInterface[]>(`${this.API}/${moveId}/children`, {
-      withCredentials: true
-    })
-  }
   getMove(id: string): Observable<moveInterface> {
     return this.http.get<moveInterface>(`${this.API}/${id}`, {
-      withCredentials: true
-    })
+      withCredentials: true,
+    });
   }
   updateMove(id: string, desc: string): Observable<moveInterface> {
     return this.http.patch<moveInterface>(`${this.API}/${id}`,

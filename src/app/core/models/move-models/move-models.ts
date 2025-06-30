@@ -11,6 +11,8 @@ export interface moveInterface {
   side: string
   debutId?: string
   parentId?: string
+  children?: moveInterface[]
+  isMine?: boolean
 }
 
 export type createFMoveT = Omit<moveInterface, "id">

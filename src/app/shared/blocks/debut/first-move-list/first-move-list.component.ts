@@ -46,10 +46,4 @@ export class FirstMoveListComponent implements OnInit{
   trackById(index: number, item: moveInterface) {
     return item.id
   }
-  trim(desc:string){
-    if(desc.length > 25){
-      return desc.slice(0, 25) + '...'
-    }
-    return desc
-  }
 }
