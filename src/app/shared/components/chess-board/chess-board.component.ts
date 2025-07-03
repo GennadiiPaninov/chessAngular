@@ -61,7 +61,6 @@ export class ChessBoardComponent implements OnDestroy, OnChanges {
   }
 
   private initBoard(): void {
-    console.log(this.orientation)
     console.log(this.lastTwoFens)
     this.board = Chessground(this.boardRef.nativeElement, {
       orientation: this.orientation,

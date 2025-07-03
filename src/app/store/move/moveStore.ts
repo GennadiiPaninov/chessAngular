@@ -4,7 +4,8 @@ import {handleHttpError} from "../../core/helpers/handle-http-errors";
 import {GlobalStore} from "../global/globalStore";
 import {showModalType} from "../../core/models/common-models/modal-models";
 import {
-  createFMoveT, createMoveFormI,
+  createFMoveT,
+  createMoveFormI,
   moveInterface,
   newMoveSignalT,
   updateNewMovesSignalT
@@ -30,24 +31,26 @@ export class MoveStore {
     pieces: []
   })
   readonly move = computed(() => this.moveSignal())
-  readonly children = computed(()=> this.moveSignal().children)
+  readonly children = computed(() => this.moveSignal().children)
   readonly hasChildren = computed(() => this.moveSignal()?.children?.length ?? 0 > 0);
-  readonly showModal = computed(()=>this.showModalSignal())
+  readonly showModal = computed(() => this.showModalSignal())
   readonly isWhite = computed(() => this.moveSignal().side === 'White')
   readonly orientation = computed(() => this.moveSignal().side?.toLowerCase())
   readonly modalFen = computed(() => this.newMoveSignal().fen)
   readonly lastTwoFens = computed(() => this.newMoveSignal().fens)
-  readonly isMine = computed(()=> {
-    return this.moveSignal().isMine
-  })
-  readonly moveLastTwoFens = computed(()=> this.moveSignal().fens)
-  readonly moveFen = computed(()=> this.moveSignal().fen)
-  readonly selectedMove = computed(()=> this.selectedMoveSignal())
+  readonly isMine = computed(() => this.moveSignal().isMine)
+  readonly moveLastTwoFens = computed(() => this.newMoveSignal().fens)
+  readonly moveFen = computed(() => this.newMoveSignal().fen)
+  readonly selectedMove = computed(() => this.selectedMoveSignal())
+
   async load(id: string) {
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.moveService.getMove(id))
       this.moveSignal.set(result as moveInterface)
+      this.newMoveSignal.update(prev => {
+        return {...prev, fen: result.fen, fens: result.fens}
+      })
       console.log(result)
     } catch (err: unknown) {
       handleHttpError(this.global, err, 'Не удалось загрузить ход')
@@ -56,41 +59,46 @@ export class MoveStore {
     }
   }
 
-  // async createMove(moveData: createMoveFormI) {
-  //   // в зависимостри от стороны разные title
-  //   this.global.toggleLoader(true)
-  //   try {
-  //     const title = this.isWhite()
-  //       ? `${moveData.mFrom}-${moveData.mTo} : ${moveData.eFrom}-${moveData.eTo}`
-  //       : `${moveData.eFrom}-${moveData.eTo} : ${moveData.mFrom}-${moveData.mTo}`
-  //     const notation = `1. ${title},`
-  //     const move: createFMoveT = {
-  //       debutId: this.debut().id,
-  //       fen: this.modalFen(),
-  //       fens: this.lastTwoFens(),
-  //       pieces: this.newMoveSignal().pieces,
-  //       title: title,
-  //       desc: moveData.desc,
-  //       side: this.moveSignal().side,
-  //       notation: notation
-  //     }
-  //
-  //     const result = await firstValueFrom(this.moveService.createMove(move))
-  //     this.closeModal()
-  //     // this.moveSignal.update((prev)=>({...prev, firstMoves: [...prev.firstMoves, result]}))
-  //     this.global.createNotification('Ход успешно создан')
-  //   } catch (err: unknown) {
-  //     handleHttpError(this.global, err, 'Не удалось добавить ход')
-  //   } finally {
-  //     this.global.toggleLoader(false)
-  //   }
-  // }
-  async deleteMove(){
+  async createMove(moveData: createMoveFormI) {
+    console.log(moveData)
+    // в зависимостри от стороны разные title
+    this.global.toggleLoader(true)
+    try {
+      const title = this.isWhite()
+        ? `${moveData.mFrom}-${moveData.mTo} : ${moveData.eFrom}-${moveData.eTo}`
+        : `${moveData.eFrom}-${moveData.eTo} : ${moveData.mFrom}-${moveData.mTo}`
+      console.log(title)
+      // const notation = `1. ${title},`
+      const notation = `${this.move().notation} ${(this.move().notation.match(/,/g) || []).length + 1}. ${title},`
+
+      const move: createFMoveT = {
+        parentId: this.move().id,
+        fen: this.modalFen(),
+        fens: this.lastTwoFens(),
+        pieces: this.newMoveSignal().pieces,
+        title: title,
+        desc: moveData.desc,
+        side: this.moveSignal().side,
+        notation: notation
+      }
+      console.log(title, move)
+      const result = await firstValueFrom(this.moveService.createMove(move))
+      this.closeModal()
+      this.moveSignal.update((prev)=>({...prev, children: [...(prev.children ?? []), result]}))
+      this.global.createNotification('Ход успешно создан')
+    } catch (err: unknown) {
+      handleHttpError(this.global, err, 'Не удалось добавить ход')
+    } finally {
+      this.global.toggleLoader(false)
+    }
+  }
+
+  async deleteMove() {
     this.global.toggleLoader(true)
     try {
       await firstValueFrom(this.moveService.deleteMove(this.selectedMove().id as string))
       this.global.createNotification('Ход успешно удален')
-      // this.moveSignal.update(prev=>({...prev, firstMoves: prev.firstMoves.filter(el=>el.id!==this.selectedMove().id)}))
+      this.moveSignal.update(prev=>({...prev, children: prev.children?.filter(el=>el.id!==this.selectedMove().id)}))
       this.closeModal()
     } catch (err: unknown) {
       handleHttpError(this.global, err, 'Не удалось добавить ход')
@@ -98,16 +106,17 @@ export class MoveStore {
       this.global.toggleLoader(false)
     }
   }
-  async updateMove(desc:string){
+
+  async updateMove(desc: string) {
     this.global.toggleLoader(true)
     try {
       await firstValueFrom(this.moveService.updateMove(this.selectedMove().id as string, desc))
-      // this.moveSignal.update(prev=> ({...prev, firstMoves: prev.firstMoves.map(el=>{
-      //     if (el.id ==this.selectedMove().id){
-      //       el.desc = desc
-      //     }
-      //   return el
-      //   })}))
+      this.moveSignal.update(prev=> ({...prev, children: prev.children?.map(el=>{
+          if (el.id ==this.selectedMove().id){
+            el.desc = desc
+          }
+        return el
+        })}))
       this.global.createNotification('Ход успешно обновлен')
       this.closeModal()
 
@@ -135,16 +144,18 @@ export class MoveStore {
     this.resetNewMoveSignal()
   }
 
-  setNewMoveSignal(obj: updateNewMovesSignalT){
-    if(obj.hasOwnProperty("fens")){
-      obj.fens?.unshift("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+  setNewMoveSignal(obj: updateNewMovesSignalT) {
+    console.log(obj)
+    if (obj.hasOwnProperty("fens")) {
+      obj.fens?.unshift(this.move().fens[this.move().fens.length - 1])
     }
-    this.newMoveSignal.update(prev=>({...prev,...obj}))
+    this.newMoveSignal.update(prev => ({...prev, ...obj}))
   }
-  resetNewMoveSignal(){
+
+  resetNewMoveSignal() {
     this.newMoveSignal.set({
-      fen: 'start',
-      fens: [],
+      fen: this.move().fen,
+      fens: this.move().fens,
       pieces: []
     })
   }

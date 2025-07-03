@@ -47,6 +47,7 @@ export class DebutStore {
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.service.findOne(id))
+      console.log(result)
       this.debutSignal.set(result as fullDebutInterface)
     } catch (err: unknown) {
       handleHttpError(this.global, err, 'Не удалось загрузить дебют')

@@ -1,4 +1,5 @@
 import {Component, EventEmitter, inject, Input, OnChanges, Output} from '@angular/core';
+import {moveInterface} from "../../../../core/models/move-models/move-models";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {FieldComponent} from "../../../components/field/field.component";
 import {InputComponent} from "../../../components/input/input.component";
@@ -6,23 +7,21 @@ import {NgClass} from "@angular/common";
 import {ButtonComponent} from "../../../components/button/button.component";
 import {RadioComponent} from "../../../components/radio/radio.component";
 import {TextAreaComponent} from "../../../components/text-area/text-area.component";
-import {DebutStore} from "../../../../store/debut/debutStore";
-import {moveInterface} from "../../../../core/models/move-models/move-models";
+import {MoveStore} from "../../../../store/move/moveStore";
 
 @Component({
-  selector: 'app-update-first-move-form',
+  selector: 'app-update-move-form',
   standalone: true,
   imports: [FieldComponent, InputComponent, ReactiveFormsModule, NgClass, ButtonComponent, RadioComponent, TextAreaComponent],
-  templateUrl: './update-first-move-form.component.html',
-  styleUrl: './update-first-move-form.component.scss'
+  templateUrl: './update-move-form.component.html',
+  styleUrl: './update-move-form.component.scss'
 })
-export class UpdateFirstMoveFormComponent implements OnChanges{
-
+export class UpdateMoveFormComponent implements OnChanges{
   @Output() clicked = new EventEmitter<void>()
   @Input() move: moveInterface = {} as moveInterface
 
   private fb = inject(FormBuilder)
-  private debutStore = inject(DebutStore)
+  private moveStore = inject(MoveStore)
 
   updateMoveForm!: FormGroup
 
@@ -34,7 +33,7 @@ export class UpdateFirstMoveFormComponent implements OnChanges{
   submit() {
     if (this.updateMoveForm.valid) {
       const {desc} = this.updateMoveForm.value
-      this.debutStore.updateMove(desc)
+      this.moveStore.updateMove(desc)
     } else {
       this.updateMoveForm.markAllAsTouched()
     }

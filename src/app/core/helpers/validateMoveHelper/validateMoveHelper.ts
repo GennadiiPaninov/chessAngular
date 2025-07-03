@@ -41,6 +41,7 @@ export function validateMoveHelper(
     }
 
     const fenAfterFirst = chess.fen()
+    console.log({fens: [fenAfterFirst]})
     updateNewMove({fen: fenAfterFirst, fens: [fenAfterFirst]})
 
     if (mFrom.length !== 2 || mTo.length !== 2 || eFrom.length !== 2 || eTo.length !== 2) return null

@@ -31,14 +31,14 @@ export class CreateMoveFormComponent {
         eTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       }, {
-        validators: validateMoveHelper('mFrom', 'mTo', 'eFrom', 'eTo', this.moveStore.isWhite(), (obj: updateNewMovesSignalT)=> this.moveStore.setNewMoveSignal(obj), ()=>this.moveStore.resetNewMoveSignal())
+        validators: validateMoveHelper('mFrom', 'mTo', 'eFrom', 'eTo', this.moveStore.isWhite(), (obj: updateNewMovesSignalT)=> this.moveStore.setNewMoveSignal(obj), ()=>this.moveStore.resetNewMoveSignal(), this.moveStore.moveFen())
       }
     )
   }
 
   submit() {
     if (this.createMoveForm.valid) {
-      // this.moveStore.createFMove(this.createMoveForm.value)
+      this.moveStore.createMove(this.createMoveForm.value)
     } else {
       this.createMoveForm.markAllAsTouched()
     }

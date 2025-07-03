@@ -37,6 +37,8 @@ export class DebutsStore {
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.service.findAll(my, title))
+
+      console.log(result)
       this.debuts.set(result as debutInterface[])
       this.debutsReceived.set(!my)
     } catch (err: unknown){

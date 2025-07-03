@@ -15,18 +15,46 @@
               <p> {{move.desc | trimDesc}}</p>
             </div>
       <div class="move-item" (click)="moveStore.openModal('createModal')">
-        <h2 class="typography-xl">Создать первый ход...</h2>
+        <h2 class="typography-xl">Создать ход...</h2>
       </div>
     </div>
   </div>
   <div class="w-[35rem] absolute right-[2rem] top-0 flex flex-col gap-[1rem] text-center mob:static mob:m-auto">
     <p class="typography-lg">текущая позиция</p>
 
-    <app-chess-board [boardTheme]="'wood'" [orientation]="orientation()" [lastTwoFens]="moveStore.moveLastTwoFens()" [fen]="moveStore.moveFen()"/>
+    <app-chess-board
+      [boardTheme]="'wood'"
+      [orientation]="orientation()"
+      [lastTwoFens]="moveStore.move().fens"
+      [fen]="moveStore.move().fen"/>
   </div>
 </div>
 
-<app-board-modal *ngIf="showModal().createModal" (close)="moveStore.closeModal()" [modalFen]="modalFen()" [lastTwoFens]="modalLastFens()" [orientation]="orientation()">
+<!--модальное окно для создания хода-->
+<app-board-modal
+  *ngIf="showModal().createModal"
+  (close)="moveStore.closeModal()"
+  [modalFen]="moveStore.moveFen()"
+  [lastTwoFens]="moveStore.moveLastTwoFens()"
+  [orientation]="orientation()"
+>
   <app-create-move-form/>
-  <!--  <app-create-first-move-form/>-->
 </app-board-modal>
+<!--модальное окно для создания хода-->
+<!--модальное окно для удаления хода-->
+<app-modal *ngIf="showModal().deleteModal" (close)="moveStore.closeModal()">
+  <h2 class="typography-xl">Вы уверены что хотите удалить ход?</h2>
+  <p class="typography-lg">*в случае удаления хода все ходы будут удалены</p>
+  <div class="w-full flex gap-[1rem]">
+    <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="moveStore.closeModal()"></app-button>
+    <app-button type="button" variant="secondary" label="Да" class="w-full" width="full" (clicked)="moveStore.deleteMove()"></app-button>
+  </div>
+</app-modal>
+<!-- модальное окно для удаления хода -->
+
+
+<!-- модальное окно для обновления хода-->
+<app-modal *ngIf="showModal().updateModal" (close)="moveStore.closeModal()">
+  <app-update-move-form [move]="moveStore.selectedMove()" (clicked)="moveStore.closeModal()">
+  </app-update-move-form>
+</app-modal>

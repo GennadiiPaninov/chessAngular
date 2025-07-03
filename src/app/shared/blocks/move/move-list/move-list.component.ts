@@ -9,19 +9,19 @@ import {TrimDescPipe} from "../../../../core/pipes/movePipe/trim-desc.pipe";
 import {BuildTitlePipe} from "../../../../core/pipes/movePipe/build-title.pipe";
 import {CreateMoveFormComponent} from "../../forms/create-move-form/create-move-form.component";
 import {ChessBoardComponent} from "../../../components/chess-board/chess-board.component";
+import {ModalComponent} from "../../../components/modals/common-modal/modal.component";
+import {UpdateMoveFormComponent} from "../../forms/update-move-form/update-move-form.component";
 
 @Component({
   selector: 'app-move-list',
   standalone: true,
-  imports: [BuildTitlePipe, NgIf, BoardModalComponent, MoveListComponent, ButtonComponent, TrimDescPipe, NgForOf, CreateMoveFormComponent, ChessBoardComponent],
+  imports: [BuildTitlePipe, NgIf, BoardModalComponent, MoveListComponent, ButtonComponent, TrimDescPipe, NgForOf, CreateMoveFormComponent, ChessBoardComponent, ModalComponent, UpdateMoveFormComponent],
   templateUrl: './move-list.component.html',
   styleUrl: './move-list.component.scss'
 })
 export class MoveListComponent implements OnInit{
   moveStore = inject(MoveStore)
   showModal = this.moveStore.showModal
-  modalFen = this.moveStore.modalFen
-  modalLastFens = this.moveStore.lastTwoFens
   orientation = this.moveStore.orientation
   route = inject(ActivatedRoute)
   ngOnInit() {
