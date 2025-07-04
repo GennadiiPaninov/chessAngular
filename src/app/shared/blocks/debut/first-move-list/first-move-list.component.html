@@ -1,5 +1,5 @@
 <div class="w-full h-auto relative">
-  <div class="container ml-[20rem] w-[125rem] mob:w-[33.5rem] flex flex-col gap-[2rem]">
+  <div class="container ml-[20rem] w-[125rem] mob:w-[33.5rem] flex flex-col gap-[2rem] mob:w-[33.5rem] mob:ml-[auto]">
     <div *ngIf="!debutStore.firstMoves() || !debutStore.firstMoves().length"
          class="flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
       Элементы отсутствуют
@@ -39,7 +39,7 @@
   <h2 class="typography-xl">{{debutStore.selectedMove().title}}</h2>
   <p class="typography-md">Сторона: {{debutStore.selectedMove().side}}</p>
   <p class="typography-md">Описание: {{debutStore.selectedMove().desc}}</p>
-  <app-button tag="a" variant="success" [link]="'move/' + debutStore.selectedMove().id" label="Перейти к ходу" class="w-[40%] mob:w-[80%]">
+  <app-button tag="a" variant="success" [link]="'move/' + debutStore.selectedMove().id" label="Перейти к ходу" class="w-[40%] mob:w-[100%]">
   </app-button>
 
 </app-modal>
@@ -47,7 +47,7 @@
 
 <!--модальное окно для удаления хода-->
 <app-modal *ngIf="showModal().deleteModal" (close)="debutStore.closeModal()">
-  <h2 class="typography-xl">Вы уверены что хотите удалить ход?</h2>
+  <h2 class="typography-xl mob:w-[80%] mob:text-md">Вы уверены что хотите удалить ход?</h2>
   <p class="typography-lg">*в случае удаления хода все ходы будут удалены</p>
   <div class="w-full flex gap-[1rem]">
     <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="debutStore.closeModal()"></app-button>

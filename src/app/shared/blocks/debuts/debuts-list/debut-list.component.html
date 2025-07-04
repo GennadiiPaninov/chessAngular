@@ -9,14 +9,6 @@
     </app-button>
     <div class="title">
       <h2 class="typography-xl">{{debut.title}}</h2>
-      <svg
-        class="icon"
-        focusable="false"
-        aria-hidden="true"
-      >
-        <use href="../../assets/icons.svg#cursor"></use>
-      </svg>
-
     </div>
     <p class="typography-md">Сторона: {{debut.side}}</p>
   </div>
@@ -30,10 +22,10 @@
 <app-modal *ngIf="showDebutModal()" (close)="closeModal()">
 
 
-  <h2 class="typography-xl">{{selectedDebut().title}}</h2>
+  <h2 class="typography-xl mob:w-[80%] ">{{selectedDebut().title}}</h2>
   <p class="typography-md">Сторона: {{selectedDebut().side}}</p>
   <p class="typography-md">Описание: {{selectedDebut().desc}}</p>
-  <app-button tag="a" variant="success" [link]="'debut/' + selectedDebut().id" label="Перейти к дебюту" class="w-[40%] mob:w-[80%]">
+  <app-button tag="a" variant="success" [link]="'debut/' + selectedDebut().id" label="Перейти к дебюту" class="w-[40%] mob:w-[100%]">
   </app-button>
 
 </app-modal>
@@ -49,7 +41,7 @@
 
 <!--модальное окно для удаления дебюта-->
 <app-modal *ngIf="showDeleteModal()" (close)="closeModal()">
-  <h2 class="typography-xl">Вы уверены что хотите удалить дебют?</h2>
+  <h2 class="typography-xl mob:w-[80%] mob:text-md">Вы уверены что хотите удалить дебют?</h2>
   <p class="typography-lg">*в случае удаления дебюта все ходы будут удалены</p>
   <div class="w-full flex gap-[1rem]">
     <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="closeModal()"></app-button>

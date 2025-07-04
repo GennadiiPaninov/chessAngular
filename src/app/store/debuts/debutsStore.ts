@@ -37,8 +37,6 @@ export class DebutsStore {
     this.global.toggleLoader(true)
     try {
       const result = await firstValueFrom(this.service.findAll(my, title))
-
-      console.log(result)
       this.debuts.set(result as debutInterface[])
       this.debutsReceived.set(!my)
     } catch (err: unknown){
@@ -53,7 +51,7 @@ export class DebutsStore {
       const result = await firstValueFrom(this.service.createDebut(debut))
       callback()
       this.closeModal()
-      this.debuts.update(debuts=>[...debuts, result as debutInterface])
+      this.debuts.update(debuts=>[...debuts, {...result, isMine: true} as debutInterface])
       this.global.createNotification('Дебют успешно создан')
     } catch (err:unknown){
       handleHttpError(this.global, err, 'Не удалось создать дебюты')

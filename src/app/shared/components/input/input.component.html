@@ -1,4 +1,7 @@
-<div class="input-container relative">
+<div
+  class="input-container relative"
+  [ngClass]="{ 'error': errorMessage && showError }"
+>
   <app-button *ngIf="password" variant="icon-s" [svgName]="isPasswordVisible ? 'open-eye' : 'close-eye'" type="button"
               (clicked)="showPassword()" tabindex="-1" tag="button"
   >
@@ -24,5 +27,5 @@
     class="typography-md input"
     [attr.autocomplete]="autocomplete"
   />
-  <span *ngIf="errorMessage &&  showError" class="typography-lg bottom-[-3rem] absolute mob:typography-md mob:bottom-[-2rem] !text-red">{{errorMessage}}</span>
 </div>
+<span *ngIf="errorMessage &&  showError" class="typography-lg bottom-[-3rem] mob:typography-md mob:bottom-[-2rem] !text-red">{{errorMessage}}</span>

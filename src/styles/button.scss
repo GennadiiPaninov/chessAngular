@@ -1,6 +1,6 @@
 @layer components {
   .btn {
-    @apply whitespace-nowrap border-none p-def text-md font-bold text-primary tracking-[0.1rem] rounded-deck flex items-center justify-center duration-500 gap-button mob:text-mdM;
+    @apply whitespace-nowrap border-none p-def text-md font-bold text-primary tracking-[0.1rem] rounded-deck flex items-center justify-center duration-500 gap-button mob:text-mdM mob:p-[1.5rem];
   }
   .btn .icon {
     @apply w-icon h-icon;

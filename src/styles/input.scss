@@ -1,12 +1,21 @@
 @layer components {
   .input-container {
-    @apply w-full h-[auto] flex flex-row gap-[2rem] items-center border-primary border-[0.1rem] p-[2rem] rounded-deck mob:gap-[1rem] mob:p-[1rem]
+    @apply w-full h-[auto] flex flex-row gap-[2rem] items-center border-primary border-[0.1rem] p-[2rem] rounded-deck mob:gap-[1rem] mob:p-[1rem] mob:rounded-[.4rem]
 
+  }
+  .input-container.error {
+    @apply border-red
   }
   .input-container .icon{
     @apply w-[3rem] h-[3rem] cursor-pointer mob:w-[2rem] mob:h-[2rem]
   }
   .input-container .input{
     @apply border-none w-full focus:outline-0
+  }
+  .input-container.error .input::placeholder{
+    @apply text-red
+  }
+  .input-container.error .input{
+    @apply text-red
   }
 }

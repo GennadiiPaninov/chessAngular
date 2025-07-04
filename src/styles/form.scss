@@ -1,8 +1,8 @@
 @layer components {
   .primary-form {
-    @apply flex flex-col gap-[2rem] w-[53.9rem] p-[3rem] m-center border rounded-md shadow mt-[10rem] mob:w-full mob:mt-[0] mob:gap-[0.5rem];
+    @apply flex flex-col gap-[2rem] w-[53.9rem] p-[3rem] m-center border rounded-md shadow mt-[10rem] mob:w-full mob:mt-[0] mob:gap-[1.3rem];
   }
   .modal-form {
-    @apply flex flex-col gap-[2rem] w-[100%] p-[3rem] m-center mob:w-full mob:mt-[0] mob:gap-[0.5rem];
+    @apply flex flex-col gap-[2rem] w-[100%] p-[3rem] m-center mob:w-full mob:mt-[0] mob:gap-[0.5rem] mob:p-[1rem];
   }
 }

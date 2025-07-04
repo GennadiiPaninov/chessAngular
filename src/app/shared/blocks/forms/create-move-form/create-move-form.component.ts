@@ -25,22 +25,35 @@ export class CreateMoveFormComponent {
 
   constructor() {
     this.createMoveForm = this.fb.group({
+      moveGroup: this.fb.group({
         mFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         mTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         eFrom: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
         eTo: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
-        desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
       }, {
-        validators: validateMoveHelper('mFrom', 'mTo', 'eFrom', 'eTo', this.moveStore.isWhite(), (obj: updateNewMovesSignalT)=> this.moveStore.setNewMoveSignal(obj), ()=>this.moveStore.resetNewMoveSignal(), this.moveStore.moveFen())
-      }
-    )
+        validators: validateMoveHelper(
+          'mFrom', 'mTo', 'eFrom', 'eTo',
+          this.moveStore.isWhite(),
+          (obj: updateNewMovesSignalT) => this.moveStore.setNewMoveSignal(obj),
+          () => this.moveStore.resetNewMoveSignal(),
+          this.moveStore.moveFen()
+        )
+      }),
+      desc: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(250)]],
+    })
   }
 
   submit() {
     if (this.createMoveForm.valid) {
-      this.moveStore.createMove(this.createMoveForm.value)
+      const moveGroup = this.createMoveForm.get('moveGroup')!.value;
+      const desc = this.createMoveForm.get('desc')!.value;
+
+      this.moveStore.createMove({
+        ...moveGroup,
+        desc
+      });
     } else {
-      this.createMoveForm.markAllAsTouched()
+      this.createMoveForm.markAllAsTouched();
     }
   }
 }

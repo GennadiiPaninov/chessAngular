@@ -1,4 +1,4 @@
-<div class="textarea-container relative">
+<div class="textarea-container relative" [ngClass]="{error: errorMessage && showError}">
   <textarea
     [id]="formControlName"
     [placeholder]="placeholder"
@@ -12,7 +12,8 @@
     rows="4"
   ></textarea>
 
-  <span *ngIf="errorMessage && showError" class="text-red typography-lg absolute bottom-[-3rem]">
-    {{ errorMessage }}
-  </span>
+
 </div>
+<span *ngIf="errorMessage && showError" class="text-red typography-lg bottom-[-3rem]">
+    {{ errorMessage }}
+ </span>

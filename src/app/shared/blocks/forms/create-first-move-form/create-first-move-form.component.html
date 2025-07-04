@@ -1,42 +1,43 @@
 <h2 class="typography-xl mob:ml-[1rem]">Создайте первый ход</h2>
 <form [formGroup]="createMoveForm" (ngSubmit)="submit()" class="modal-form p-[1rem]">
-  <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
-    <app-field [label]="debutStore.isWhite() ? 'your from': 'enemy from'" class="w-full">
-      <app-input
-        [formControlName]="debutStore.isWhite() ? 'mFrom' : 'eFrom'"
+  <div formGroupName="moveGroup">
+    <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
+      <app-field [label]="debutStore.isWhite() ? 'your from': 'enemy from'" class="w-full">
+        <app-input
+          [formControlName]="debutStore.isWhite() ? 'mFrom' : 'eFrom'"
 
-        placeholder="Введите ход в формате e2"
-        type="text"
-      ></app-input>
-    </app-field>
-    <app-field label="to" class="w-full">
-      <app-input
-        [formControlName]="debutStore.isWhite() ? 'mTo' : 'eTo'"
+          placeholder="Введите ход в формате e2"
+          type="text"
+        ></app-input>
+      </app-field>
+      <app-field label="to" class="w-full">
+        <app-input
+          [formControlName]="debutStore.isWhite() ? 'mTo' : 'eTo'"
 
-        placeholder="Введите ход в формате e4"
-        type="text"
-      ></app-input>
-    </app-field>
+          placeholder="Введите ход в формате e4"
+          type="text"
+        ></app-input>
+      </app-field>
+    </div>
+    <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
+      <app-field [label]="debutStore.debut().side == 'White' ? 'enemy from': 'your from'" class="w-full">
+        <app-input
+          [formControlName]="debutStore.isWhite() ? 'eFrom' : 'mFrom'"
+
+          placeholder="Введите ход в формате e2"
+          type="text"
+        ></app-input>
+      </app-field>
+      <app-field label="to" class="w-full">
+        <app-input
+          [formControlName]="debutStore.isWhite() ? 'eTo' : 'mTo'"
+
+          placeholder="Введите ход в формате e4"
+          type="text"
+        ></app-input>
+      </app-field>
+    </div>
   </div>
-  <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
-    <app-field [label]="debutStore.debut().side == 'White' ? 'enemy from': 'your from'" class="w-full">
-      <app-input
-        [formControlName]="debutStore.isWhite() ? 'eFrom' : 'mFrom'"
-
-        placeholder="Введите ход в формате e2"
-        type="text"
-      ></app-input>
-    </app-field>
-    <app-field label="to" class="w-full">
-      <app-input
-        [formControlName]="debutStore.isWhite() ? 'eTo' : 'mTo'"
-
-        placeholder="Введите ход в формате e4"
-        type="text"
-      ></app-input>
-    </app-field>
-  </div>
-
   <app-field label="Description">
     <app-text-area
       formControlName="desc"
