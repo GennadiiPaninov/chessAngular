@@ -1,8 +1,8 @@
 import {Component, computed, signal} from '@angular/core';
-import {ButtonComponent} from "../../components/button/button.component";
+import {ButtonComponent} from "@components/button/button.component";
 import {NgFor, NgIf} from "@angular/common";
-import {menuItem} from "../../../core/models/header-models/header-models";
-import {ModalComponent} from "../../components/modals/common-modal/modal.component";
+import {menuItem} from "@core/models/header-models/header-models";
+import {ModalComponent} from "@components/modals/common-modal/modal.component";
 
 @Component({
   selector: 'app-header',

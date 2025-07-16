@@ -1,5 +1,5 @@
 import {computed, DestroyRef, inject, Injectable, signal} from "@angular/core";
-import {notification, notificationType} from "../../core/models/store-models/global-store";
+import {notification, notificationType} from "@core/models/store-models/global-store";
 import { v4 as uuidv4 } from 'uuid';
 import {timer} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";

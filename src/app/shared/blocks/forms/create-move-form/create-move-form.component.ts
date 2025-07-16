@@ -1,14 +1,14 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {validateMoveHelper} from "../../../../core/helpers/validateMoveHelper/validateMoveHelper";
-import {updateNewMovesSignalT} from "../../../../core/models/move-models/move-models";
-import {FieldComponent} from "../../../components/field/field.component";
-import {InputComponent} from "../../../components/input/input.component";
+import {validateMoveHelper} from "@core/helpers/validateMoveHelper/validateMoveHelper";
+import {updateNewMovesSignalT} from "@core/models/move-models/move-models";
+import {FieldComponent} from "@components/field/field.component";
+import {InputComponent} from "@components/input/input.component";
 import {NgClass} from "@angular/common";
-import {ButtonComponent} from "../../../components/button/button.component";
-import {RadioComponent} from "../../../components/radio/radio.component";
-import {TextAreaComponent} from "../../../components/text-area/text-area.component";
-import {MoveStore} from "../../../../store/move/moveStore";
+import {ButtonComponent} from "@components/button/button.component";
+import {RadioComponent} from "@components/radio/radio.component";
+import {TextAreaComponent} from "@components/text-area/text-area.component";
+import {MoveStore} from "@store/move/moveStore";
 
 @Component({
   selector: 'app-create-move-form',

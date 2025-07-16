@@ -5,7 +5,6 @@ import {
   EventEmitter,
   ChangeDetectionStrategy,
   forwardRef,
-  ViewEncapsulation,
   ChangeDetectorRef,
 } from '@angular/core';
 import {

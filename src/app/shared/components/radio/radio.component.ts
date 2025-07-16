@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, forwardRef, inject, Input} from "@angular/core";
 import {NgClass, NgFor, NgIf} from "@angular/common";
 import {ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {InputErrorsService} from "../../../core/services/inputErrorsService/input-errors.service";
+import {InputErrorsService} from "@core/services/inputErrorsService/input-errors.service";
 
 export interface RadioOption {
   label: string;

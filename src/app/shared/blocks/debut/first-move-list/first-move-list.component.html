@@ -5,7 +5,14 @@
       Элементы отсутствуют
     </div>
     <div class="move-container">
-      <div *ngFor="let move of debutStore.firstMoves(); trackBy: trackById" class="move-item flex-col gap-[2rem] typography-md relative" (click)="debutStore.openModal('moveModal', move)">
+      <div
+        *ngFor="let move of debutStore.firstMoves();
+        trackBy: trackById"
+        class="move-item flex-col gap-[2rem] typography-md relative"
+        (click)="debutStore.openModal('moveModal', move)"
+        (mouseenter)="debutStore.onHoverMoveItem(move)"
+        (mouseleave)="debutStore.onLeaveMoveItem()"
+      >
         <app-button *ngIf="debutStore.isMine()" type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="debutStore.openModal('deleteModal', move)">
         </app-button>
         <app-button *ngIf="debutStore.isMine()" type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="debutStore.openModal('updateModal', move)">
@@ -20,16 +27,21 @@
   </div>
   <div class="w-[35rem] absolute right-[2rem] top-0 flex flex-col gap-[1rem] text-center mob:static mob:m-auto">
     <p class="typography-lg">текущая позиция</p>
-    <app-chess-board [boardTheme]="'wood'" [orientation]="orientation()"/>
+    <app-chess-board
+      [boardTheme]="'wood'"
+      [orientation]="debutStore.orientation()"
+      [fen]="debutStore.hoverMoveData().fen"
+      [lastTwoFens]="debutStore.hoverMoveData().fens"
+    />
   </div>
 </div>
 
 <app-board-modal
-  *ngIf="showModal().createModal"
+  *ngIf="debutStore.showModal().createModal"
   (close)="debutStore.closeModal()"
-  [modalFen]="modalFen()"
-  [lastTwoFens]="modalLastFens()"
-  [orientation]="orientation()"
+  [modalFen]="debutStore.modalFen()"
+  [lastTwoFens]="debutStore.lastTwoFens()"
+  [orientation]="debutStore.orientation()"
 >
   <app-create-first-move-form/>
 </app-board-modal>
@@ -46,7 +58,7 @@
 <!--модальное окно для хода-->
 
 <!--модальное окно для удаления хода-->
-<app-modal *ngIf="showModal().deleteModal" (close)="debutStore.closeModal()">
+<app-modal *ngIf="debutStore.showModal().deleteModal" (close)="debutStore.closeModal()">
   <h2 class="typography-xl mob:w-[80%] mob:text-md">Вы уверены что хотите удалить ход?</h2>
   <p class="typography-lg">*в случае удаления хода все ходы будут удалены</p>
   <div class="w-full flex gap-[1rem]">
@@ -57,7 +69,7 @@
 <!-- модальное окно для удаления хода -->
 
 <!-- модальное окно для обновления хода-->
-<app-modal *ngIf="showModal().updateModal" (close)="debutStore.closeModal()">
+<app-modal *ngIf="debutStore.showModal().updateModal" (close)="debutStore.closeModal()">
   <app-update-first-move-form [move]="debutStore.selectedMove()" (clicked)="debutStore.closeModal()">
   </app-update-first-move-form>
 </app-modal>

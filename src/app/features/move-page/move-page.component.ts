@@ -1,5 +1,5 @@
-import {Component, inject} from '@angular/core';
-import {MoveListComponent} from "../../shared/blocks/move/move-list/move-list.component";
+import {Component } from '@angular/core';
+import {MoveListComponent} from "@shared/blocks/move/move-list/move-list.component";
 
 @Component({
   selector: 'app-move-page',

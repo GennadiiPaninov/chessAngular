@@ -2,13 +2,13 @@ import {Component, inject,} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgIf} from '@angular/common';
 
-import {InputComponent} from "../../../components/input/input.component";
-import {ButtonComponent} from "../../../components/button/button.component";
-import {FieldComponent} from "../../../components/field/field.component";
-import {matchPasswordsValidator} from "../../../../core/helpers/matchPasswordsValidator";
-import {passwordValidator} from "../../../../core/helpers/passwordValidator";
-import {LoaderComponent} from "../../../components/loader/loader.component";
-import {RegisterStore} from "../../../../store/register/registerStore";
+import {InputComponent} from "@components/input/input.component";
+import {ButtonComponent} from "@components/button/button.component";
+import {FieldComponent} from "@components/field/field.component";
+import {matchPasswordsValidator} from "@core/helpers/matchPasswordsValidator";
+import {passwordValidator} from "@core/helpers/passwordValidator";
+import {LoaderComponent} from "@components/loader/loader.component";
+import {RegisterStore} from "@store/register/registerStore";
 
 @Component({
   selector: 'app-register-form',

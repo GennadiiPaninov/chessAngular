@@ -1,8 +1,8 @@
 import {Routes} from '@angular/router';
-import {AuthLayoutComponent} from "./shared/layouts/auth-layout/auth-layout.component";
-import {AuthorizedLayoutComponent} from "./shared/layouts/authorized-layout/authorized-layout.component";
-import {authGuard} from "./core/helpers/authGuard/authGuard";
-import {redirectAuthGuard} from "./core/helpers/redirectAuthGuard/redirectAuthGuard";
+import {AuthLayoutComponent} from "@shared/layouts/auth-layout/auth-layout.component";
+import {AuthorizedLayoutComponent} from "@shared/layouts/authorized-layout/authorized-layout.component";
+import {authGuard} from "@core/helpers/authGuard/authGuard";
+import {redirectAuthGuard} from "@core/helpers/redirectAuthGuard/redirectAuthGuard";
 
 
 export const routes: Routes = [

@@ -9,10 +9,10 @@ import {
   ViewChild,
   signal,
 } from '@angular/core';
-import { themeType } from "../../../core/models/common-models/board-model";
+import { themeType } from "@core/models/common-models/board-model";
 import Chessground from 'chessground';
 import { Chess } from 'chess.js';
-import {fensT} from "../../../core/models/move-models/move-models";
+import {fensT} from "@core/models/move-models/move-models";
 
 @Component({
   selector: 'app-chess-board',
@@ -127,7 +127,11 @@ export class ChessBoardComponent implements OnDestroy, OnChanges {
   }
   public highlightLastMove(fens: fensT): void {
     try {
-      if (fens.length < 2) return
+      if (fens.length < 2) {
+
+        this.board?.set({ lastMove: undefined })
+        return
+      }
 
       const prev = new Chess(fens[fens.length - 2])
       const next = new Chess(fens[fens.length - 1])

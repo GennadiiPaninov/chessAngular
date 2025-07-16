@@ -1,13 +1,13 @@
 import {Component, EventEmitter, inject, Input, OnChanges, Output} from '@angular/core';
-import {moveInterface} from "../../../../core/models/move-models/move-models";
+import {moveInterface} from "@core/models/move-models/move-models";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {FieldComponent} from "../../../components/field/field.component";
-import {InputComponent} from "../../../components/input/input.component";
+import {FieldComponent} from "@components/field/field.component";
+import {InputComponent} from "@components/input/input.component";
 import {NgClass} from "@angular/common";
-import {ButtonComponent} from "../../../components/button/button.component";
-import {RadioComponent} from "../../../components/radio/radio.component";
-import {TextAreaComponent} from "../../../components/text-area/text-area.component";
-import {MoveStore} from "../../../../store/move/moveStore";
+import {ButtonComponent} from "@components/button/button.component";
+import {RadioComponent} from "@components/radio/radio.component";
+import {TextAreaComponent} from "@components/text-area/text-area.component";
+import {MoveStore} from "@store/move/moveStore";
 
 @Component({
   selector: 'app-update-move-form',

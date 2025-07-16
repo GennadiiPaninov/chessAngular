@@ -18,6 +18,7 @@ export interface moveInterface {
 export type createFMoveT = Omit<moveInterface, "id">
 
 export type newMoveSignalT = Pick<moveInterface, 'fen' | 'fens' | 'pieces'>
+export type hoverMoveSignalT = Pick<moveInterface, 'fen' | 'fens'>
 export type updateNewMovesSignalT = Partial<newMoveSignalT>
 export interface createMoveFormI {
   mFrom: string

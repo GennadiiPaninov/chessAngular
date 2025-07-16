@@ -1,8 +1,8 @@
 import {Component, inject, OnDestroy, signal} from '@angular/core';
-import {ButtonComponent} from "../../../components/button/button.component";
-import {DebutsStore} from "../../../../store/debuts/debutsStore";
-import {InputComponent} from "../../../components/input/input.component";
-import {debounceSignal} from "../../../../core/helpers/debounceSignal/debounceSignal";
+import {ButtonComponent} from "@components/button/button.component";
+import {DebutsStore} from "@store/debuts/debutsStore";
+import {InputComponent} from "@components/input/input.component";
+import {debounceSignal} from "@core/helpers/debounceSignal/debounceSignal";
 
 @Component({
   selector: 'app-debuts-sort',

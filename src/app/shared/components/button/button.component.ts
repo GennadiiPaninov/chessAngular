@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 
 import {NgClass, NgIf, NgSwitch, NgSwitchCase} from "@angular/common";
-import {svgName, tagType, variant} from "../../../core/models/common-models/button.model";
+import {svgName, tagType, variant} from "@core/models/common-models/button.model";
 
 @Component({
   selector: 'app-button',

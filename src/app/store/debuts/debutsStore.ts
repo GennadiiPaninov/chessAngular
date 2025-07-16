@@ -4,12 +4,12 @@ import {
   debutInterface,
   modal,
   updateDebutType
-} from "../../core/models/debut-models/debut-models";
+} from "@core/models/debut-models/debut-models";
 import {GlobalStore} from "../global/globalStore";
-import {DebutsHttpService} from "../../core/services/debuts/debuts-http.service";
+import {DebutsHttpService} from "@core/services/debuts/debuts-http.service";
 import {firstValueFrom} from "rxjs";
-import {handleHttpError} from "../../core/helpers/handle-http-errors";
-import {showModalType} from "../../core/models/common-models/modal-models";
+import {handleHttpError} from "@core/helpers/handle-http-errors";
+import {showModalType} from "@core/models/common-models/modal-models";
 
 @Injectable({providedIn: 'any'})
 export class DebutsStore {

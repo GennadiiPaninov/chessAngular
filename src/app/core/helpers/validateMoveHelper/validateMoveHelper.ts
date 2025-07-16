@@ -1,6 +1,6 @@
 import {AbstractControl, ValidationErrors, ValidatorFn} from '@angular/forms'
 import {Chess} from 'chess.js'
-import {fensT, updateNewMovesSignalT} from "../../models/move-models/move-models";
+import {updateNewMovesSignalT} from "../../models/move-models/move-models";
 
 export function validateMoveHelper(
   mFromKey: string,

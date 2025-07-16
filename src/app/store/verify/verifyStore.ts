@@ -1,8 +1,8 @@
 import {computed, inject, Injectable, signal} from "@angular/core";
 import {firstValueFrom} from "rxjs";
-import {handleHttpError} from "../../core/helpers/handle-http-errors";
+import {handleHttpError} from "@core/helpers/handle-http-errors";
 import {GlobalStore} from "../global/globalStore";
-import {AuthService} from "../../core/services/auth/auth.service";
+import {AuthService} from "@core/services/auth/auth.service";
 
 @Injectable({providedIn:"any"})
 export class VerifyStore {

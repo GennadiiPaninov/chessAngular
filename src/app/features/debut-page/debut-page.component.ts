@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {FirstMoveListComponent} from "../../shared/blocks/debut/first-move-list/first-move-list.component";
+import {FirstMoveListComponent} from "@shared/blocks/debut/first-move-list/first-move-list.component";
 
 @Component({
   selector: 'app-debut-page',

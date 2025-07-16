@@ -1,9 +1,8 @@
 import {inject, Injectable} from "@angular/core";
 import {GlobalStore} from "../global/globalStore";
-import {AuthService} from "../../core/services/auth/auth.service";
-import {RedirectTo} from "../../core/helpers/redirectToHelper/redirectTo";
+import {AuthService} from "@core/services/auth/auth.service";
 import {firstValueFrom} from "rxjs";
-import {handleHttpError} from "../../core/helpers/handle-http-errors";
+import {handleHttpError} from "@core/helpers/handle-http-errors";
 
 @Injectable({providedIn:"any"})
 export class RegisterStore{

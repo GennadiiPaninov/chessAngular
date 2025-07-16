@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {ChessBoardComponent} from "../../chess-board/chess-board.component";
-import {fensT} from "../../../../core/models/move-models/move-models";
+import {fensT} from "@core/models/move-models/move-models";
 
 @Component({
   selector: 'app-board-modal',

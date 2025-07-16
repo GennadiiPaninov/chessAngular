@@ -1,6 +1,5 @@
 
-import { inject } from '@angular/core';
-import {GlobalStore} from "../../store/global/globalStore";
+import {GlobalStore} from"@store/global/globalStore";
 
 /**
  * Обрабатывает ошибку HTTP и вызывает уведомление.

@@ -1,17 +1,17 @@
 import {computed, inject, Injectable, signal} from "@angular/core";
 import {firstValueFrom} from "rxjs";
-import {fullDebutInterface} from "../../core/models/debut-models/debut-models";
-import {handleHttpError} from "../../core/helpers/handle-http-errors";
+import {fullDebutInterface} from "@core/models/debut-models/debut-models";
+import {handleHttpError} from "@core/helpers/handle-http-errors";
 import {GlobalStore} from "../global/globalStore";
-import {DebutsHttpService} from "../../core/services/debuts/debuts-http.service";
-import {showModalType} from "../../core/models/common-models/modal-models";
+import {DebutsHttpService} from "@core/services/debuts/debuts-http.service";
+import {showModalType} from "@core/models/common-models/modal-models";
 import {
-  createFMoveT, createMoveFormI,
+  createFMoveT, createMoveFormI, hoverMoveSignalT,
   moveInterface,
   newMoveSignalT,
   updateNewMovesSignalT
-} from "../../core/models/move-models/move-models";
-import {MoveHttpService} from "../../core/services/move/move-http.service";
+} from "@core/models/move-models/move-models";
+import {MoveHttpService} from "@core/services/move/move-http.service";
 
 @Injectable({providedIn: "any"})
 export class DebutStore {
@@ -20,7 +20,10 @@ export class DebutStore {
   private moveService = inject(MoveHttpService)
   private debutSignal = signal<fullDebutInterface>({} as fullDebutInterface)
   private selectedMoveSignal = signal<moveInterface>({} as moveInterface)
-
+  private hoverMoveSignal = signal<hoverMoveSignalT>({
+    fen: '',
+    fens: [],
+  })
   private showModalSignal = signal<showModalType>({
     createModal: false,
     updateModal: false,
@@ -43,6 +46,7 @@ export class DebutStore {
     return this.debutSignal().isMine
   })
   readonly selectedMove = computed(()=> this.selectedMoveSignal())
+  readonly hoverMoveData = computed(()=>this.hoverMoveSignal())
   async load(id: string) {
     this.global.toggleLoader(true)
     try {
@@ -147,5 +151,16 @@ export class DebutStore {
       fens: [],
       pieces: []
     })
+  }
+  onHoverMoveItem(move:moveInterface){
+    this.hoverMoveSignal.update(prev=> ({...prev, fen:move.fen, fens:move.fens}))
+
+
+  }
+  onLeaveMoveItem(){
+    this.hoverMoveSignal.set({
+        fen: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1',
+        fens: [],
+      })
   }
 }

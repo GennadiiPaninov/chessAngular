@@ -1,11 +1,11 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {AsyncPipe, NgForOf, NgIf} from "@angular/common";
-import {debutInterface, modal} from "../../../../core/models/debut-models/debut-models";
-import {ModalComponent} from "../../../components/modals/common-modal/modal.component";
-import {ButtonComponent} from "../../../components/button/button.component";
+import {debutInterface, modal} from "@core/models/debut-models/debut-models";
+import {ModalComponent} from "@components/modals/common-modal/modal.component";
+import {ButtonComponent} from "@components/button/button.component";
 import {CreateDebutFormComponent} from "../../forms/create-debut-form/create-debut-form.component";
 import {UpdateDebutFormComponent} from "../../forms/update-debut-form/update-debut-form.component";
-import {DebutsStore} from "../../../../store/debuts/debutsStore";
+import {DebutsStore} from "@store/debuts/debutsStore";
 
 @Component({
   selector: 'app-debut-list',

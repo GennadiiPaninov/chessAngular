@@ -1,12 +1,12 @@
 import {Component, EventEmitter, inject, Output} from '@angular/core';
-import {FieldComponent} from "../../../components/field/field.component";
-import {InputComponent} from "../../../components/input/input.component";
+import {FieldComponent} from "@components/field/field.component";
+import {InputComponent} from "@components/input/input.component";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {NgClass} from "@angular/common";
-import {ButtonComponent} from "../../../components/button/button.component";
-import {RadioComponent} from "../../../components/radio/radio.component";
-import {DebutsStore} from "../../../../store/debuts/debutsStore";
-import {TextAreaComponent} from "../../../components/text-area/text-area.component";
+import {ButtonComponent} from "@components/button/button.component";
+import {RadioComponent} from "@components/radio/radio.component";
+import {DebutsStore} from "@store/debuts/debutsStore";
+import {TextAreaComponent} from "@components/text-area/text-area.component";
 
 @Component({
   selector: 'app-create-debut-form',

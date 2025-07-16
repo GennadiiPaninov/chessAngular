@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, Output} from '@angular/core';
 import {ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {InputErrorsService} from "../../../core/services/inputErrorsService/input-errors.service";
+import {InputErrorsService} from "@core/services/inputErrorsService/input-errors.service";
 import {CommonModule, NgClass, NgIf} from "@angular/common";
 
 @Component({

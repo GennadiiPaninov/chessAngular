@@ -1,15 +1,15 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {MoveStore} from "../../../../store/move/moveStore";
+import {MoveStore} from "@store/move/moveStore";
 import {ActivatedRoute} from "@angular/router";
 import {NgForOf, NgIf} from "@angular/common";
-import {BoardModalComponent} from "../../../components/modals/board-modal/board-modal.component";
-import {moveInterface} from "../../../../core/models/move-models/move-models";
-import {ButtonComponent} from "../../../components/button/button.component";
-import {TrimDescPipe} from "../../../../core/pipes/movePipe/trim-desc.pipe";
-import {BuildTitlePipe} from "../../../../core/pipes/movePipe/build-title.pipe";
+import {BoardModalComponent} from "@components/modals/board-modal/board-modal.component";
+import {moveInterface} from "@core/models/move-models/move-models";
+import {ButtonComponent} from "@components/button/button.component";
+import {TrimDescPipe} from "@core/pipes/movePipe/trim-desc.pipe";
+import {BuildTitlePipe} from "@core/pipes/movePipe/build-title.pipe";
 import {CreateMoveFormComponent} from "../../forms/create-move-form/create-move-form.component";
-import {ChessBoardComponent} from "../../../components/chess-board/chess-board.component";
-import {ModalComponent} from "../../../components/modals/common-modal/modal.component";
+import {ChessBoardComponent} from "@components/chess-board/chess-board.component";
+import {ModalComponent} from "@components/modals/common-modal/modal.component";
 import {UpdateMoveFormComponent} from "../../forms/update-move-form/update-move-form.component";
 
 @Component({

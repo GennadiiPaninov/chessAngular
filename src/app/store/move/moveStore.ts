@@ -1,16 +1,16 @@
 import {computed, inject, Injectable, signal} from "@angular/core";
 import {firstValueFrom} from "rxjs";
-import {handleHttpError} from "../../core/helpers/handle-http-errors";
+import {handleHttpError} from "@core/helpers/handle-http-errors";
 import {GlobalStore} from "../global/globalStore";
-import {showModalType} from "../../core/models/common-models/modal-models";
+import {showModalType} from "@core/models/common-models/modal-models";
 import {
   createFMoveT,
-  createMoveFormI,
+  createMoveFormI, hoverMoveSignalT,
   moveInterface,
   newMoveSignalT,
   updateNewMovesSignalT
-} from "../../core/models/move-models/move-models";
-import {MoveHttpService} from "../../core/services/move/move-http.service";
+} from "@core/models/move-models/move-models";
+import {MoveHttpService} from "@core/services/move/move-http.service";
 
 @Injectable({providedIn: "any"})
 export class MoveStore {
@@ -18,7 +18,10 @@ export class MoveStore {
   private moveService = inject(MoveHttpService)
   private moveSignal = signal<moveInterface>({} as moveInterface)
   private selectedMoveSignal = signal<moveInterface>({} as moveInterface)
-
+  private hoverMoveSignal = signal<hoverMoveSignalT>({
+    fen: '',
+    fens: [],
+  })
   private showModalSignal = signal<showModalType>({
     createModal: false,
     updateModal: false,
@@ -32,7 +35,7 @@ export class MoveStore {
   })
   readonly move = computed(() => this.moveSignal())
   readonly children = computed(() => this.moveSignal().children)
-  readonly hasChildren = computed(() => this.moveSignal()?.children?.length ?? 0 > 0);
+  readonly hasChildren = computed(() => this.moveSignal().children?.length==0)
   readonly showModal = computed(() => this.showModalSignal())
   readonly isWhite = computed(() => this.moveSignal().side === 'White')
   readonly orientation = computed(() => this.moveSignal().side?.toLowerCase())
@@ -42,6 +45,7 @@ export class MoveStore {
   readonly moveLastTwoFens = computed(() => this.newMoveSignal().fens)
   readonly moveFen = computed(() => this.newMoveSignal().fen)
   readonly selectedMove = computed(() => this.selectedMoveSignal())
+  readonly hoverMoveData = computed(()=>this.hoverMoveSignal())
 
   async load(id: string) {
     this.global.toggleLoader(true)
@@ -50,6 +54,10 @@ export class MoveStore {
       this.moveSignal.set(result as moveInterface)
       this.newMoveSignal.update(prev => {
         return {...prev, fen: result.fen, fens: result.fens}
+      })
+      this.hoverMoveSignal.set({
+        fen: result.fen,
+        fens: result.fens
       })
       console.log(result)
     } catch (err: unknown) {
@@ -157,6 +165,20 @@ export class MoveStore {
       fen: this.move().fen,
       fens: this.move().fens,
       pieces: []
+    })
+  }
+  onHoverMoveItem(move:moveInterface){
+    this.hoverMoveSignal.set(
+      {
+        fen:move.fen,
+        fens:move.fens
+      }
+    )
+  }
+  onLeaveMoveItem(){
+    this.hoverMoveSignal.set({
+      fen: this.move().fen,
+      fens: this.move().fens,
     })
   }
 }
