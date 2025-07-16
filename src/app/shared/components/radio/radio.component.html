@@ -1,10 +1,9 @@
 <div class="radio-group" [ngClass]="{ 'has-error': errorMessage }">
-
   <div class="radio-options">
     <div
       class="radio-option"
       *ngFor="let option of options"
-      [ngClass]="{ 'selected': option.value === value, 'disabled': disabled }"
+      [ngClass]="{ selected: option.value === value, disabled: disabled }"
       (click)="select(option.value)"
     >
       <span class="radio-circle">

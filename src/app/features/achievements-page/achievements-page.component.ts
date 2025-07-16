@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './achievements-page.component.html',
-  styleUrl: './achievements-page.component.scss'
+  styleUrl: './achievements-page.component.scss',
 })
-export class AchievementsPageComponent {
-
-}
+export class AchievementsPageComponent {}

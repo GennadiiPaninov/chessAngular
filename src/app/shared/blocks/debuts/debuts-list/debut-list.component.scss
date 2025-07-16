@@ -6,7 +6,7 @@
   gap: 2rem 3rem;
 }
 
-.debut-item{
+.debut-item {
   width: 100%;
   border: 2px solid #272343;
   border-radius: 1rem;
@@ -16,11 +16,11 @@
   flex-direction: column;
   gap: 2rem;
 
-  .icon{
+  .icon {
     width: 2rem;
     height: 2rem;
   }
-  .title{
+  .title {
     display: flex;
     flex-direction: row;
     gap: 2rem;
@@ -37,11 +37,11 @@
     flex-direction: column;
     gap: 2rem;
   }
-  .debut-item{
+  .debut-item {
     padding: 2rem;
   }
 }
-.create-debut-item{
+.create-debut-item {
   justify-content: center;
   align-items: center;
 }

@@ -1,6 +1,6 @@
-.move-container{
-  @apply grid grid-cols-3 gap-[2rem] mob:grid-cols-[unset]
+.move-container {
+  @apply grid grid-cols-3 gap-[2rem] mob:grid-cols-[unset];
 }
-.move-item{
-  @apply flex p-[2rem] border border-[.1rem] rounded-[.5rem] border-primary cursor-pointer
+.move-item {
+  @apply flex p-[2rem] border border-[.1rem] rounded-[.5rem] border-primary cursor-pointer;
 }

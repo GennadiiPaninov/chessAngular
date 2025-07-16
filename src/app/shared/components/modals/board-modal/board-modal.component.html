@@ -1,13 +1,13 @@
 <div class="modal-backdrop" (click)="onClose()">
-    <app-chess-board
-      [fen]="modalFen"
-      [lastTwoFens]="lastTwoFens"
-      [orientation]="orientation"
-      class="absolute top-0 left-[10rem] top-[50%] transform -translate-y-1/2 z-1000"
-      boardTheme="wood"/>
+  <app-chess-board
+    [fen]="modalFen"
+    [lastTwoFens]="lastTwoFens"
+    [orientation]="orientation"
+    class="absolute top-0 left-[10rem] top-[50%] transform -translate-y-1/2 z-1000"
+    boardTheme="wood"
+  />
 </div>
 <div class="modal-content">
   <button class="close-btn" (click)="onClose()">×</button>
   <ng-content></ng-content>
 </div>
-

@@ -7,7 +7,6 @@
   }
   .typography-xl {
     @apply text-xl text-primary font-normal tracking-[normal] leading-[130%] mob:text-xlM;
-
   }
   .typography-lg {
     @apply text-lg text-primary font-normal tracking-[normal] leading-[130%] mob:text-lgM;
@@ -16,4 +15,3 @@
     @apply text-md text-primary font-normal tracking-[normal] leading-[130%] mob:text-mdM;
   }
 }
-

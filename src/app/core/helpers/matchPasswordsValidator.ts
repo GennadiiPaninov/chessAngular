@@ -10,26 +10,26 @@ export function matchPasswordsValidator(passwordKey: string, confirmKey: string)
    * @returns ValidatorFn с картой проверки ошибок.
    */
   return (group: AbstractControl): ValidationErrors | null => {
-    const password = group.get(passwordKey)
-    const confirm = group.get(confirmKey)
+    const password = group.get(passwordKey);
+    const confirm = group.get(confirmKey);
 
-    if (!password || !confirm) return null
+    if (!password || !confirm) return null;
 
-    const mismatch = password.value !== confirm.value
+    const mismatch = password.value !== confirm.value;
 
     if (mismatch) {
-      confirm.setErrors({ ...confirm.errors, passwordsMismatch: true })
+      confirm.setErrors({ ...confirm.errors, passwordsMismatch: true });
     } else {
       if (confirm.errors) {
-        delete confirm.errors['passwordsMismatch']
+        delete confirm.errors['passwordsMismatch'];
         if (Object.keys(confirm.errors).length === 0) {
-          confirm.setErrors(null)
+          confirm.setErrors(null);
         } else {
-          confirm.setErrors(confirm.errors)
+          confirm.setErrors(confirm.errors);
         }
       }
     }
 
-    return null
-  }
+    return null;
+  };
 }

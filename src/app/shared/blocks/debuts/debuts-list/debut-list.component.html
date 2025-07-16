@@ -1,16 +1,37 @@
-<div *ngIf="!debuts().length" class="container flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]">
+<div
+  *ngIf="!debuts().length"
+  class="container flex align-middle justify-center p-[3rem] border border-solid border-[.1rem] border-primary typography-xl rounded-[.5rem]"
+>
   Элементы отсутствуют
 </div>
 <div class="debuts-container">
-  <div *ngFor="let debut of debuts(); trackBy: trackById" class="debut-item relative" (click)="openModal('debutModal', debut)">
-    <app-button *ngIf="debut.isMine" type="button" variant="icon" svgName="delete" class="absolute top-[1rem] right-[1rem] z-[10]" (clicked)="openModal('deleteModal', debut)">
+  <div
+    *ngFor="let debut of debuts(); trackBy: trackById"
+    class="debut-item relative"
+    (click)="openModal('debutModal', debut)"
+  >
+    <app-button
+      *ngIf="debut.isMine"
+      type="button"
+      variant="icon"
+      svgName="delete"
+      class="absolute top-[1rem] right-[1rem] z-[10]"
+      (clicked)="openModal('deleteModal', debut)"
+    >
     </app-button>
-    <app-button *ngIf="debut.isMine" type="button" variant="icon" svgName="update" class="absolute top-[5.5rem] right-[1rem] z-[10]" (clicked)="openModal('updateModal', debut)">
+    <app-button
+      *ngIf="debut.isMine"
+      type="button"
+      variant="icon"
+      svgName="update"
+      class="absolute top-[5.5rem] right-[1rem] z-[10]"
+      (clicked)="openModal('updateModal', debut)"
+    >
     </app-button>
     <div class="title">
-      <h2 class="typography-xl">{{debut.title}}</h2>
+      <h2 class="typography-xl">{{ debut.title }}</h2>
     </div>
-    <p class="typography-md">Сторона: {{debut.side}}</p>
+    <p class="typography-md">Сторона: {{ debut.side }}</p>
   </div>
 
   <div class="debut-item create-debut-item" (click)="openModal('createModal')">
@@ -20,22 +41,23 @@
 
 <!--модальное окно для дебюта-->
 <app-modal *ngIf="showDebutModal()" (close)="closeModal()">
-
-
-  <h2 class="typography-xl mob:w-[80%] ">{{selectedDebut().title}}</h2>
-  <p class="typography-md">Сторона: {{selectedDebut().side}}</p>
-  <p class="typography-md">Описание: {{selectedDebut().desc}}</p>
-  <app-button tag="a" variant="success" [link]="'debut/' + selectedDebut().id" label="Перейти к дебюту" class="w-[40%] mob:w-[100%]">
+  <h2 class="typography-xl mob:w-[80%]">{{ selectedDebut().title }}</h2>
+  <p class="typography-md">Сторона: {{ selectedDebut().side }}</p>
+  <p class="typography-md">Описание: {{ selectedDebut().desc }}</p>
+  <app-button
+    tag="a"
+    variant="success"
+    [link]="'debut/' + selectedDebut().id"
+    label="Перейти к дебюту"
+    class="w-[40%] mob:w-[100%]"
+  >
   </app-button>
-
 </app-modal>
 <!--модальное окно для дебюта-->
 
 <!--модальное окно для создания дебюта-->
 <app-modal *ngIf="showCreateModal()" (close)="closeModal()">
-  <app-create-debut-form (clicked)="closeModal()">
-  </app-create-debut-form>
-
+  <app-create-debut-form (clicked)="closeModal()"> </app-create-debut-form>
 </app-modal>
 <!--модальное окно для создания дебюта-->
 
@@ -44,8 +66,22 @@
   <h2 class="typography-xl mob:w-[80%] mob:text-md">Вы уверены что хотите удалить дебют?</h2>
   <p class="typography-lg">*в случае удаления дебюта все ходы будут удалены</p>
   <div class="w-full flex gap-[1rem]">
-    <app-button type="button" variant="primary" label="Нет" class="w-full" width="full" (clicked)="closeModal()"></app-button>
-    <app-button type="button" variant="secondary" label="Да" class="w-full" width="full" (clicked)="debutsStore.deleteDebut()"></app-button>
+    <app-button
+      type="button"
+      variant="primary"
+      label="Нет"
+      class="w-full"
+      width="full"
+      (clicked)="closeModal()"
+    ></app-button>
+    <app-button
+      type="button"
+      variant="secondary"
+      label="Да"
+      class="w-full"
+      width="full"
+      (clicked)="debutsStore.deleteDebut()"
+    ></app-button>
   </div>
 </app-modal>
 <!-- модальное окно для удаления дебюта -->

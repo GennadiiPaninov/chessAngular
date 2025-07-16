@@ -1,20 +1,20 @@
 @layer components {
   .notification {
-    @apply w-[40rem] mob:w-[33.5rem] h-[auto] rounded-[.3rem] p-[2rem] flex flex-row items-center gap-[1rem]
+    @apply w-[40rem] mob:w-[33.5rem] h-[auto] rounded-[.3rem] p-[2rem] flex flex-row items-center gap-[1rem];
   }
 
   .notification .icon {
-    @apply w-[5rem] h-[4rem]
+    @apply w-[5rem] h-[4rem];
   }
 
   .notification-error {
-    @apply border-t-[3px] border-red
+    @apply border-t-[3px] border-red;
   }
 
   .notification-success {
-    @apply border-t-[3px] border-success
+    @apply border-t-[3px] border-success;
   }
   .notification-info {
-    @apply border-t-[3px] border-primary
+    @apply border-t-[3px] border-primary;
   }
 }

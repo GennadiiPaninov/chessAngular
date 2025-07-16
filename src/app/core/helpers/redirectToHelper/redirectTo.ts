@@ -1,21 +1,21 @@
-import {inject, Injectable} from "@angular/core";
-import {Router} from "@angular/router";
-import {catchError, map, Observable, of} from "rxjs";
+import { inject, Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RedirectTo {
-  private router = inject(Router)
+  private router = inject(Router);
 
   navigateTo(url: string): Observable<boolean> {
     return of(this.router.navigate([url])).pipe(
       map(() => {
-        return true
+        return true;
       }),
-      catchError(err => {
-        return of(false)
-      })
+      catchError((err) => {
+        return of(false);
+      }),
     );
   }
 }

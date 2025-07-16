@@ -31,31 +31,30 @@ import { NgClass } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CheckboxComponent implements ControlValueAccessor {
+  @Input() label: string = '';
+  @Input() disabled: boolean = false;
+  @Input() id: string = `checkbox-${Math.random().toString(36).substring(2)}`;
+  @Input() className: string = '';
 
-  @Input() label: string = ''
-  @Input() disabled: boolean = false
-  @Input() id: string = `checkbox-${Math.random().toString(36).substring(2)}`
-  @Input() className: string = ''
+  @Output() checkedChange = new EventEmitter<boolean>();
 
-  @Output() checkedChange = new EventEmitter<boolean>()
-
-  private _isChecked: boolean = false
+  private _isChecked: boolean = false;
 
   get isChecked(): boolean {
-    return this._isChecked
+    return this._isChecked;
   }
 
   set isChecked(value: boolean) {
     if (this._isChecked !== value) {
-      this._isChecked = value
-      this.checkedChange.emit(value)
-      this.onChange(value)
-      this.cdr.markForCheck()
+      this._isChecked = value;
+      this.checkedChange.emit(value);
+      this.onChange(value);
+      this.cdr.markForCheck();
     }
   }
 
-  private onChange: (value: boolean) => void = () => {}
-  private onTouched: () => void = () => {}
+  private onChange: (value: boolean) => void = () => {};
+  private onTouched: () => void = () => {};
 
   constructor(private cdr: ChangeDetectorRef) {}
 
@@ -73,7 +72,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
-    this.cdr.markForCheck()
+    this.cdr.markForCheck();
   }
 
   toggleCheck(event?: Event): void {
@@ -81,14 +80,14 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.isChecked = !this.isChecked;
     this.onTouched();
     if (event) {
-      event.stopPropagation()
+      event.stopPropagation();
     }
   }
 
   handleKeydown(event: KeyboardEvent): void {
     if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault()
-      this.toggleCheck(event)
+      event.preventDefault();
+      this.toggleCheck(event);
     }
   }
 }

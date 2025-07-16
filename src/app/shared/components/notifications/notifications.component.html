@@ -1,16 +1,11 @@
-<div class="notification"
-    *ngFor="let notification of notifications(); trackBy: trackById" [ngClass]="notification.notificationType"
-     [@notificationAnimation]
+<div
+  class="notification"
+  *ngFor="let notification of notifications(); trackBy: trackById"
+  [ngClass]="notification.notificationType"
+  [@notificationAnimation]
 >
-  <svg
-    class="icon"
-    xmlns="http://www.w3.org/2000/svg"
-    focusable="false"
-    aria-hidden="true"
-  >
-
+  <svg class="icon" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
     <use [attr.href]="'../assets/icons.svg#' + notification.notificationType"></use>
   </svg>
   <p class="typography-md">{{ notification.title }}</p>
 </div>
-

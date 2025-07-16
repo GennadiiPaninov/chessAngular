@@ -2,7 +2,7 @@
 <form [formGroup]="createMoveForm" (ngSubmit)="submit()" class="modal-form p-[1rem]">
   <div formGroupName="moveGroup">
     <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
-      <app-field [label]="moveStore.isWhite() ? 'your from': 'enemy from'" class="w-full">
+      <app-field [label]="moveStore.isWhite() ? 'your from' : 'enemy from'" class="w-full">
         <app-input
           [formControlName]="moveStore.isWhite() ? 'mFrom' : 'eFrom'"
           placeholder="Введите ход в формате e2"
@@ -12,17 +12,18 @@
       <app-field label="to" class="w-full">
         <app-input
           [formControlName]="moveStore.isWhite() ? 'mTo' : 'eTo'"
-
           placeholder="Введите ход в формате e4"
           type="text"
         ></app-input>
       </app-field>
     </div>
     <div class="flex flex-row gap-[2rem] mob:flex-col mob:gap-0">
-      <app-field [label]="moveStore.move().side == 'White' ? 'enemy from': 'your from'" class="w-full">
+      <app-field
+        [label]="moveStore.move().side == 'White' ? 'enemy from' : 'your from'"
+        class="w-full"
+      >
         <app-input
           [formControlName]="moveStore.isWhite() ? 'eFrom' : 'mFrom'"
-
           placeholder="Введите ход в формате e2"
           type="text"
         ></app-input>
@@ -30,7 +31,6 @@
       <app-field label="to" class="w-full">
         <app-input
           [formControlName]="moveStore.isWhite() ? 'eTo' : 'mTo'"
-
           placeholder="Введите ход в формате e4"
           type="text"
         ></app-input>
@@ -44,8 +44,10 @@
       placeholder="Введите описание"
     ></app-text-area>
   </app-field>
-  <app-button type="submit" variant="secondary" label="Отправить" [disabled]="createMoveForm.invalid"></app-button>
+  <app-button
+    type="submit"
+    variant="secondary"
+    label="Отправить"
+    [disabled]="createMoveForm.invalid"
+  ></app-button>
 </form>
-
-
-

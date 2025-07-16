@@ -1,5 +1,4 @@
-
-import {GlobalStore} from"@store/global/globalStore";
+import { GlobalStore } from '@store/global/globalStore';
 
 /**
  * Обрабатывает ошибку HTTP и вызывает уведомление.
@@ -7,9 +6,12 @@ import {GlobalStore} from"@store/global/globalStore";
  * @param fallback — текст, если ничего не извлечено
  * @param global — мой стор для уведомлений
  */
-export function handleHttpError(global: GlobalStore, err: unknown, fallback = 'Что-то пошло не так', ) {
-
-  let message = fallback
+export function handleHttpError(
+  global: GlobalStore,
+  err: unknown,
+  fallback = 'Что-то пошло не так',
+) {
+  let message = fallback;
 
   if (
     typeof err === 'object' &&
@@ -17,8 +19,8 @@ export function handleHttpError(global: GlobalStore, err: unknown, fallback = '�
     'error' in err &&
     typeof (err as any).error?.message === 'string'
   ) {
-    message = (err as any).error.message
+    message = (err as any).error.message;
   }
 
-  global.createNotification(message, 'notification-error')
+  global.createNotification(message, 'notification-error');
 }

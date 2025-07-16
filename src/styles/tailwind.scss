@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 @mixin breakpoint($bp) {
   @media (max-width: $bp) {
     @content;
@@ -12,7 +9,6 @@
 }
 
 $sm-bp: 500px;
-
 
 html {
   scrollbar-gutter: stable;
@@ -31,24 +27,22 @@ html::-webkit-scrollbar {
 * {
   box-sizing: border-box;
 }
-@import "typography.scss";
-@import "button.scss";
-@import "common.scss";
-@import "input.scss";
-@import "form.scss";
-@import "notification.scss";
-@import "modal.scss";
+@import 'typography.scss';
+@import 'button.scss';
+@import 'common.scss';
+@import 'input.scss';
+@import 'form.scss';
+@import 'notification.scss';
+@import 'modal.scss';
 
 //*{
 //  outline:4px solid green;
 //}
 
-
 /*
  * Board
  */
-@import "chessground/assets/base.css";
-@import "chessground/assets/desktop.css";
-@import "chessground/assets/mobile.css";
-@import "board.scss";
-
+@import 'chessground/assets/base.css';
+@import 'chessground/assets/desktop.css';
+@import 'chessground/assets/mobile.css';
+@import 'board.scss';

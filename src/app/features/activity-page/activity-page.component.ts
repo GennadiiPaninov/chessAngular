@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './activity-page.component.html',
-  styleUrl: './activity-page.component.scss'
+  styleUrl: './activity-page.component.scss',
 })
-export class ActivityPageComponent {
-
-}
+export class ActivityPageComponent {}

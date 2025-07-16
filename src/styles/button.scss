@@ -14,10 +14,10 @@
   .btn-default {
     @apply bg-background  hover:bg-secondary active:bg-tertiaryXl;
   }
-  .btn-success{
+  .btn-success {
     @apply bg-success active:bg-successA hover:bg-successH text-background disabled:bg-dimGray;
   }
-  .btn-reverse{
+  .btn-reverse {
     @apply flex-row-reverse;
     @apply flex-row-reverse;
   }
@@ -25,6 +25,6 @@
     @apply p-[1rem] border-[.1rem] border-solid hover:border-primary  hover:transition-all;
   }
   .btn-icon-s {
-    @apply p-[0]
+    @apply p-[0];
   }
 }

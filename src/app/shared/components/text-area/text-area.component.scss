@@ -9,17 +9,17 @@
   width: 100%;
   resize: none;
   padding: 1rem;
-  border-radius: .6rem;
-  border: .1rem solid #ccc;
+  border-radius: 0.6rem;
+  border: 0.1rem solid #ccc;
   max-height: 15rem;
 }
 .textarea:focus {
   outline: unset;
 }
-.textarea-container.error .textarea{
-  border: .1rem solid #ec132c;
+.textarea-container.error .textarea {
+  border: 0.1rem solid #ec132c;
   color: #ec132c;
-  &::placeholder{
+  &::placeholder {
     color: #ec132c;
   }
 }

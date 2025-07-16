@@ -1,4 +1,8 @@
-<form [formGroup]="registerForm" (ngSubmit)="submit()" class="primary-form mob:absolute mob:top-[50%] mob:translate-y-[-50%]">
+<form
+  [formGroup]="registerForm"
+  (ngSubmit)="submit()"
+  class="primary-form mob:absolute mob:top-[50%] mob:translate-y-[-50%]"
+>
   <app-field label="Email">
     <app-input
       formControlName="email"
@@ -9,11 +13,7 @@
     />
   </app-field>
   <app-field label="Имя">
-    <app-input
-      formControlName="userName"
-      placeholder="Введите ваше имя"
-      svgName="profile"
-    />
+    <app-input formControlName="userName" placeholder="Введите ваше имя" svgName="profile" />
   </app-field>
   <app-field label="Введите пароль">
     <app-input
@@ -25,7 +25,7 @@
     />
   </app-field>
 
-  <app-field  label="Подтвердите пароль">
+  <app-field label="Подтвердите пароль">
     <app-input
       formControlName="passwordConfirm"
       placeholder="Повторите пароль"
@@ -34,10 +34,5 @@
       autocomplete="new-password"
     />
   </app-field>
-  <app-button
-    variant="success"
-    width="full"
-    label="Sign Up"
-    [disabled]="registerForm.invalid"
-  />
+  <app-button variant="success" width="full" label="Sign Up" [disabled]="registerForm.invalid" />
 </form>

@@ -8,10 +8,9 @@ describe('RouteLoaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouteLoaderComponent]
-    })
-    .compileComponents();
-    
+      imports: [RouteLoaderComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(RouteLoaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

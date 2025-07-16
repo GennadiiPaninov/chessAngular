@@ -2,15 +2,13 @@
   .modal-backdrop {
     @apply fixed inset-0 bg-custom-rgba z-[100];
   }
-  .modal-content{
+  .modal-content {
     @apply w-[80rem] mob:w-[33.5rem] fixed fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-form mob:pt-[2rem] mob:pb-[1rem] mob:pl-[1rem] mob:pr-[1rem] rounded-[1rem] z-[101] flex flex-col gap-[3rem] mob:w-[33.5rem];
   }
-  .form-modal-content{
+  .form-modal-content {
     @apply w-[60rem] mob:w-[33.5rem];
   }
-  .close-btn{
+  .close-btn {
     @apply absolute top-[-1rem] right-[2rem] bg-transparent text-[4rem] border-none cursor-pointer;
   }
 }
-
-

@@ -8,9 +8,8 @@ describe('MoveListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MoveListComponent]
-    })
-    .compileComponents();
+      imports: [MoveListComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MoveListComponent);
     component = fixture.componentInstance;

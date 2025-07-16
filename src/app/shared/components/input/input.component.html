@@ -1,9 +1,12 @@
-<div
-  class="input-container relative"
-  [ngClass]="{ 'error': errorMessage && showError }"
->
-  <app-button *ngIf="password" variant="icon-s" [svgName]="isPasswordVisible ? 'open-eye' : 'close-eye'" type="button"
-              (clicked)="showPassword()" tabindex="-1" tag="button"
+<div class="input-container relative" [ngClass]="{ error: errorMessage && showError }">
+  <app-button
+    *ngIf="password"
+    variant="icon-s"
+    [svgName]="isPasswordVisible ? 'open-eye' : 'close-eye'"
+    type="button"
+    (clicked)="showPassword()"
+    tabindex="-1"
+    tag="button"
   >
   </app-button>
   <svg
@@ -28,4 +31,8 @@
     [attr.autocomplete]="autocomplete"
   />
 </div>
-<span *ngIf="errorMessage &&  showError" class="typography-lg bottom-[-3rem] mob:typography-md mob:bottom-[-2rem] !text-red">{{errorMessage}}</span>
+<span
+  *ngIf="errorMessage && showError"
+  class="typography-lg bottom-[-3rem] mob:typography-md mob:bottom-[-2rem] !text-red"
+  >{{ errorMessage }}</span
+>

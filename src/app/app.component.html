@@ -1,8 +1,6 @@
 <main class="main">
-  <app-route-loader/>
-  <app-loader *ngIf="isLoading()"/>
+  <app-route-loader />
+  <app-loader *ngIf="isLoading()" />
   <app-notifications *ngIf="notifications().length" [@appAnimation]></app-notifications>
   <router-outlet></router-outlet>
 </main>
-
-

@@ -1,7 +1,20 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, inject, Input, Output} from '@angular/core';
-import {ControlContainer, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR} from "@angular/forms";
-import {InputErrorsService} from "@core/services/inputErrorsService/input-errors.service";
-import {CommonModule, NgClass, NgIf} from "@angular/common";
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  inject,
+  Input,
+  Output,
+} from '@angular/core';
+import {
+  ControlContainer,
+  ControlValueAccessor,
+  FormControl,
+  NG_VALUE_ACCESSOR,
+} from '@angular/forms';
+import { InputErrorsService } from '@core/services/inputErrorsService/input-errors.service';
+import { CommonModule, NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-text-area',
@@ -15,7 +28,7 @@ import {CommonModule, NgClass, NgIf} from "@angular/common";
     },
   ],
   templateUrl: './text-area.component.html',
-  styleUrl: './text-area.component.scss'
+  styleUrl: './text-area.component.scss',
 })
 export class TextAreaComponent implements ControlValueAccessor {
   @Input() label = '';
@@ -42,11 +55,11 @@ export class TextAreaComponent implements ControlValueAccessor {
     this.cdr.markForCheck();
   }
 
-  registerOnChange(fn: ()=>void): void {
+  registerOnChange(fn: () => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: ()=>void): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

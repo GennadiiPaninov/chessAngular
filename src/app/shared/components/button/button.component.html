@@ -1,22 +1,17 @@
 <ng-container [ngSwitch]="tag">
-
   <!--  btn -->
-  <button (click)="handleClick($event)"
-          [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
-          [disabled]="disabled"
-          [tabIndex]="tabindex"
-          *ngSwitchCase="'button'"
-          [type]="type"
+  <button
+    (click)="handleClick($event)"
+    [ngClass]="['btn', 'btn-' + variant, reverse ? 'btn-reverse' : '', width ? 'w-full' : '']"
+    [disabled]="disabled"
+    [tabIndex]="tabindex"
+    *ngSwitchCase="'button'"
+    [type]="type"
   >
-    <svg
-      *ngIf="svgName"
-      class="icon"
-      focusable="false"
-      aria-hidden="true"
-    >
+    <svg *ngIf="svgName" class="icon" focusable="false" aria-hidden="true">
       <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
     </svg>
-    {{label}}
+    {{ label }}
     <ng-content></ng-content>
   </button>
   <!--  a -->
@@ -29,12 +24,7 @@
     role="button"
     [href]="link"
   >
-    <svg
-      *ngIf="svgName"
-      class="icon"
-      focusable="false"
-      aria-hidden="true"
-    >
+    <svg *ngIf="svgName" class="icon" focusable="false" aria-hidden="true">
       <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
     </svg>
     {{ label }}
@@ -49,12 +39,7 @@
     [tabIndex]="tabindex"
     role="button"
   >
-    <svg
-      *ngIf="svgName"
-      class="icon"
-      focusable="false"
-      aria-hidden="true"
-    >
+    <svg *ngIf="svgName" class="icon" focusable="false" aria-hidden="true">
       <use [attr.href]="'../assets/icons.svg#' + svgName"></use>
     </svg>
     {{ label }}

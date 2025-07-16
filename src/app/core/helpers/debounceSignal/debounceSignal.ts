@@ -1,10 +1,9 @@
 import { WritableSignal, untracked, effect } from '@angular/core';
 
-
 export function debounceSignal<T>(
   source: WritableSignal<T>,
   delay: number,
-  callback: (value: T) => void
+  callback: (value: T) => void,
 ): () => void {
   let timeoutId: ReturnType<typeof setTimeout> | null = null;
 

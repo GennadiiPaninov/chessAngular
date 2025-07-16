@@ -1,5 +1,8 @@
-<form [formGroup]="loginForm" (ngSubmit)="submit()"
-      class="primary-form mob:absolute mob:top-[50%] mob:translate-y-[-50%]">
+<form
+  [formGroup]="loginForm"
+  (ngSubmit)="submit()"
+  class="primary-form mob:absolute mob:top-[50%] mob:translate-y-[-50%]"
+>
   <app-field label="Email">
     <app-input
       formControlName="email"
@@ -18,13 +21,10 @@
       [password]="true"
     ></app-input>
   </app-field>
-  <app-button
-    variant="success"
-    width="full"
-    label="Sign In"
-    [disabled]="loginForm.invalid"
-  >
+  <app-button variant="success" width="full" label="Sign In" [disabled]="loginForm.invalid">
   </app-button>
 
-  <a href="https://chess-angular-topaz.vercel.app/sign-up" class="typography-lg">Зарегистрироваться</a>
+  <a href="https://chess-angular-topaz.vercel.app/sign-up" class="typography-lg"
+    >Зарегистрироваться</a
+  >
 </form>

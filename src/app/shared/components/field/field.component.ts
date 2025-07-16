@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {NgIf} from "@angular/common";
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-field',
@@ -7,7 +7,7 @@ import {NgIf} from "@angular/common";
   imports: [NgIf],
   templateUrl: './field.component.html',
   styleUrl: './field.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FieldComponent {
   @Input() label: string = '';

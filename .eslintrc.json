@@ -1,0 +1,16 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "angular"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:angular/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "angular/no-controller": "off",
+    "angular/directive-selector": ["error", { "type": "element", "prefix": "app" }],
+    "angular/component-selector": ["error", { "type": "element", "prefix": "app" }]
+  }
+}

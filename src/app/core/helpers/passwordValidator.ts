@@ -1,29 +1,29 @@
-import {AbstractControl, ValidationErrors, ValidatorFn} from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export const passwordValidator =():ValidatorFn =>{
-  return (control:AbstractControl): ValidationErrors | null=>{
-    const passwordValue = control.value
+export const passwordValidator = (): ValidatorFn => {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const passwordValue = control.value;
 
-    if (!passwordValue) return null
+    if (!passwordValue) return null;
 
-    const hasNumber = /\d/.test(passwordValue)
-    const hasUpperCase = /[A-Z]/.test(passwordValue)
-    const hasLowerCase = /[a-z]/.test(passwordValue)
-    if(!hasNumber){
-        return {
-          number: true
-        }
-    }
-    if(!hasUpperCase){
+    const hasNumber = /\d/.test(passwordValue);
+    const hasUpperCase = /[A-Z]/.test(passwordValue);
+    const hasLowerCase = /[a-z]/.test(passwordValue);
+    if (!hasNumber) {
       return {
-        capitalLetter: true
-      }
+        number: true,
+      };
     }
-    if(!hasLowerCase){
+    if (!hasUpperCase) {
       return {
-        smallLetter: true
-      }
+        capitalLetter: true,
+      };
     }
-    return null
-  }
-}
+    if (!hasLowerCase) {
+      return {
+        smallLetter: true,
+      };
+    }
+    return null;
+  };
+};

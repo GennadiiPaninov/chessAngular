@@ -8,9 +8,8 @@ describe('UpdateMoveFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UpdateMoveFormComponent]
-    })
-    .compileComponents();
+      imports: [UpdateMoveFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UpdateMoveFormComponent);
     component = fixture.componentInstance;

@@ -16,10 +16,12 @@
     ></app-text-area>
   </app-field>
   <app-field label="Цвет фигуры*">
-    <app-radio
-      formControlName="side"
-      [options]="radioOptions"
-    ></app-radio>
+    <app-radio formControlName="side" [options]="radioOptions"></app-radio>
   </app-field>
-  <app-button [disabled]="createDebutForm.invalid" type="submit" variant="secondary" label="Отправить"></app-button>
+  <app-button
+    [disabled]="createDebutForm.invalid"
+    type="submit"
+    variant="secondary"
+    label="Отправить"
+  ></app-button>
 </form>
