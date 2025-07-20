@@ -3,6 +3,9 @@ import { AuthLayoutComponent } from '@shared/layouts/auth-layout/auth-layout.com
 import { AuthorizedLayoutComponent } from '@shared/layouts/authorized-layout/authorized-layout.component';
 import { authGuard } from '@core/helpers/authGuard/authGuard';
 import { redirectAuthGuard } from '@core/helpers/redirectAuthGuard/redirectAuthGuard';
+import { AnimationLayoutComponent } from '@shared/layouts/animation-layout/animation-layout.component';
+import * as path from 'path';
+import { AnimationsPageComponent } from '@features/animations-page/animations-page.component';
 
 export const routes: Routes = [
   {
@@ -77,6 +80,20 @@ export const routes: Routes = [
         title: 'verify',
         loadComponent: () =>
           import('./features/verify/verify.component').then((m) => m.VerifyComponent),
+      },
+    ],
+  },
+  {
+    path: 'animations',
+    component: AnimationLayoutComponent,
+    children: [
+      {
+        path: 'animations-page',
+        title: 'chess-animations-page',
+        loadComponent: () =>
+          import('./features/animations-page/animations-page.component').then(
+            (m) => m.AnimationsPageComponent,
+          ),
       },
     ],
   },

@@ -1,0 +1,164 @@
+:host {
+  display: block;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+
+
+
+.shape-box {
+  width: 45rem;
+  background: white;
+  margin: 8rem auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+
+  &__square {
+    position: relative;
+    height: 15rem;
+
+    &:nth-child(odd) {
+      background: #a3d160;
+      box-shadow: -1rem 1rem 0.5rem #5d9948;
+      z-index: 1;
+      transition: all 0.5s;
+      top: 0;
+      left: 0;
+      border: 0.1rem solid #5d9948;
+
+    }
+
+    &:nth-child(3) {
+      animation: offset 2s;
+      &:hover {
+        top: 1rem;
+        left: -1rem;
+        box-shadow: 0 0 0.5rem #5d9948;
+      }
+    }
+    &:nth-child(1) {
+      animation: offset 2s;
+      animation-delay: 6s;
+    }
+  }
+
+  &__shape {
+    position: absolute;
+    height: 15rem;
+    width: 15rem;
+    z-index: 2;
+    top: -5rem;
+    right: 0;
+    transform: scaleY(1) rotate(0);
+    transition: all 0.5s;
+    transform-origin: 50% 100%;
+    animation: wave 10s linear alternate;
+
+    &:hover {
+
+    }
+  }
+}
+
+$positions: ((-5rem, 0rem), (-10rem, 15rem), (-5rem, 30rem), (-10rem, 15rem), (-5rem, 0rem));
+
+$scale-list: ((1), (.7), (1.2), (.7), (1), (.7), (1.2), (1));
+
+$rotate-list: ((0deg), (7deg), (-5deg), (7deg), (180deg), (180deg, -7deg), (180deg, 7deg), (180deg, -5deg), (180deg, 0deg), (0deg, 0deg));
+
+@function getListValue($list, $index, $item-index) {
+  @return nth(nth($list, $index), $item-index);
+}
+
+@keyframes wave {
+  from {
+    // начальная позиция
+    transform: scaleY(getListValue($scale-list, 1, 1)) rotate(getListValue($rotate-list, 1, 1));
+  }
+  10% {
+    // пригебается
+    transform: scaleY(getListValue($scale-list, 2, 1)) rotate(getListValue($rotate-list, 2, 1));
+    // начальное положение для движения на следующий square
+    top: getListValue($positions, 1, 1);
+    right: getListValue($positions, 1, 2);
+  }
+  20% {
+    // разгибается
+    transform: scaleY(getListValue($scale-list, 3, 1)) rotate(getListValue($rotate-list, 3, 1));
+    top: getListValue($positions, 1, 1);
+    right: getListValue($positions, 1, 2);
+  }
+  30%{
+    top: getListValue($positions, 2, 1);
+    right: getListValue($positions, 2, 2);
+  }
+  40%{
+    transform: scaleY(getListValue($scale-list, 4, 1)) rotate(getListValue($rotate-list, 4, 1));
+    top: nth(nth($positions, 3), 1);
+    right: nth(nth($positions, 3), 2);
+  }
+  50%{
+    transform: scaleY(getListValue($scale-list, 4, 1)) rotateY(getListValue($rotate-list, 5, 1));
+    top: nth(nth($positions, 3), 1);
+    right: nth(nth($positions, 3), 2);
+  }
+  55%{
+    // на второй клетке восстанавливает свой масштаб
+    transform: scaleY(getListValue($scale-list, 5, 1)) rotateY(getListValue($rotate-list, 5, 1));
+    top: nth(nth($positions, 3), 1);
+    right: nth(nth($positions, 3), 2);
+  }
+  60%{
+    // на второй клетке разворот
+    transform: scaleY(getListValue($scale-list, 6, 1)) rotate(getListValue($rotate-list, 6, 2)) rotateY(getListValue($rotate-list, 6, 1));
+    top: nth(nth($positions, 3), 1);
+    right: nth(nth($positions, 3), 2);
+  }
+  65%{
+    transform: scaleY(getListValue($scale-list, 7, 1)) rotate(getListValue($rotate-list, 7, 2)) rotateY(getListValue($rotate-list, 7, 1));
+    top: nth(nth($positions, 3), 1);
+    right: nth(nth($positions, 3), 2);
+  }
+  80%{
+    transform: scaleY(getListValue($scale-list, 7, 1)) rotate(getListValue($rotate-list, 7, 2)) rotateY(getListValue($rotate-list, 7, 1));
+    top: nth(nth($positions, 4), 1);
+    right: nth(nth($positions, 4), 2);
+  }
+
+  90%{
+    transform: scaleY(getListValue($scale-list, 7, 1)) rotate(getListValue($rotate-list, 8, 2)) rotateY(getListValue($rotate-list, 8, 1));
+    top: nth(nth($positions, 5), 1);
+    right: nth(nth($positions, 5), 2);
+  }
+  95%{
+    transform: scaleY(getListValue($scale-list, 7, 1)) rotate(getListValue($rotate-list, 9, 2)) rotateY(getListValue($rotate-list, 9, 1));
+  }
+  to {
+    // возврат к изначальной клетке
+    transform: scaleY(getListValue($scale-list, 8, 1)) rotate(getListValue($rotate-list, 10, 2)) rotateY(getListValue($rotate-list, 10, 1));
+    top: nth(nth($positions, 5), 1);
+    right: nth(nth($positions, 5), 2);
+  }
+}
+@keyframes offset {
+
+  from{
+    top: 0;
+    left: 0;
+    box-shadow: -1rem 1rem 0.5rem #5d9948;
+  }
+  50%{
+    top: 1rem;
+    left: -1rem;
+    box-shadow: 0 0 0.5rem #5d9948;
+  }
+  to{
+    top: 0;
+    left: 0;
+    box-shadow: -1rem 1rem 0.5rem #5d9948;
+  }
+}
+
+
